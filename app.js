@@ -3,6 +3,7 @@ var controllers = require('./controllers/index');
 var bodyParser = require('body-parser');
 var path = require('path');
 var hbs = require('express-handlebars');
+var fs = require('fs');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -27,6 +28,13 @@ app.use('/js', express.static('public/js'));
 app.use('/img', express.static('public/img'));
 
 app.use('/', controllers);
+
+fs.readdirSync('./controllers').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
+    route = require('./controllers/' + file);
+    app.use(route, controllers);
+  }
+});
 
 app.listen(PORT, function () {
   console.log('express on port ' + PORT);
