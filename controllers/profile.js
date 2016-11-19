@@ -7,7 +7,7 @@ router.get('/profile', function(req, res, next) {
 });
 
 router.get('/profile/new', function(req, res, next) {
-  res.render('');
+  res.send('Test Message');
 });
 
 router.get('/profile/edit/:id', function(req, res, next) {
