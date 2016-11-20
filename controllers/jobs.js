@@ -1,17 +1,66 @@
 var express = require('express');
 var router = express.Router();
-var data = require('../models/data.js');
+var request = require('request-promise');
 
-router.get('/jobs', function(req, res, next) {
-  res.render('');
+router.get('/jobs', function (req, res, next) {
+  res.render('jobs');
 });
 
-router.get('/jobs/:provider', function(req, res, next) {
-  res.render('');
+router.get('/jobs/:provider', function (req, res, next) {
+  var data = {
+    // 'tech': ['html','css','jquery','javascript','react']
+    'tech': [
+      {
+        'technology': 'html'
+      },
+      {
+        'technology': 'css'
+      },
+      {
+        'technology': 'javascript'
+      },
+      {
+        'technology': 'react'
+      }
+    ]
+  };
+  data.provider = req.params.provider;
+  res.render('jobs', data);
 });
 
-router.get('/jobs/:provider/:query', function(req, res, next) {
-  res.render('');
+var apiProvider;
+var queryString;
+router.get('/jobs/:provider/:tech', function(req, res, next) {
+  var provider = req.params.provider;
+  switch (provider) {
+    case 'dice':
+      apiProvider = 'http://service.dice.com/api/rest/jobsearch/v1/simple.json';
+      queryString = {
+        city: 'Austin,+TX',
+        text: 'junior',
+        skill: req.params.tech
+      }
+      break;
+  
+    default:
+      break;
+  }
+  console.log(queryString);
+  request({
+    uri: apiProvider,
+    qs: queryString,
+    json: true
+  })
+    .then( function (data) {
+      res.render('jobs', data);
+    })
+    .catch( function (error) {
+      console.log(error);
+      res.json(error);
+    });
+  
 });
+
+
 
 module.exports = router;
