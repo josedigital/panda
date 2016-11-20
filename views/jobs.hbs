@@ -7,10 +7,22 @@
 </header>
 <section role="main">
   <div class="container">
-    {{#each this.resultItemList }}
-      <h6><a href="{{ this.detailUrl }}">{{ this.jobTitle }}</a></h6>
-    {{/each}}
-    <p>this is the main jobs homepage. i am wondering if we will need to create subdirectories for main section subpages.</p>
+    {{#if resultItemList}}
+      {{#each resultItemList }}
+        <h6><a href="{{ detailUrl }}">{{ jobTitle }}</a></h6>
+      {{/each}}
+    {{/if}}
+
+    {{#if provider}}
+      <h3>{{provider}}</h3>
+    {{/if}}
+    {{#if tech}}
+      {{#each tech }}
+        <p><a href="./dice/{{technology}}">{{ technology }}</a></p>
+      {{/each}}
+    {{/if}}
+    
+    
     
   </div>
 </section>

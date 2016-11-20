@@ -2,32 +2,65 @@ var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
 
-router.get('/jobs', function(req, res, next) {
+router.get('/jobs', function (req, res, next) {
+  res.render('jobs');
+});
+
+router.get('/jobs/:provider', function (req, res, next) {
+  var data = {
+    // 'tech': ['html','css','jquery','javascript','react']
+    'tech': [
+      {
+        'technology': 'html'
+      },
+      {
+        'technology': 'css'
+      },
+      {
+        'technology': 'javascript'
+      },
+      {
+        'technology': 'react'
+      }
+    ]
+  };
+  data.provider = req.params.provider;
+  res.render('jobs', data);
+});
+
+var apiProvider;
+var queryString;
+router.get('/jobs/:provider/:tech', function(req, res, next) {
+  var provider = req.params.provider;
+  switch (provider) {
+    case 'dice':
+      apiProvider = 'http://service.dice.com/api/rest/jobsearch/v1/simple.json';
+      queryString = {
+        city: 'Austin,+TX',
+        text: 'junior',
+        skill: req.params.tech
+      }
+      break;
+  
+    default:
+      break;
+  }
+  console.log(queryString);
   request({
-    uri: 'http://service.dice.com/api/rest/jobsearch/v1/simple.json',
-    qs: {
-      text: 'javascript', // req.params.city,
-      city: 'Austin'
-         // Use your accuweather API key here
-    },
+    uri: apiProvider,
+    qs: queryString,
     json: true
   })
     .then( function (data) {
       res.render('jobs', data);
     })
-    .catch((err) => {
-      console.log(err);
-      res.json(err);
+    .catch( function (error) {
+      console.log(error);
+      res.json(error);
     });
   
 });
 
-router.get('/jobs/:provider', function(req, res, next) {
-  res.render('');
-});
 
-router.get('/jobs/:provider/:query', function(req, res, next) {
-  res.render('');
-});
 
 module.exports = router;
