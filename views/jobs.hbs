@@ -1,0 +1,29 @@
+{{> _header }}
+<header>
+  <div class="container">
+    <h1>Jobs</h1>
+    <p>this is the main jobs page</p>
+  </div>
+</header>
+<section role="main">
+  <div class="container">
+    {{#if resultItemList}}
+      {{#each resultItemList }}
+        <h6><a href="{{ detailUrl }}">{{ jobTitle }}</a></h6>
+      {{/each}}
+    {{/if}}
+
+    {{#if provider}}
+      <h3>{{provider}}</h3>
+    {{/if}}
+    {{#if tech}}
+      {{#each tech }}
+        <p><a href="./dice/{{technology}}">{{ technology }}</a></p>
+      {{/each}}
+    {{/if}}
+    
+    
+    
+  </div>
+</section>
+{{> _footer }}
