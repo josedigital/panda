@@ -19,6 +19,7 @@ passport.use(new Strategy({
     callbackURL: 'http://localhost:4000/login/github/return'
   },
   function(accessToken, refreshToken, profile, cb) {
+    // console.log(accessToken);
     return cb(null, profile);
   }));
 

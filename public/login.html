@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Gulp &amp; Express &amp; Pug &amp; Stylus</title>
-    <meta name="desctiption" content="">
-    <meta name="desctiption" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body>
-    <nav>
-      <div class="container">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </div>
-    </nav>
+{{> _header }}
 <header>
   <div class="container">
     <h1>the h1</h1>
@@ -28,14 +11,4 @@
     <p><a href="/login/github">Log In with github</a></p>
   </div>
 </section>
-<footer>
-  <div class="container">
-    <h6>this is the footer</h6>
-  <div>
-</footer>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>    
-<script src="js/main.js"></script>
-</body>
-</html>
+{{> _footer }}

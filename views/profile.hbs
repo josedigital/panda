@@ -1,19 +1,19 @@
 {{> _header }}
 <header>
   <div class="container">
-    <h1>{{ home.title }}</h1>
-    <p>{{ home.subtitle }}</p>
+    <h1>Profile</h1>
+    <p>this is the profile page</p>
   </div>
 </header>
 <section role="main">
   <div class="container">
     <h1>hi again</h1>
     <p>
-      <img src="{{ user.img }}" alt="" /><br>
-      ID: {{ user.id }}<br/>
-      Username: {{ user.username }}<br>
-      Name: {{ user.displayName }}<br>
-      Email: {{ user.email }}
+      <img src="{{ login._json.avatar_url }}" alt="" /><br>
+      ID: {{ login.id }}<br/>
+      Username: {{ login.username }}<br>
+      Name: {{ login.displayName }}<br>
+      Email: {{ login.email }}
     </p>
 
     <p>
@@ -21,7 +21,10 @@
     </p>
 
     <ul>
-      {{ id }}
+      
+      {{#each user }}
+        
+      {{/each}}
     </ul>
   </div>
 </section>
