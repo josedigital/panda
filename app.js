@@ -6,7 +6,9 @@ var hbs = require('express-handlebars');
 var fs = require('fs');
 var passport = require('passport');
 var Strategy = require('passport-github').Strategy;
+var github = require('octonode');
 
+// var client = github.client();
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -20,6 +22,20 @@ passport.use(new Strategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     // console.log(accessToken);
+    // var client = github.client(accessToken);
+    // req.ghuser = client.user(profile.user);
+    // console.log('------------------------------------');
+    // console.log(profile.id);
+    // var f = ghuser.followers(function(err, data, headers) {
+    //   // console.log("error: " + err);
+    //   console.log("==========================================");
+    //   console.log("data: " + data);
+    //   console.log("==========================================");
+    //   // console.log("headers:" + headers);
+    // });
+    // console.log(f);
+    // console.log('------------------------------------');
+    profile.token = accessToken;
     return cb(null, profile);
   }));
 

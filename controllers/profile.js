@@ -4,7 +4,7 @@ var connectLogin = require('connect-ensure-login');
 var request = require('request-promise');
 var github = require('octonode');
 
-var client = github.client();
+// var client = github.client();
 // client.get('/users/josedigital', {}, function (err, status, body, headers) {
 //   // console.log(body); //json object
 // });
@@ -23,8 +23,17 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
   //     console.log(error);
   //     res.json(error);
   //   });
-  var ghuser = client.user(req.user);
-  res.render('profile', ghuser);
+  // var ghuser = client.user(req.user);
+  var client = github.client(req.user.token);
+  var ghuser = client.user(req.user.username);
+  console.log(ghuser);
+  ghuser.repos(function(err, data, headers) {
+    console.log("error: " + err);
+    console.log(data);
+    console.log("headers:" + headers);
+    res.render('profile', {user:req.user, repos: data});
+  });
+  
 });
 
   

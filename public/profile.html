@@ -9,11 +9,12 @@
   <div class="container">
     <h1>hi again</h1>
     <p>
-      <img src="{{ login._json.avatar_url }}" alt="" /><br>
-      ID: {{ login.id }}<br/>
-      Username: {{ login.username }}<br>
-      Name: {{ login.displayName }}<br>
-      Email: {{ login.email }}
+      <img src="{{ user._json.avatar_url }}" alt="" /><br>
+      ID: {{ user.id }}<br/>
+      Username: {{ user.username }}<br>
+      Name: {{ user.displayName }}<br>
+      Email: {{ user.email }} <br>
+      Token: {{ user.token }}
     </p>
 
     <p>
@@ -22,8 +23,8 @@
 
     <ul>
       
-      {{#each user }}
-        
+      {{#each repos }}
+        <p><a href="{{html_url}}">{{ name }}</a></p>
       {{/each}}
     </ul>
   </div>
