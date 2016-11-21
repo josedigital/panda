@@ -1,0 +1,20 @@
+{{> _header }}
+<header>
+  <div class="container">
+    <h1>{{ home.title }}</h1>
+    <p>{{ home.subtitle }}</p>
+  </div>
+</header>
+<section role="main">
+  <div class="container">
+    <h1>hi again</h1>
+    <p>
+      <img src="{{ user.img }}" alt="" /><br>
+      ID: {{ user.id }}<br/>
+      Username: {{ user.username }}<br>
+      Name: {{ user.displayName }}<br>
+      Email: {{ user.email }}
+    </p>
+  </div>
+</section>
+{{> _footer }}
