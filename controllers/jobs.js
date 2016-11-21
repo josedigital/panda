@@ -30,7 +30,7 @@ router.get('/jobs/:provider', function (req, res, next) {
 
 var apiProvider;
 var queryString;
-router.get('/jobs/:provider/:tech', function(req, res, next) {
+router.get('/jobs/:provider/:tech', function (req, res, next) {
   var provider = req.params.provider;
   switch (provider) {
     case 'dice':
@@ -41,17 +41,38 @@ router.get('/jobs/:provider/:tech', function(req, res, next) {
         skill: req.params.tech
       }
       break;
-  
+    case 'muse':
+      apiProvider = 'https://api-v2.themuse.com/jobs';
+      queryString = {
+        api_key: '',
+        category: 'Engineering',
+        level: 'Entry+Level+Mid+Level',
+        location: 'Austin, TX',
+        page:1
+      }
+      break;
+    case 'indeed':
+      apiProvider = 'http://api.indeed.com/ads/apisearch';
+      queryString = {
+        publisher: '',
+        v: 2,
+        format: 'json',
+        q: req.params.tech,
+        as_any: 'junior',
+        l: 'Austin, TX',
+        radius: 100
+      }
     default:
       break;
   }
-  console.log(queryString);
+
   request({
     uri: apiProvider,
     qs: queryString,
     json: true
   })
     .then( function (data) {
+      console.log(queryString);
       res.render('jobs', data);
     })
     .catch( function (error) {
@@ -60,6 +81,10 @@ router.get('/jobs/:provider/:tech', function(req, res, next) {
     });
   
 });
+
+
+
+
 
 
 
