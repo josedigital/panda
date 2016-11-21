@@ -29,3 +29,8 @@ Please use the "documnentation" branch to document any of your work that require
 - sequelize model:create --name technology --attributes "tech:string, description:string"
 - sequelize model:create --name library --attributes "resource:string"
 - sequelize model:create --name user --attributes "user_name:string, display_name:string, email:string, git_link:string, technologies:string, main_text:text, git_repo1:string, git_text1:string, git_repo2:string, git_text2:string, git_repo3:string, git_text3:string, avitar_link:string"
+
+### Profile View and Login
+- click the login link on the honepage or go to /login.
+- click the 'login with github' link and authorize the app. this should redirect you to your profile page and list out your repos.
+- please report any issues you experience with login.
