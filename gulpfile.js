@@ -15,7 +15,6 @@ var concat      = require('gulp-concat');
 var gulpif      = require('gulp-if');
 var imagemin    = require('gulp-imagemin');
 var cache       = require('gulp-cache');
-var pageData    = require('./models/data');
 
 
 gulp.task('hbs', function () {
@@ -24,7 +23,6 @@ gulp.task('hbs', function () {
   }
   return gulp.src('views/**/*.hbs')
     .pipe(plumber())
-    .pipe(handlebars(pageData, options))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest('public'));
 });

@@ -1,10 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var data = require('../models/data.js');
+var connectLogin = require('connect-ensure-login');
+var request = require('request-promise');
+var github = require('octonode');
 
-router.get('/profile', function(req, res, next) {
-  res.send('Hello world!');
+var client = github.client();
+// client.get('/users/josedigital', {}, function (err, status, body, headers) {
+//   // console.log(body); //json object
+// });
+
+router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
+  // apiURI = 'https://api.github.com';
+  // request({
+  //   uri: apiURI,
+  //   json: true
+  // })
+  //   .then( function (data) {
+  //     console.log(queryString);
+  //     res.render('profile', { user: req.user, data });
+  //   })
+  //   .catch( function (error) {
+  //     console.log(error);
+  //     res.json(error);
+  //   });
+  var ghuser = client.user(req.user);
+  res.render('profile', ghuser);
 });
+
+  
+
 
 router.get('/profile/new', function(req, res, next) {
   res.render('');

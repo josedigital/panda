@@ -1,42 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Gulp &amp; Express &amp; Pug &amp; Stylus</title>
-    <meta name="desctiption" content="">
-    <meta name="desctiption" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body>
-    <nav>
-      <div class="container">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </div>
-    </nav>
+{{> _header }}
 <header>
   <div class="container">
-    <h1>HBS Home Page</h1>
-    <p>This is the homepage subtitle with handlebars.</p>
+    <h1>{{ home.title }}</h1>
+    <p>{{ home.subtitle }}</p>
   </div>
 </header>
 <section role="main">
   <div class="container">
     <h2>Welcome to Gulp</h2>
+    {{#if user }} hi, {{ user.username }}! {{ else }} hi, Person! please <a href="/login">login with your github account.</a>{{/if}}
     <p>You can create content in the <code>models/data.js</code> file and/or in the pug template files.</p>
     <p>The data.js files is a simple data store. You can develop this further with a database. This is just to get a site up and running quickly and having some tools available for a production-ready deplyoment.</p>
   </div>
 </section>
-<footer>
-  <div class="container">
-    <h6>this is the footer</h6>
-  <div>
-</footer>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>    
-<script src="js/main.js"></script>
-</body>
-</html>
+{{> _footer }}
