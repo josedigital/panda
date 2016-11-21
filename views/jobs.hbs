@@ -23,6 +23,18 @@
     {{/if}}
     
     
+    {{#if results}}
+      {{#each results}}
+        <p><a href="{{ refs.landing_page }}">{{ name }}</a></p>
+      {{/each}}
+    {{/if}}
+    
+
+
+    {{#each results }}
+      <p><a href="{{url}}">{{jobtitle}}</a></p>
+    {{/each}}
+    
     
   </div>
 </section>
