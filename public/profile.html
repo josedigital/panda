@@ -1,0 +1,32 @@
+{{> _header }}
+<header>
+  <div class="container">
+    <h1>Profile</h1>
+    <p>this is the profile page</p>
+  </div>
+</header>
+<section role="main">
+  <div class="container">
+    <h1>hi again</h1>
+    <p>
+      <img src="{{ user._json.avatar_url }}" alt="" /><br>
+      ID: {{ user.id }}<br/>
+      Username: {{ user.username }}<br>
+      Name: {{ user.displayName }}<br>
+      Email: {{ user.email }} <br>
+      Token: {{ user.token }}
+    </p>
+
+    <p>
+      Repos:
+    </p>
+
+    <ul>
+      
+      {{#each repos }}
+        <p><a href="{{html_url}}">{{ name }}</a></p>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+{{> _footer }}

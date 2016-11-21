@@ -6422,6 +6422,21 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em; } }
 
 body {
-  background-color: #f3f3f3; }
+  background-color: #f3f3f3;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
   body p {
     color: #444; }
+
+main {
+  flex: 1 0 auto; }
+
+main.row {
+  margin: 0 0; }
+
+footer.page-footer {
+  margin: 0 0; }
+
+#sidebar {
+  min-height: 100vh; }

@@ -4,9 +4,61 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var hbs = require('express-handlebars');
 var fs = require('fs');
+var passport = require('passport');
+var Strategy = require('passport-github').Strategy;
+var github = require('octonode');
+
+// var client = github.client();
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+
+// Config Github strategy for Passport
+passport.use(new Strategy({
+    clientID: '4f448e79b704b975714a',
+    clientSecret: 'b95e804eb860775f081c28f576701c15cf75ab0a',
+    callbackURL: 'http://localhost:4000/login/github/return'
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    // console.log(accessToken);
+    // var client = github.client(accessToken);
+    // req.ghuser = client.user(profile.user);
+    // console.log('------------------------------------');
+    // console.log(profile.id);
+    // var f = ghuser.followers(function(err, data, headers) {
+    //   // console.log("error: " + err);
+    //   console.log("==========================================");
+    //   console.log("data: " + data);
+    //   console.log("==========================================");
+    //   // console.log("headers:" + headers);
+    // });
+    // console.log(f);
+    // console.log('------------------------------------');
+    profile.token = accessToken;
+    return cb(null, profile);
+  }));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
+// Use application-level middleware for common functionality, including
+// logging, parsing, and session handling.
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.engine('hbs', hbs(
