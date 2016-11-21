@@ -17,3 +17,8 @@ Please use the "documnentation" branch to document any of your work that require
 - Use an h3 heading to start your section.
 - The README file should be the only file changed or updated in this branch.
 - ```git push origin documentation``` when done.
+
+### DB Schema and Seeds
+- create db to run locally
+- data base name and 5 tables are in the schema.sql file
+- seeds for two tables, resource_type, and technology are in the seeds.sql
