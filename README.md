@@ -22,3 +22,10 @@ Please use the "documnentation" branch to document any of your work that require
 - create db to run locally
 - data base name and 5 tables are in the schema.sql file
 - seeds for two tables, resource_type, and technology are in the seeds.sql
+
+### Sequelize CLI commands for models
+- sequelize model:create --name job_search --attributes "api_name:string, api_uri:string, search_params:string, default_city:string, key_word:string"
+- sequelize model:create --name resource_type --attributes "type:string"
+- sequelize model:create --name technology --attributes "tech:string, description:string"
+- sequelize model:create --name library --attributes "resource:string"
+- sequelize model:create --name user --attributes "user_name:string, display_name:string, email:string, git_link:string, technologies:string, main_text:text, git_repo1:string, git_text1:string, git_repo2:string, git_text2:string, git_repo3:string, git_text3:string, avitar_link:string"
