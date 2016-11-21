@@ -7,6 +7,7 @@ var fs = require('fs');
 var passport = require('passport');
 var Strategy = require('passport-github').Strategy;
 var github = require('octonode');
+var models  = require('./models');
 
 // var client = github.client();
 
@@ -87,6 +88,11 @@ fs.readdirSync('./controllers').forEach(function (file) {
     app.use(route, controllers);
   }
 });
+
+// extract our sequelize connection from the models object
+var sequelizeConnection = models.sequelize
+// sync the tables
+sequelizeConnection.sync()
 
 app.listen(PORT, function () {
   console.log('express on port ' + PORT);
