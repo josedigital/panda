@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
   {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        library.belongsToMany(models.technology, {through: 'techLibrary'});
+        library.belongsToMany(models.resource_type, {through: 'resourceLibrary'});
       }
     }
   });
