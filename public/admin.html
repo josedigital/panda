@@ -1,0 +1,65 @@
+{{> _header }}
+<header>
+  <div class="container">
+    <h2>ADMIN</h2>
+    <h5>Page where an ADMIN can create a resource and must associate it with two types</h5>
+    <br>
+  </div>
+</header>
+
+  <div class="container">
+
+    <div class="row">
+        <form class="col s12" action="admin/create" method="POST">
+        <div class="row">
+            <div class="input-field col s6">
+            <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
+            <label for="library_resource">Resource URL</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+            <p>Resource Type</p> 
+            <p>
+            <input type="radio" class="filled-in" id="resource_typeV" name="resource_type" value="V"/>
+            <label for="resource_typeV">VIDEO</label>
+            </p>
+            <p>
+            <input type="radio" class="filled-in" id="resource_typeP" name="resource_type" value="P"/>
+            <label for="resource_typeP">PDF</label>
+            </p>
+            <p>
+            <input type="radio" class="filled-in" id="resource_typeD" name="resource_type" value="L"/>
+            <label for="resource_typeD">DOCUMENTATION</label>
+            </p>
+            <p>
+            <input type="radio" class="filled-in" id="resource_typeE" name="resource_type" value="L"/>
+            <label for="resource_typeE">CODE EXAMPLES</label>
+            </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+            <p>Related technology</p> 
+            <p>
+            <input type="radio" class="filled-in" id="tech_association" name="tech_association" value="1"/>
+          
+            <label for="tech_association">tech_type</label>
+         
+            </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s6">
+                <button class="waves-effect waves-light btn" type="submit">Add Resource For Users</button>
+            </div>
+        </div>
+        </form>
+    </div>
+     
+  </div>
+
+{{> _footer }}
