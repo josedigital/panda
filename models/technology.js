@@ -6,7 +6,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        technology.belongsToMany(models.library, {through: 'techLibrary'});
+        technology.belongsToMany(models.user, {through: 'userTech'});
       }
     }
   });

@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        resource_type.belongsToMany(models.library, {through: 'resourceLibrary'});
       }
     }
   });
