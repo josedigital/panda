@@ -1,5 +1,5 @@
 
-INSERT INTO `resource_type` (`id`, `type`)
+INSERT INTO `resource_types` (`id`, `type`)
 VALUES
 	(1,'VIDEO'),
 	(2,'PDF'),
@@ -7,7 +7,7 @@ VALUES
 
 # ------------------------------------------------------------
 
-INSERT INTO `technology` (`id`, `tech`, `description`)
+INSERT INTO `technologies` (`id`, `tech`, `description`)
 VALUES
 	(1,'HTML',NULL),
 	(2,'CSS',NULL),

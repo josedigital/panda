@@ -3,9 +3,10 @@ module.exports = function(sequelize, DataTypes) {
   var technology = sequelize.define('technology', {
     tech: DataTypes.STRING,
     description: DataTypes.STRING
-  },{
-      timestamps: false
-    },
+  },
+  // {
+  //     timestamps: false
+  //   },
   {
     classMethods: {
       associate: function(models) {

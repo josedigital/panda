@@ -6,9 +6,10 @@ module.exports = function(sequelize, DataTypes) {
     search_params: DataTypes.STRING,
     default_city: DataTypes.STRING,
     key_word: DataTypes.STRING
-  },{
-      timestamps: false
-    }, 
+  },
+  // {
+  //     timestamps: false
+  //   }, 
   {
     classMethods: {
       associate: function(models) {
