@@ -54,7 +54,7 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
     case 'indeed':
       apiProvider = 'http://api.indeed.com/ads/apisearch';
       queryString = {
-        publisher: '180200156283414',
+        publisher: '',
         v: 2,
         format: 'json',
         q: req.params.tech,
