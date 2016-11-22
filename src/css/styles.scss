@@ -23,5 +23,18 @@ footer.page-footer{
 }
 
 #sidebar {
+  background-color: color("cyan", "darken-4");
   min-height: 100vh;
+  padding: 0 0;
+  position: relative;
+}
+
+#bottom-sidebar {
+  position: absolute;
+  bottom: 0;
+}
+
+#profile_pic {
+  margin-top: 50px;
+  margin-bottom: 30px;
 }

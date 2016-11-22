@@ -9,7 +9,8 @@
   {{> _sidebar }}
   <div class="col s10">
     <section role="main">
-      <div class="">
+      <div class="container">
+        {{> _breadcrumbs }}
         <h2>Welcome to Gulp</h2>
         {{#if user }} hi, {{ user.username }}! {{ else }} hi, Person! please <a href="/login">login with your github account.</a>{{/if}}
         <p>You can create content in the <code>models/data.js</code> file and/or in the pug template files.</p>
