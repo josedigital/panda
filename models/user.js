@@ -14,7 +14,10 @@ module.exports = function(sequelize, DataTypes) {
     git_repo3: DataTypes.STRING,
     git_text3: DataTypes.STRING,
     avitar_link: DataTypes.STRING
-  }, {
+  },{
+      timestamps: false
+    },
+  {
     classMethods: {
       associate: function(models) {
         user.belongsToMany(models.technology, {through: 'userTech'});
