@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     default_city: DataTypes.STRING,
     key_word: DataTypes.STRING
   },
-  
+
   {
     classMethods: {
       associate: function(models) {
