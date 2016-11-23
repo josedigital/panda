@@ -1,5 +1,4 @@
 
-INSERT INTO `resource_types` (`id`, `type`)
 
 INSERT INTO `resource_types` (`id`, `type`,`createdAt`, `updatedAt`)
 
@@ -10,8 +9,6 @@ VALUES
 
 # ------------------------------------------------------------
 
-
-INSERT INTO `technologies` (`id`, `tech`, `description`)
 
 -- INSERT INTO `resource_types` (`id`, `type`, `createdAt`, `updatedAt`)
 -- VALUES

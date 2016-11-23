@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 router.get('/admin', function(req, res, next) {
   res.render('admin');
@@ -26,5 +27,14 @@ router.get('/admin/test', function(req,res, next){
     res.render('admin', techObject);
   })
 })
+
+router.get('/admin/test2', function(req,res,next){
+  models.technology.findAll({
+  }).then(function(tech){
+    res.render('admin', {tech:tech});
+  })
+})
+
+
 
 module.exports = router;
