@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var resource_type = sequelize.define('resource_type', {
     type: DataTypes.STRING
