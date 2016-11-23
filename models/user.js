@@ -1,11 +1,11 @@
-'use strict';
+// 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define('user', {
     user_name: DataTypes.STRING,
     display_name: DataTypes.STRING,
     email: DataTypes.STRING,
     git_link: DataTypes.STRING,
-    technologies: DataTypes.STRING,
+    technolog: DataTypes.STRING,
     main_text: DataTypes.TEXT,
     git_repo1: DataTypes.STRING,
     git_text1: DataTypes.STRING,
@@ -14,9 +14,9 @@ module.exports = function(sequelize, DataTypes) {
     git_repo3: DataTypes.STRING,
     git_text3: DataTypes.STRING,
     avitar_link: DataTypes.STRING
-  },{
-      timestamps: false
-    },
+  
+  },
+  
   {
     classMethods: {
       associate: function(models) {
