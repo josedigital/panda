@@ -37,6 +37,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
     "morgan": "^1.7.0",
+    "mysql": "^2.12.0",
     "octonode": "^0.7.6",
     "open-graph-scraper": "^2.3.5",
     "passport": "^0.3.2",

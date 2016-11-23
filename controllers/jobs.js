@@ -39,7 +39,7 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
         city: 'Austin,+TX',
         text: 'junior',
         skill: req.params.tech
-      }
+      };
       break;
     case 'muse':
       apiProvider = 'https://api-v2.themuse.com/jobs';
@@ -49,7 +49,7 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
         level: 'Entry+Level+Mid+Level',
         location: 'Austin, TX',
         page:1
-      }
+      };
       break;
     case 'indeed':
       apiProvider = 'http://api.indeed.com/ads/apisearch';
@@ -61,7 +61,8 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
         as_any: 'junior',
         l: 'Austin, TX',
         radius: 100
-      }
+      };
+      break;
     default:
       break;
   }
@@ -79,7 +80,7 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
       console.log(error);
       res.json(error);
     });
-  
+
 });
 
 
