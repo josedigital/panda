@@ -44,10 +44,12 @@
             <div class="input-field col s6">
             <p>Related technology</p> 
             <p>
-            <input type="radio" class="filled-in" id="tech_association" name="tech_association" value="1"/>
+            {{#each tech}}
+                 <input type="radio" class="filled-in" id="{{this.id}}" name="tech_association" value="1"/>
           
-            <label for="tech_association">tech_type</label>
-         
+                <label for="{{this.id}}">{{this.tech}}</label>
+
+            {{/each}}
             </p>
             </div>
         </div>
