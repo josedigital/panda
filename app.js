@@ -92,7 +92,7 @@ fs.readdirSync('./controllers').forEach(function (file) {
 // extract our sequelize connection from the models object
 var sequelizeConnection = models.sequelize
 // sync the tables
-sequelizeConnection.sync()
+sequelizeConnection.sync({ force: true })
 
 app.listen(PORT, function () {
   console.log('express on port ' + PORT);
