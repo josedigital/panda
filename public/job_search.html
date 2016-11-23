@@ -1,0 +1,56 @@
+{{> _header }}
+<header>
+  <div class="container">
+    <h2>ADMIN</h2>
+    <h5>create a job search paramater</h5>
+    <br>
+  </div>
+</header>
+
+<div class="container">
+
+    <div class="row">
+        <form class="col s12" action="admin1/create" method="POST">
+            <div class="input-field col s6">
+            <input placeholder="i.e., Monster" id="name" type="text" name="api_name">
+            <label for="name">Name of Job Search Provider</label>
+            </div>
+    </div>
+
+    <div class="row">
+            <div class="input-field col s6">
+            <input placeholder="www.jobs/search/" id="uri" type="text" name="api_uri">
+            <label for="uri">Link to job search api</label>
+            </div>
+    </div>
+
+    <div class="row">
+            <div class="input-field col s6">
+            <input placeholder="?search+javascript" id="params" type="text" name="search_params">
+            <label for="params">Parameters for job search</label>
+            </div>
+    </div>
+
+    <div class="row">
+            <div class="input-field col s6">
+            <input placeholder="Austin" id="city" type="text" name="default_city">
+            <label for="city">Default city</label>
+            </div>
+    </div>
+
+    <div class="row">
+            <div class="input-field col s6">
+            <input placeholder="Node.js" id="keyword" type="text" name="key_word">
+            <label for="keyword">Key Word</label>
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <button class="waves-effect waves-light btn" type="submit">Add Jobs Search Parameters</button>
+        </div>
+    </div>
+        </form>
+</div>
+
+{{> _footer }}
