@@ -1,40 +1,256 @@
 @import 'vendor/materialize';
+@import 'sidebar.scss';
+// @import 'breadcrumbs.css';
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
 
-body {
-  background-color: #f3f3f3;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  p {
-    color: #444;
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+nav, nav ul li {
+  height: 100px;
+}
+
+nav ul li {
+  line-height: 100px;
+}
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+nav .nav-wrapper ul li a i {
+  float: left;
+  line-height: 100px;
+  margin-right: 10px;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+
+
+
+
+/*
+ * Index Hero
+*/
+.parallax-container.index-hero {
+  height: 100vh;
+  line-height: 8vh;
+}
+@media only screen and (min-width : 800px) {
+  .parallax-container.index-hero {
+    height: 80vh;
   }
 }
 
-main {
-  flex: 1 0 auto;
+.index-hero h1 {
+  animation-delay: .5s;
+  font-size: 2rem;
+}
+@media only screen and (min-width : 600px) {
+ .index-hero h1 {
+    font-size: 4.2rem;
+  }
+}
+.index-hero h5 {
+  animation-delay: 1s;
 }
 
-main.row {
-  margin: 0 0;
-}
 
-footer.page-footer{
-  margin: 0 0;
-}
-
-#sidebar {
-  background-color: color("cyan", "darken-4");
-  min-height: 100vh;
-  padding: 0 0;
+/*
+ * overlays
+*/
+.section {
   position: relative;
+  z-index: 5;
 }
-
-#bottom-sidebar {
-  position: absolute;
+.overlay {
   bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
-#profile_pic {
-  margin-top: 50px;
-  margin-bottom: 30px;
+.overlay--light {
+  background-color: rgba(144,194,231,0.8);
+}
+.overlay--light-yellow {
+  background-color: rgba(245,255,144,0.65);
+}
+.overlay--dark {
+  background-color: rgba(9,35,39,0.8);
+}
+.overlay--dark {
+  background-color: rgba(11,83,81,0.75);
+}
+.panda-descending {
+  background-image: url('../panda.svg');
+  background-position: 150% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+
+
+
+.laptop {
+  background-image: url('../img/laptop-profile.png');
+  background-position: 120% 50px;
+  background-repeat: no-repeat;
+  background-size: 60%;
+}
+
+@media only screen and (min-width : 1200px) {
+  .laptop {
+    background-position: 120% 50%;
+    background-repeat: no-repeat;
+    background-size: 60%;
+  }
+}
+
+@media only screen and (min-width : 800px) {
+  .laptop {
+    background-position: 120% 50%;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    min-height: 80vh;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  .laptop {
+    background-position: center 90%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}
+
+
+
+
+
+
+.features-list li {
+  margin-bottom: 4rem;
+  width: 80%;
+}
+.features-list li i {
+  float: left;
+  margin-right: 10px;
+}
+.features-list li span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+.features-list li p {
+  margin-left: 30px;
+}
+
+
+
+
+
+
+.color-section--light-gray {
+  background-color: rgba(200,200,200,0.4);
+}
+.testimonial {
+  min-height: 400px;
+}
+
+
+
+.amp {
+  color: rgba(255,255,255,0.65);
+  display: block;
+  font-family: 'Georgia', serif;
+  font-size: 10rem;
+  font-style: italic;
+  position: relative;
+  margin-bottom: -3rem;
+  z-index: 1;
+}
+h4 {
+  position: relative;
+  z-index: 5;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+  padding: 5rem 0;
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+iframe {
+  width: 100%;
 }

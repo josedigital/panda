@@ -1,22 +1,217 @@
-{{> _header }}
-{{!-- <header>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+  <!-- content tools -->
+  <link rel="stylesheet" href="css/content-tools.min.css">
+  <!-- materialize -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,400i,700" rel="stylesheet">
+  <!-- custom styles -->
+  <link href="css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo"><img src="/img/panda_panda.svg" height="100px"alt=""></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Resource Library</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Resource Library</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Logout</a></li>
+        <li class="nav-separator"></li>
+        <li><a href="#">Video</a></li>
+        <li><a href="#">Links</a></li>
+        <li><a href="#">Misc</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
   <div class="container">
-    <h1>{{ home.title }}</h1>
-    <p>{{ home.subtitle }}</p>
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="http://placehold.it/200x200" class="circle profile-image z-depth-2" alt="alex profile">
+          <h6><a href="github">josedigital</a></h6>
+        </div>
+        <ul class="secondary-nav">
+          <li><a href="#">Video</a></li>
+          <li><a href="#">Links</a></li>
+          <li><a href="#">Misc</a></li>
+        </ul>
+      </aside>
+
+      <main class="col s12 m9">
+        <div class="row">
+
+          <div class="col s12 breadcrumbs">
+            <a href="#!" class="breadcrumb">HTML</a>
+            <a href="#!" class="breadcrumb">CSS</a>
+            <a href="#!" class="breadcrumb">Javascript</a>
+            <a href="#!" class="breadcrumb">MySQL</a>
+            <a href="#!" class="breadcrumb">React</a>
+          </div>
+          <div class="col s12">
+            <h3 class="">HTML Resources</h3>
+          </div>
+
+
+        <!--   Icon Section   -->
+        <div class="row">
+
+          <div class="col s12 m6">
+            <div class="card-panel">
+              <div class="icon-block">
+                <div class="resource-title">
+                  <i class="material-icons">flash_on</i> HTML / CSS
+                  <br>
+                  <h6>HTML5 and CSS3 beginners tutorial 1 - Introduction</h6>
+                </div>
+              </div>
+              <div class="section center">
+                <iframe width="360" height="203" src="https://www.youtube.com/embed/LqvFIuVlyP8?list=PL41lfR-6DnOruqMacTfff1zrEcqtmm7Fv" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col s12 m6">
+            <div class="card-panel">
+              <div class="icon-block">
+                <div class="resource-title">
+                  <i class="material-icons">flash_on</i> HTML / CSS
+                  <br>
+                  <h6>HTML5 and CSS3 beginners tutorial 1 - Introduction</h6>
+                </div>
+              </div>
+              <div class="section center">
+                <iframe width="360" height="203" src="https://www.youtube.com/embed/LqvFIuVlyP8?list=PL41lfR-6DnOruqMacTfff1zrEcqtmm7Fv" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m6">
+            <div class="card-panel">
+              <div class="icon-block">
+                <div class="resource-title">
+                  <i class="material-icons">flash_on</i> HTML / CSS
+                  <br>
+                  <h6>HTML5 and CSS3 beginners tutorial 1 - Introduction</h6>
+                </div>
+              </div>
+              <div class="section center">
+                <iframe width="360" height="203" src="https://www.youtube.com/embed/LqvFIuVlyP8?list=PL41lfR-6DnOruqMacTfff1zrEcqtmm7Fv" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col s12 m6">
+            <div class="card-panel">
+              <div class="icon-block">
+                <div class="resource-title">
+                  <i class="material-icons">flash_on</i> HTML / CSS
+                  <br>
+                  <h6>HTML5 and CSS3 beginners tutorial 1 - Introduction</h6>
+                </div>
+              </div>
+              <div class="section center">
+                <iframe width="360" height="203" src="https://www.youtube.com/embed/LqvFIuVlyP8?list=PL41lfR-6DnOruqMacTfff1zrEcqtmm7Fv" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+      </div><!-- /row -->
+
+        </div>
+      </main>
+    </div>
   </div>
-</header> --}}
-<main class="row">
-  {{> _sidebar }}
-  <div class="col s10">
-    <section role="main">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="overlay overlay--dark"></div>
+    <div class="section no-pad-bot">
       <div class="container">
-        {{> _breadcrumbs }}
-        <h2>Welcome to Gulp</h2>
-        {{#if user }} hi, {{ user.username }}! {{ else }} hi, Person! please <a href="/login">login with your github account.</a>{{/if}}
-        <p>You can create content in the <code>models/data.js</code> file and/or in the pug template files.</p>
-        <p>The data.js files is a simple data store. You can develop this further with a database. This is just to get a site up and running quickly and having some tools available for a production-ready deplyoment.</p>
+        <div class="row center">
+          <h5 class="header col s12 light">From start to finish, Panda is always at your side</h5>
+        </div>
       </div>
-    </section>
+    </div>
+    <div class="parallax"><img src="img/dt7.jpeg" alt="Unsplashed background img 3"></div>
   </div>
-</main>
-{{> _footer }}
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12" data-editable data-name="company-bio">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo delectus qui, nesciunt laboriosam quo rerum, obcaecati deleniti nemo quia magnam placeat velit quasi inventore? Assumenda dolorum mollitia officiis. Reiciendis, soluta.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by Panda with help from <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="js/content-tools.min.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/init.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
