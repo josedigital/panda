@@ -42,24 +42,31 @@ router.get('/admin/update/:target/:resource_id', function(req, res, next) {
 //     res.render('admin', {tech:tech});
 //   })
 // })
+
+// CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
 router.get('/admin/test', function(req,res,next){
   models.technology.findAll({
   }).then(function(tech){
    techResource.tech = tech
-  //  console.log(techResource.tech)
-   res.render('admin', techResource);
-  })
-})
-
-router.get('/admin/test', function(req,res,next){
+  }).then(function (){
   models.resource_type.findAll({
   }).then(function(resources){
     techResource.resources = resources
-    //  console.log(techResource.resource);
     res.render('admin', techResource);
   })
+  })
 })
+
+// THIS GIT WORKS FINE ON IT'S OWN'
+// router.get('/admin/test', function(req,res,next){
+//   models.resource_type.findAll({
+//   }).then(function(resources){
+//     techResource.resources = resources
+//     //  console.log(techResource.resource);
+//     res.render('admin', techResource);
+//   })
+// })
 
 
 
