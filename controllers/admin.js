@@ -6,7 +6,7 @@ router.get('/admin', function(req, res, next) {
   res.render('admin');
 });
 
-router.get('/admin1', function(req, res, next) {
+router.get('/admin/create', function(req, res, next) {
   res.render('job_search');
 });
 
@@ -65,7 +65,7 @@ router.get('/admin/test', function(req,res,next){
 
 
 // add data to feed the job search api
-router.post('admin1/create', function (req, res) {
+router.post('/admin/create', function (req, res) {
 	models.job_search.create({
     api_name: req.body.api_name,
     api_uri: req.body.api_uri,
