@@ -1,0 +1,13 @@
+
+    
+<div class="row">
+    <div class="input-field col s6">
+    <p>Resource Type</p> 
+    <p>
+        {{#each resources}}
+        <input type="radio" class="filled-in" id="{{id}}" name="resource_type" value="{{id}}"/>
+        <label for="{{id}}">{{this.type}}</label>
+        {{/each }}
+    </p>
+    </div>
+</div>
