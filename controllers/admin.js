@@ -18,22 +18,6 @@ router.get('/admin/update/:target/:resource_id', function(req, res, next) {
   res.render('');
 });
 
-// **FOUND AN EASIER WAY TO GET THE DATA, see below,-g**
-// router.get('/admin/test', function(req,res, next){
-//   models.technology.findAll({
-//     attributes: ['tech']
-//   }) .then(function(data){
-//     // console.log(data[0].dataValues.tech);
-//     var techObject = [];
-//     data.forEach(function(techs){
-//       techObject.push(techs.dataValues);
-//     })
-//     console.log(techObject);
-//     res.render('admin', techObject);
-//   })
-// })
-
-
 
 // THIS WORKS PERFECT IF YOU CALL {{tech}} IN THE HBS FILE, BUT I'M TRING TO DO A COMBO OBJECT BELOW. NEED TO FIGUIRE OUT THE ROUTE THAT MAKES THE MOST SENSE FOR THIS PAGE
 // router.get('/admin/test', function(req,res,next){
@@ -46,15 +30,15 @@ router.get('/admin/update/:target/:resource_id', function(req, res, next) {
 // CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
 router.get('/admin/test', function(req,res,next){
-  models.technology.findAll({
-  }).then(function(tech){
-   techResource.tech = tech
-  }).then(function (){
-  models.resource_type.findAll({
-  }).then(function(resources){
-    techResource.resources = resources
-    res.render('admin', techResource);
-  })
+    models.technology.findAll({
+      }).then(function(tech){
+      techResource.tech = tech;
+    }).then(function(){
+      models.resource_type.findAll({
+    }).then(function(resources){
+      techResource.resources = resources;
+      res.render('admin', techResource);
+    })
   })
 })
 
@@ -69,7 +53,7 @@ router.get('/admin/test', function(req,res,next){
 // })
 
 // The association I don't think are working, because I'm assumig we should also get an entry in the middle man table, which I don't see happening. 
-router.post('/admin/test', function (req, re){
+router.post('/admin/test', function (req, res){
   models.library.create({
     resource:req.body.library_resource,
     tech:req.body.resource_type,
