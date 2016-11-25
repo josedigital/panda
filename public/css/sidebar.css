@@ -1,0 +1,17 @@
+.profile {
+  padding-top: 2rem; }
+
+.profile-image {
+  border: 2px solid #e3e3e3;
+  max-width: 50%; }
+
+@media only screen and (min-width: 600px) {
+  .profile-image {
+    max-width: 80%; } }
+
+.secondary-nav {
+  padding: 2rem 0; }
+
+.secondary-nav li {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0; }
