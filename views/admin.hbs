@@ -9,33 +9,23 @@
 
   <div class="container">
 
-    <div class="row">
-        <form class="col s12" action="admin/create" method="POST">
         <div class="row">
-            <div class="input-field col s6">
-            <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
-            <label for="library_resource">Resource URL</label>
+            <form class="col s12" action="/admin/test" method="POST">
+            <div class="row">
+                <div class="input-field col s6">
+                <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
+                <label for="library_resource">Resource URL</label>
+                </div>
             </div>
-        </div>
 
         <div class="row">
             <div class="input-field col s6">
             <p>Resource Type</p> 
             <p>
-            <input type="radio" class="filled-in" id="resource_typeV" name="resource_type" value="V"/>
-            <label for="resource_typeV">VIDEO</label>
-            </p>
-            <p>
-            <input type="radio" class="filled-in" id="resource_typeP" name="resource_type" value="P"/>
-            <label for="resource_typeP">PDF</label>
-            </p>
-            <p>
-            <input type="radio" class="filled-in" id="resource_typeD" name="resource_type" value="L"/>
-            <label for="resource_typeD">DOCUMENTATION</label>
-            </p>
-            <p>
-            <input type="radio" class="filled-in" id="resource_typeE" name="resource_type" value="L"/>
-            <label for="resource_typeE">CODE EXAMPLES</label>
+                {{#each resources}}
+                <input type="radio" class="filled-in" id="{{id}}" name="resource_type" value="{{id}}"/>
+                <label for="{{id}}">{{type}}</label>
+                {{/each }}
             </p>
             </div>
         </div>
@@ -44,22 +34,24 @@
             <div class="input-field col s6">
             <p>Related technology</p> 
             <p>
-            <input type="radio" class="filled-in" id="tech_association" name="tech_association" value="1"/>
-          
-            <label for="tech_association">tech_type</label>
-         
+            {{#each tech}}
+                    <input type="radio" class="filled-in" id="{{id}}" name="tech_association" value="1"/>
+            
+                <label for="{{id}}">{{tech}}</label>
+
+            {{/each}}
             </p>
             </div>
         </div>
-        
+            
         <div class="row">
             <div class="input-field col s6">
                 <button class="waves-effect waves-light btn" type="submit">Add Resource For Users</button>
             </div>
         </div>
-        </form>
+            </form>
     </div>
      
-  </div>
+</div>
 
 {{> _footer }}

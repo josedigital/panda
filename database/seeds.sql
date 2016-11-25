@@ -1,5 +1,7 @@
 
+
 INSERT INTO `resource_types` (`id`, `type`,`createdAt`, `updatedAt`)
+
 VALUES
 	(1,'VIDEO', '20161120', '20161120'),
 	(2,'PDF', '20161120', '20161120'),
@@ -7,11 +9,13 @@ VALUES
 
 # ------------------------------------------------------------
 
+
 -- INSERT INTO `resource_types` (`id`, `type`, `createdAt`, `updatedAt`)
 -- VALUES
 -- 	(1, 'VIDEO', '20161120', '20161120');
 
 INSERT INTO `technologies` (`id`, `tech`, `description`, `createdAt`, `updatedAt`)
+
 VALUES
 	(1,'HTML',NULL, '20161120', '20161120'),
 	(2,'CSS',NULL, '20161120', '20161120'),
