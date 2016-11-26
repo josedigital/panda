@@ -21,11 +21,17 @@
 
         <h3>Your Github Repos:</h3>
         Token: {{ user.token }}
-        <ul>
+        <ol>
           {{#each repos }}
-            <li><a href="{{html_url}}">{{ name }}</a></li>
+            <li>
+              <p>
+                <a href="{{html_url}}">{{ name }}</a>
+                <br>
+                {{description}}
+              </p>
+            </li>
           {{/each}}
-        </ul>
+        </ol>
       </main>
     </div><!-- /row -->
   </div><!-- /container -->

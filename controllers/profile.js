@@ -17,6 +17,7 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
     // console.log("error: " + err);
     // console.log(data);
     // console.log("headers:" + headers);
+    // res.json(data);
     res.render('profile', {user:req.user, repos: data});
   });
   
