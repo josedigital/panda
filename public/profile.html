@@ -20,18 +20,24 @@
       <main class="col s12 m9" role="main">
 
         <h3>Your Github Repos:</h3>
-        Token: {{ user.token }}
-        <ol>
+        {{!--Token: {{ user.token }}--}}
+        <p>
+          Here is your Github Repos list. Please select up to 4 repos to display on <a href="/profile/{{user.username}}">your user profile page</a>.
+        </p>
+          <form action="/profile/add-repos" method="POST">
           {{#each repos }}
-            <li>
               <p>
-                <a href="{{html_url}}">{{ name }}</a>
-                <br>
-                {{description}}
+                <input type="checkbox" class="filled-in" id="{{id}}" name="{{name}}" value="1"/>
+                <label for="{{id}}">
+                  {{ name }} (<a href="{{html_url}}" target="_blank">view repo</a>) 
+                  <br>
+                  {{description}}
+                </label>
               </p>
-            </li>
           {{/each}}
-        </ol>
+            <button class="waves-effect waves-light btn" type="submit">Add repos to my profile</button>
+          </form>
+        
       </main>
     </div><!-- /row -->
   </div><!-- /container -->
