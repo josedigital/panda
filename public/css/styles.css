@@ -8212,6 +8212,11 @@ body {
   padding: 1rem;
   border-bottom: 1px solid #e0e0e0; }
 
+[type="checkbox"].filled-in:not(:checked) + label:after {
+  height: 15px;
+  width: 15px;
+  top: 6px; }
+
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
