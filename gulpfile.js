@@ -43,6 +43,14 @@ gulp.task('sass', function() {
     }))
 });
 
+// concat all js
+gulp.task('js', function () {
+  return gulp.src('src/js/**/*.js')
+    .pipe(plumber())
+    .pipe(concat('init.js'))
+    .pipe(gulpif(env.p, uglify()))
+    .pipe(gulp.dest('public/js'));
+});
 
 /* ***************************************************************************
 // // Spin up a temp server
@@ -71,7 +79,7 @@ gulp.task('nodemon', function(callback) {
 gulp.task('watch', function () {
   gulp.watch('./views/**/*.hbs', ['hbs']);
   gulp.watch('./src/css/**/*.scss', ['sass']);
-  // gulp.watch('src/js/**/*.js', [(env.fy) ? 'browserify' : 'js']);
+  gulp.watch('src/js/**/*.js', [(env.fy) ? 'browserify' : 'js']);
   // gulp.watch('src/img/**/*.{jpg,png,gif}', ['imagemin']);
 });
 
