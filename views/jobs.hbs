@@ -1,45 +1,60 @@
 {{> _header }}
 
 
-<header>
+
   <div class="container">
-    <h1>Jobs</h1>
-    <p>this is the main jobs page</p>
-  </div>
-</header>
-<section role="main">
-  <div class="container">
-    {{#if resultItemList}}
-      {{#each resultItemList }}
-        <h6><a href="{{ detailUrl }}">{{ jobTitle }}</a></h6>
-      {{/each}}
-    {{/if}}
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="http://placehold.it/200x200" class="circle profile-image z-depth-2" alt="alex profile">
+          <h6><a href="github">josedigital</a></h6>
+        </div>
+        {{#if tech}}
+          <ul class="secondary-nav">
+          {{#each tech }}
+            <li><a href="{{tech}}">{{ tech }}</a></li>
+          {{/each}}
+          </ul>
+        {{/if}}
+      </aside>
 
-    {{#if provider}}
-      <h3>{{provider}}</h3>
-    {{/if}}
-    {{#if tech}}
-      {{#each tech }}
-        <p><a href="./dice/{{technology}}">{{ technology }}</a></p>
-      {{/each}}
-    {{/if}}
-    
-    
-    {{#if results}}
-      {{#each results}}
-        <p><a href="{{ refs.landing_page }}">{{ name }}</a></p>
-      {{/each}}
-    {{/if}}
-    
+      <main class="col s12 m9">
+        {{#if jobs.provider}}
+          <h3>{{jobs.provider}}</h3>
+        {{/if}}
+          <p>http://www.NEED_JOB_URI_IN_DB.com</p>
+
+        <div class="section">
+          {{#if jobs.resultItemList}}
+            <ul>
+            {{#each jobs.resultItemList }}
+              <li><a href="{{ detailUrl }}">{{ jobTitle }}</a></li>
+            {{/each}}
+            </ul>
+          {{/if}}
+          
 
 
-    {{#each results }}
-      <p><a href="{{url}}">{{jobtitle}}</a></p>
-    {{/each}}
-    
-    
-  </div>
-</section>
+          
+          
+          {{#if results}}
+            {{#each results}}
+              <p><a href="{{ refs.landing_page }}">{{ name }}</a></p>
+            {{/each}}
+          {{/if}}
+          
 
+
+          {{#each results }}
+            <p><a href="{{url}}">{{jobtitle}}</a></p>
+          {{/each}}
+          
+          
+        </div>
+      </main>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
 
 {{> _footer }}
