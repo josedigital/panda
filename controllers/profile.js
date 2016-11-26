@@ -40,13 +40,15 @@ router.post('/profile/add-repos', function (req, res) {
 
     });
   }
-  res.redirect('/profile/:username');  
+  res.redirect('/profile/'+req.user.username);  
 
 });
 
 
 router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
-  res.render('user-profile', {user:req.user});
+  models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
+    res.render('user-profile', {user:req.user, records: records});
+  });
 });
 
 
