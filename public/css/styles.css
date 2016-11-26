@@ -8269,7 +8269,7 @@ p {
     height: 80vh; } }
 
 .index-hero h1 {
-  animation-delay: .5s;
+  animation-delay: 1.5s;
   font-size: 2rem; }
 
 @media only screen and (min-width: 600px) {
@@ -8277,7 +8277,7 @@ p {
     font-size: 4.2rem; } }
 
 .index-hero h5 {
-  animation-delay: 1s; }
+  animation-delay: 2s; }
 
 /*
  * overlays
