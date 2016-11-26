@@ -4,7 +4,7 @@
     <div class="row">
       <aside class="col s12 m3">
         <div class="profile center">
-          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="alex profile">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
           <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
           <p>{{ user.displayName }}</p>
           <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
@@ -20,6 +20,13 @@
       <main class="col s12 m9" role="main">
 
         <h3>This is your User Profile Page</h3>
+        
+        {{#each records}}
+          <p><a href="{{repo_url}}">{{ repo_name }}</a></p>
+          <p>
+            {{repo_description}}
+          </p>
+        {{/each}}
         
         
       </main>

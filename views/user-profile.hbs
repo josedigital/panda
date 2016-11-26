@@ -21,6 +21,13 @@
 
         <h3>This is your User Profile Page</h3>
         
+        {{#each records}}
+          <p><a href="{{repo_url}}">{{ repo_name }}</a></p>
+          <p>
+            {{repo_description}}
+          </p>
+        {{/each}}
+        
         
       </main>
     </div><!-- /row -->
