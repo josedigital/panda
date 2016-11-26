@@ -1,32 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
+var models = require('../models');
+
+
+var data = {};
+models.technology.findAll({
+}).then(function(tech){
+  data.tech = tech;
+});
+
+
 
 router.get('/jobs', function (req, res, next) {
   res.render('jobs');
 });
 
+
 router.get('/jobs/:provider', function (req, res, next) {
-  var data = {
-    // 'tech': ['html','css','jquery','javascript','react']
-    'tech': [
-      {
-        'technology': 'html'
-      },
-      {
-        'technology': 'css'
-      },
-      {
-        'technology': 'javascript'
-      },
-      {
-        'technology': 'react'
-      }
-    ]
-  };
   data.provider = req.params.provider;
   res.render('jobs', data);
 });
+
+
 
 var apiProvider;
 var queryString;
@@ -72,8 +68,8 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
     qs: queryString,
     json: true
   })
-    .then( function (data) {
-      console.log(queryString);
+    .then( function (jobsResults) {
+      data.jobs = jobsResults;
       res.render('jobs', data);
     })
     .catch( function (error) {
