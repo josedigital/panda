@@ -1,0 +1,30 @@
+{{> _header }}
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+          
+        </div>
+        {{!--<ul class="secondary-nav">
+          <li><a href="#">Video</a></li>
+          <li><a href="#">Links</a></li>
+          <li><a href="#">Misc</a></li>
+        </ul>--}}
+      </aside>
+
+      <main class="col s12 m9" role="main">
+
+        <h3>This is your User Profile Page</h3>
+        
+        
+      </main>
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+
+{{> _footer }}

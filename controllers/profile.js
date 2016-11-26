@@ -27,23 +27,27 @@ router.post('/profile/add-repos', function (req, res) {
   //   formToWizard: 'https://github.com/josedigital/formToWizard',
   //   'free-programming-books': 'https://github.com/josedigital/free-programming-books' 
   // }
-  // var repos = {};
-  // for (var key in req.body) {
-  //   if (req.body.hasOwnProperty(key)) {
-  //     repos.git_repo1  = 
-  //   }
-  // }
-  
-  console.log(req.body);
-  res.json(req.body);
-  // var record = models.user.findOne({ where: {user_name: req.user.username} });
-  // record.update({
-  //   git_repo1: 
-  // }).then(function (record) {
-  //   console.log(record);
-  // });
+  var repos = {};
+  for (var key in req.body) {
+    if (req.body.hasOwnProperty(key)) {
+      repos.username = req.user.username;
+      repos.repo_name = key;
+      repos.repo_url = req.body[key]; 
+    }
+    models.repos.create(repos).then(function (record) {
+      console.log('created');
+      console.log(record);
+
+    });
+  }
+  res.redirect('/profile/:username');  
+
 });
-  
+
+
+router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
+  res.render('user-profile', {user:req.user});
+});
 
 
 router.get('/profile/new', function(req, res, next) {
