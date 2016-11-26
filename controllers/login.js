@@ -24,16 +24,24 @@ router.get('/login/github', passport.authenticate('github'));
 
 // login/github/return
 router.get('/login/github/return', passport.authenticate('github', { failureRedirect: '/' }), function (req, res) {
-  console.log(req.user);
-    models.user.create({
-      user_name: req.user.username,
-      display_name: req.user.displayName,
-      email: req.user._json.email,
-      git_link:req.user.profileUrl,
-      avitar_link: req.user._json.avatar_url
-    }).then(function(user){
-      data.user = user;
-      res.redirect('/profile');
+    models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
+      if(user) {
+        res.redirect('/profile');
+        console.log('exists');
+      } else {
+        models.user.create({
+          user_name: req.user.username,
+          display_name: req.user.displayName,
+          email: req.user._json.email,
+          git_link:req.user.profileUrl,
+          avitar_link: req.user._json.avatar_url
+        }).then(function(user){
+          console.log('created');
+          data.user = user;
+          res.redirect('/profile');
+        });
+      }
+      
     });
     
 });
