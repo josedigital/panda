@@ -3,11 +3,8 @@ var router = express.Router();
 var connectLogin = require('connect-ensure-login');
 var request = require('request-promise');
 var github = require('octonode');
+var models = require('../models');
 
-// var client = github.client();
-// client.get('/users/josedigital', {}, function (err, status, body, headers) {
-//   // console.log(body); //json object
-// });
 
 router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
   var client = github.client(req.user.token);
@@ -23,6 +20,29 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
   
 });
 
+
+router.post('/profile/add-repos', function (req, res) {
+  // req.body = { 
+  //   'Fluid-for-Sketch': 'https://github.com/josedigital/Fluid-for-Sketch',
+  //   formToWizard: 'https://github.com/josedigital/formToWizard',
+  //   'free-programming-books': 'https://github.com/josedigital/free-programming-books' 
+  // }
+  // var repos = {};
+  // for (var key in req.body) {
+  //   if (req.body.hasOwnProperty(key)) {
+  //     repos.git_repo1  = 
+  //   }
+  // }
+  
+  console.log(req.body);
+  res.json(req.body);
+  // var record = models.user.findOne({ where: {user_name: req.user.username} });
+  // record.update({
+  //   git_repo1: 
+  // }).then(function (record) {
+  //   console.log(record);
+  // });
+});
   
 
 

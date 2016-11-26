@@ -27,7 +27,7 @@
           <form action="/profile/add-repos" method="POST">
           {{#each repos }}
               <p>
-                <input type="checkbox" class="filled-in" id="{{id}}" name="{{name}}" value="1"/>
+                <input type="checkbox" class="filled-in" id="{{id}}" name="{{name}}" value="{{html_url}}"/>
                 <label for="{{id}}">
                   {{ name }} (<a href="{{html_url}}" target="_blank">view repo</a>) 
                   <br>
