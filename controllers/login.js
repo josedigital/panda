@@ -18,5 +18,10 @@ router.get('/login/github/return', passport.authenticate('github', { failureRedi
     res.redirect('/profile');
 });
 
+router.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 
 module.exports = router;

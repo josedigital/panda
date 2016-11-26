@@ -1,4 +1,6 @@
 @import 'vendor/materialize';
+@import 'vendor/animate-sass/_animate';
+$use-fadeIn: true;
 @import 'sidebar.scss';
 // @import 'breadcrumbs.css';
 /* Custom Stylesheet */
@@ -8,6 +10,16 @@
  *
  * Made By MaterializeCSS.com
  */
+
+.page-wrapper {
+  opacity: 0;
+}
+.preloader-wrapper {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+}
 
 html {
   font-family: 'Source Sans Pro', sans-serif;
