@@ -22,6 +22,33 @@
     		}, 750);
     	});
 
+  // Disable Checkboxes after 4 are chosen
+  /*----------------------------------------------------------------*/
+  function disableSelectionIfReposFull() {
+    
+  }
+
+  var checkedBoxes = $(document).find('.checkbox');
+  checkedBoxes.on('change', function () {
+    var j = $( "input:checked" ).length;
+    if(j == 4) {
+      for(var i = 0; i < checkedBoxes.length; i++) {
+        if( checkedBoxes[i].checked === false) {
+          checkedBoxes[i].disabled = true;
+        }
+      }
+
+    }
+  });    
+    // $(document).find('input.checkbox:checked"]').length;
+    // if ( titles.length > 2 ) {
+    //   for(var i = 0; i < checkedBoxes.length; i++) {
+    //     if( checkedBoxes[i].checked == false) {
+    //       checkedBoxes[i].disabled = true;
+    //     }
+    //   }
+    // }
+  
 
 
   }); // end of document ready
