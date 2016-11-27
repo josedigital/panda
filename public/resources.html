@@ -8,11 +8,17 @@
 <section role="main">
   <div class="container">
     
-    {{#each this }}
+    {{#each resources }}
       
-      <p>{{ name }}</p>
-      {{{ description }}}
+      <p>{{ type }}</p>
+     
+    {{/each}}
+    <hr>
 
+    {{#each tech }}
+      
+      <p>{{ tech }}</p>
+     
     {{/each}}
     
   </div>

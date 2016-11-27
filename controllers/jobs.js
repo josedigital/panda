@@ -1,36 +1,39 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
+var connectLogin = require('connect-ensure-login');
+var models = require('../models');
 
-router.get('/jobs', function (req, res, next) {
+
+var data = {};
+models.technology.findAll({
+}).then(function(tech){
+  data.tech = tech;
+});
+
+
+
+router.get('/jobs', connectLogin.ensureLoggedIn(), function (req, res, next) {
   res.render('jobs');
 });
 
+
 router.get('/jobs/:provider', function (req, res, next) {
-  var data = {
-    // 'tech': ['html','css','jquery','javascript','react']
-    'tech': [
-      {
-        'technology': 'html'
-      },
-      {
-        'technology': 'css'
-      },
-      {
-        'technology': 'javascript'
-      },
-      {
-        'technology': 'react'
-      }
-    ]
-  };
   data.provider = req.params.provider;
+  for(t in data.tech) {
+    console.log(data.tech[t].tech);
+    data.tech[t].link = data.provider + '/' + data.tech[t].tech;
+    console.log(data.tech[t].link);
+  }
   res.render('jobs', data);
 });
+
+
 
 var apiProvider;
 var queryString;
 router.get('/jobs/:provider/:tech', function (req, res, next) {
+  data.provider = req.params.provider;
   var provider = req.params.provider;
   switch (provider) {
     case 'dice':
@@ -72,8 +75,8 @@ router.get('/jobs/:provider/:tech', function (req, res, next) {
     qs: queryString,
     json: true
   })
-    .then( function (data) {
-      console.log(queryString);
+    .then( function (jobsResults) {
+      data.jobs = jobsResults;
       res.render('jobs', data);
     })
     .catch( function (error) {

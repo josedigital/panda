@@ -3,40 +3,56 @@ var router = express.Router();
 var connectLogin = require('connect-ensure-login');
 var request = require('request-promise');
 var github = require('octonode');
+var models = require('../models');
 
-// var client = github.client();
-// client.get('/users/josedigital', {}, function (err, status, body, headers) {
-//   // console.log(body); //json object
-// });
 
 router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
-  // apiURI = 'https://api.github.com';
-  // request({
-  //   uri: apiURI,
-  //   json: true
-  // })
-  //   .then( function (data) {
-  //     console.log(queryString);
-  //     res.render('profile', { user: req.user, data });
-  //   })
-  //   .catch( function (error) {
-  //     console.log(error);
-  //     res.json(error);
-  //   });
-  // var ghuser = client.user(req.user);
   var client = github.client(req.user.token);
   var ghuser = client.user(req.user.username);
-  console.log(ghuser);
+
   ghuser.repos(function(err, data, headers) {
-    console.log("error: " + err);
-    console.log(data);
-    console.log("headers:" + headers);
     res.render('profile', {user:req.user, repos: data});
   });
   
 });
 
-  
+
+router.post('/profile/add-repos', function (req, res) {
+  var repos = {};
+  for (var key in req.body) {
+    if (req.body.hasOwnProperty(key)) {
+      repos.username = req.user.username;
+      repos.repo_name = key;
+      repos.repo_url = req.body[key]; 
+    }
+    models.repos.create(repos).then(function (record) {
+      console.log('created');
+      console.log(record);
+
+    });
+  }
+  res.redirect('/profile/'+req.user.username);  
+
+});
+
+
+router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
+  models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
+    console.log(records.length);
+    res.render('user-profile', {user:req.user, records: records,
+      helpers: {
+        lightDark: function (conditional, options) {
+         if(conditional % 2 == 0) {
+           return 'light';
+         } else {
+           return 'dark project-card--lower';
+         }
+            
+        }
+      }  
+    });
+  });
+});
 
 
 router.get('/profile/new', function(req, res, next) {

@@ -17,12 +17,6 @@ module.exports = {
       search_params: {
         type: Sequelize.STRING
       },
-      default_city: {
-        type: Sequelize.STRING
-      },
-      key_word: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

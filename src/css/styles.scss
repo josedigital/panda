@@ -1,5 +1,9 @@
 @import 'vendor/materialize';
+@import 'vendor/animate-sass/_animate';
+$use-fadeIn: true;
 @import 'sidebar.scss';
+@import 'profile-admin';
+@import 'user-profile';
 // @import 'breadcrumbs.css';
 /* Custom Stylesheet */
 /**
@@ -8,6 +12,16 @@
  *
  * Made By MaterializeCSS.com
  */
+
+.page-wrapper {
+  opacity: 0;
+}
+.preloader-wrapper {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+}
 
 html {
   font-family: 'Source Sans Pro', sans-serif;
@@ -64,7 +78,7 @@ p {
 }
 
 .index-hero h1 {
-  animation-delay: .5s;
+  animation-delay: 1.5s;
   font-size: 2rem;
 }
 @media only screen and (min-width : 600px) {
@@ -73,7 +87,7 @@ p {
   }
 }
 .index-hero h5 {
-  animation-delay: 1s;
+  animation-delay: 2s;
 }
 
 

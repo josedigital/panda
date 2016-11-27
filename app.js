@@ -22,20 +22,6 @@ passport.use(new Strategy({
     callbackURL: 'http://localhost:4000/login/github/return'
   },
   function(accessToken, refreshToken, profile, cb) {
-    // console.log(accessToken);
-    // var client = github.client(accessToken);
-    // req.ghuser = client.user(profile.user);
-    // console.log('------------------------------------');
-    // console.log(profile.id);
-    // var f = ghuser.followers(function(err, data, headers) {
-    //   // console.log("error: " + err);
-    //   console.log("==========================================");
-    //   console.log("data: " + data);
-    //   console.log("==========================================");
-    //   // console.log("headers:" + headers);
-    // });
-    // console.log(f);
-    // console.log('------------------------------------');
     profile.token = accessToken;
     return cb(null, profile);
   }));
@@ -90,9 +76,9 @@ fs.readdirSync('./controllers').forEach(function (file) {
 });
 
 // extract our sequelize connection from the models object
-var sequelizeConnection = models.sequelize
+var sequelizeConnection = models.sequelize;
 // sync the tables
-sequelizeConnection.sync()
+sequelizeConnection.sync();
 
 app.listen(PORT, function () {
   console.log('express on port ' + PORT);

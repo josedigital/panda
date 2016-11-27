@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var sequelizeConnection = models.sequelize
 
 router.get('/admin', function(req, res, next) {
   res.render('admin');
@@ -55,28 +56,32 @@ router.get('/admin/test', function(req,res,next){
 // The association I don't think are working, because I'm assumig we should also get an entry in the middle man table, which I don't see happening. 
 router.post('/admin/test', function (req, res){
   models.library.create({
-    resource:req.body.library_resource,
-    tech:req.body.resource_type,
-    type: req.body.tech_association
-  },
-  {
-    include: [models.technology],
-    include: [models.resource_type]
-      
-  }).then(function(){
+    resource:req.body.library_resource
+  }).then(function(newlibrary){
+		return models.resource_type.findOne({where: {type: req.body.resource_type} })
+		.then(function(resource){
+			return resource.addLibrary(newlibrary);
+		})
+	})//end of first promise
+      .then(function(){
+        return models.library.findOne({where: {resource: req.body.library_resource} })
+        .then(function(lib){
+          return models.technology.findOne({where: {tech: req.body.tech_association} })
+            .then(function(tech){
+              return lib.addTechnology(tech)
+          })
+        })
+      })
+  
     res.redirect('/admin/test');
   })
-})
-
 
 // add data to feed the job search api
 router.post('/admin/create', function (req, res) {
 	models.job_search.create({
     api_name: req.body.api_name,
     api_uri: req.body.api_uri,
-    search_params: req.body.search_params,
-    default_city: req.body.default_city,
-    key_word: req.body.key_word
+    search_params: req.body.search_params
   }).then(function() {
     // console.log(req.body);
 		res.redirect('/admin');

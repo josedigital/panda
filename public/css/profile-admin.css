@@ -1,0 +1,4 @@
+[type="checkbox"].filled-in:not(:checked) + label:after {
+  height: 15px;
+  width: 15px;
+  top: 6px; }

@@ -1,32 +1,46 @@
 {{> _header }}
-<header>
-  <div class="container">
-    <h1>Profile</h1>
-    <p>this is the profile page</p>
-  </div>
-</header>
-<section role="main">
-  <div class="container">
-    <h1>hi again</h1>
-    <p>
-      <img src="{{ user._json.avatar_url }}" alt="" /><br>
-      ID: {{ user.id }}<br/>
-      Username: {{ user.username }}<br>
-      Name: {{ user.displayName }}<br>
-      Email: {{ user.email }} <br>
-      Token: {{ user.token }}
-    </p>
 
-    <p>
-      Repos:
-    </p>
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+          
+        </div>
+        {{!--<ul class="secondary-nav">
+          <li><a href="#">Video</a></li>
+          <li><a href="#">Links</a></li>
+          <li><a href="#">Misc</a></li>
+        </ul>--}}
+      </aside>
 
-    <ul>
-      
-      {{#each repos }}
-        <p><a href="{{html_url}}">{{ name }}</a></p>
-      {{/each}}
-    </ul>
-  </div>
-</section>
+      <main class="col s12 m9" role="main">
+
+        <h3>Your Github Repos:</h3>
+        {{!--Token: {{ user.token }}--}}
+        <p>
+          Here is your Github Repos list. Please select up to 4 repos to display on <a href="/profile/{{user.username}}">your user profile page</a>.
+        </p>
+          <form action="/profile/add-repos" method="POST">
+          {{#each repos }}
+              <p>
+                <input type="checkbox" class="checkbox filled-in" id="{{id}}" name="{{name}}" value="{{html_url}}"/>
+                <label for="{{id}}">
+                  {{ name }} (<a href="{{html_url}}" target="_blank">view repo</a>) 
+                  <br>
+                  {{description}}
+                </label>
+              </p>
+          {{/each}}
+            <button class="waves-effect waves-light btn" type="submit">Add repos to my profile</button>
+          </form>
+        
+      </main>
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+
 {{> _footer }}
