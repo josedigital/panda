@@ -56,14 +56,14 @@ router.get('/admin/test', function(req,res,next){
 router.post('/admin/test', function (req, res){
   models.library.create({
     resource:req.body.library_resource,
-    tech:req.body.resource_type,
-    type: req.body.tech_association
-  },
-  {
-    include: [models.technology],
-    include: [models.resource_type]
-      
-  }).then(function(){
+    // technologies_tech:req.body.resource_type
+    resource_types_type: req.body.type
+  },{
+    include: [
+      models.resource_types
+    ]
+  }
+  ).then(function(){
     res.redirect('/admin/test');
   })
 })
