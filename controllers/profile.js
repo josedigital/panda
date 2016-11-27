@@ -47,7 +47,19 @@ router.post('/profile/add-repos', function (req, res) {
 
 router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
   models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
-    res.render('user-profile', {user:req.user, records: records});
+    console.log(records.length);
+    res.render('user-profile', {user:req.user, records: records,
+      helpers: {
+        lightDark: function (conditional, options) {
+         if(conditional % 2 == 0) {
+           return 'light';
+         } else {
+           return 'dark project-card--lower';
+         }
+            
+        }
+      }  
+    });
   });
 });
 
