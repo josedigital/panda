@@ -37,7 +37,11 @@
           checkedBoxes[i].disabled = true;
         }
       }
-
+    } else {
+      for(var i = 0; i < checkedBoxes.length; i++) {
+        checkedBoxes[i].disabled = false;
+      }
+      
     }
   });    
     // $(document).find('input.checkbox:checked"]').length;
