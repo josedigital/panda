@@ -76,15 +76,12 @@ router.post('/admin/test', function (req, res){
     res.redirect('/admin/test');
   })
 
-
 // add data to feed the job search api
 router.post('/admin/create', function (req, res) {
 	models.job_search.create({
     api_name: req.body.api_name,
     api_uri: req.body.api_uri,
-    search_params: req.body.search_params,
-    default_city: req.body.default_city,
-    key_word: req.body.key_word
+    search_params: req.body.search_params
   }).then(function() {
     // console.log(req.body);
 		res.redirect('/admin');
