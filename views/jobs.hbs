@@ -8,14 +8,15 @@
         <div class="profile center">
           <img src="http://placehold.it/200x200" class="circle profile-image z-depth-2" alt="alex profile">
           <h6><a href="github">josedigital</a></h6>
+          
         </div>
-        {{#if tech}}
+        
           <ul class="secondary-nav">
           {{#each tech }}
-            <li><a href="{{tech}}">{{ tech }}</a></li>
+            <li><a href="{{link}}">{{ tech }}</a></li>
           {{/each}}
           </ul>
-        {{/if}}
+        
       </aside>
 
       <main class="col s12 m9">

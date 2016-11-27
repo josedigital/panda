@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
+var connectLogin = require('connect-ensure-login');
 var models = require('../models');
 
 
@@ -12,13 +13,18 @@ models.technology.findAll({
 
 
 
-router.get('/jobs', function (req, res, next) {
+router.get('/jobs', connectLogin.ensureLoggedIn(), function (req, res, next) {
   res.render('jobs');
 });
 
 
 router.get('/jobs/:provider', function (req, res, next) {
   data.provider = req.params.provider;
+  for(t in data.tech) {
+    console.log(data.tech[t].tech);
+    data.tech[t].link = data.provider + '/' + data.tech[t].tech;
+    console.log(data.tech[t].link);
+  }
   res.render('jobs', data);
 });
 
@@ -27,6 +33,7 @@ router.get('/jobs/:provider', function (req, res, next) {
 var apiProvider;
 var queryString;
 router.get('/jobs/:provider/:tech', function (req, res, next) {
+  data.provider = req.params.provider;
   var provider = req.params.provider;
   switch (provider) {
     case 'dice':
