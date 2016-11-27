@@ -62,7 +62,17 @@ router.post('/admin/test', function (req, res){
 		.then(function(resource){
 			return resource.addLibrary(newlibrary);
 		})
-	})
+	})//end of first promise
+      .then(function(){
+        return models.library.findOne({where: {resource: req.body.library_resource} })
+        .then(function(lib){
+          return models.technology.findOne({where: {tech: req.body.tech_association} })
+            .then(function(tech){
+              return lib.addTechnology(tech)
+          })
+        })
+      })
+  
     res.redirect('/admin/test');
   })
 
