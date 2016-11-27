@@ -55,18 +55,15 @@ router.get('/admin/test', function(req,res,next){
 // The association I don't think are working, because I'm assumig we should also get an entry in the middle man table, which I don't see happening. 
 router.post('/admin/test', function (req, res){
   models.library.create({
-    resource:req.body.library_resource,
-    // technologies_tech:req.body.resource_type
-    resource_types_type: req.body.type
-  },{
-    include: [
-      models.resource_types
-    ]
-  }
-  ).then(function(){
+    resource:req.body.library_resource
+  }).then(function(newlibrary){
+		return models.resource_type.findOne({where: {type: req.body.resource_type} })
+		.then(function(resource){
+			return resource.addLibrary(newlibrary);
+		})
+	})
     res.redirect('/admin/test');
   })
-})
 
 
 // add data to feed the job search api
