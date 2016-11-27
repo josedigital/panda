@@ -32,29 +32,33 @@ router.get('/resources/meetups/:tech', function(req, res, next) {
 
 });
 
+
 var data = {};
-router.get('/resources/:tech', function(req, res, next) {
-models.technology.findAll({
-}).then(function(tech){
-  data.tech = tech;
-  // console.log(data.tech)
-  res.render('resources', data);
+router.get('/resources', function(req,res,next){
+    models.technology.findAll({
+      }).then(function(tech){
+      data.tech = tech;
+    }).then(function(){
+      models.resource_type.findAll({
+    }).then(function(resources){
+      data.resources = resources;
+      res.render('resources', data);
+    })
   })
 })
 
-
 router.get('/resources/:tech/:type', function(req, res, next) {
- models.resource_type.findAll({
- }).then(function(resource){
-   data.resource = resource;
- }).then(function(){
-   models.technology.findAll({
-}).then(function(tech){
-  data.tech = tech;
-  console.log(data.resource)
-  res.render('resources', data);
+  // models.technology.findOne({where: {tech: 'JQUERY'}})
+  // .then(function(tech){
+  //   return tech.getLibraries()
+  // }).then(function(){
+  models.resource_type.findOne({where: {type: 'video'}})
+  .then(function(type){
+    return type.getLibraries()
+    .then(function(libraries){
+      return res.json(libraries);
+    })
   })
- })
 })
 
 module.exports = router;
