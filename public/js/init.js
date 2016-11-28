@@ -115,14 +115,14 @@ window.addEventListener('load', function() {
     			$wrapper.addClass('fadeIn');
           $loader.remove();
     		}, 750);
+        if($window.width() < 950) {
+          $wrapper.removeClass('page-wrapper animated fadeIn');
+        }
     	});
+  
 
   // Disable Checkboxes after 4 are chosen
   /*----------------------------------------------------------------*/
-  function disableSelectionIfReposFull() {
-    
-  }
-
   var checkedBoxes = $(document).find('.checkbox');
   checkedBoxes.on('change', function () {
     var j = $( "input:checked" ).length;
