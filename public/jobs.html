@@ -7,7 +7,7 @@
       <aside class="col s12 m3">
         <div class="profile center">
           <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
-          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <h6><a href="/profile">{{ user.username }}</a></h6>
           <p>{{ user.displayName }}</p>
           <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
           
@@ -26,11 +26,11 @@
         <div class="providers-tabs">
           {{#each providers}}
             <span>
-              <a href="{{api_name}}">{{api_name}}</a>
+              <a href="/jobs/{{api_name}}">{{api_name}}</a>
             </span>
           {{/each}}
         </div>
-          {{!--<p>http://www.NEED_JOB_URI_IN_DB.com</p>--}}
+          
 
           
 
