@@ -3,12 +3,16 @@ var router = express.Router();
 var models = require('../models');
 var sequelizeConnection = models.sequelize
 
-router.get('/admin', function(req, res, next) {
-  res.render('admin');
+// router.get('/admin', function(req, res, next) {
+//   res.render('admin');
+// });
+
+router.get('/admin/users', function(req, res, next) {
+  res.render('admin_users');
 });
 
-router.get('/admin/create', function(req, res, next) {
-  res.render('job_search');
+router.get('/admin/jobs/api/create', function(req, res, next) {
+  res.render('admin_job_search');
 });
 
 router.get('/admin/add/:target', function(req, res, next) {
@@ -30,7 +34,7 @@ router.get('/admin/update/:target/:resource_id', function(req, res, next) {
 
 // CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
-router.get('/admin/test', function(req,res,next){
+router.get('/admin/resource/create', function(req,res,next){
     models.technology.findAll({
       }).then(function(tech){
       techResource.tech = tech;
@@ -54,7 +58,7 @@ router.get('/admin/test', function(req,res,next){
 // })
 
 // The association I don't think are working, because I'm assumig we should also get an entry in the middle man table, which I don't see happening. 
-router.post('/admin/test', function (req, res){
+router.post('/admin/resource/create', function (req, res){
   models.library.create({
     resource:req.body.library_resource
   }).then(function(newlibrary){
@@ -73,18 +77,18 @@ router.post('/admin/test', function (req, res){
         })
       })
   
-    res.redirect('/admin/test');
+    res.redirect('/admin/resource/create');
   })
 
 // add data to feed the job search api
-router.post('/admin/create', function (req, res) {
+router.post('/admin/jobs/api/create', function (req, res) {
 	models.job_search.create({
     api_name: req.body.api_name,
     api_uri: req.body.api_uri,
     search_params: req.body.search_params
   }).then(function() {
     // console.log(req.body);
-		res.redirect('/admin');
+		res.redirect('/admin/jobs/api/create');
 	});
 });
 
