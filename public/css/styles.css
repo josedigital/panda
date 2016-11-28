@@ -8206,7 +8206,8 @@ body {
     max-width: 80%; } }
 
 .secondary-nav {
-  padding: 2rem 0; }
+  padding: 2rem 0;
+  text-align: right; }
 
 .secondary-nav li {
   padding: 1rem;
