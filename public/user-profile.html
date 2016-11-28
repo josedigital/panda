@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,400i,700" rel="stylesheet">
   {{!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>--}}
   <link href="/css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="/css/content-tools.min.css">
 </head>
 <body>
 
@@ -27,9 +28,9 @@
           </div>
 
           <div class="col s10 offset-s1">
-            <p>
-              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum nam facere unde quibusdam ducimus ex ratione eaque ullam, aut ipsum ab vero laborum quia, aspernatur distinctio ipsa molestias, modi, in?</span><span>Numquam quae fugiat, cumque consequatur quo corrupti praesentium deleniti, alias, officia, asperiores iusto. Repudiandae expedita, laudantium, eligendi fuga autem nostrum magni officiis, quo et voluptatibus, assumenda vel corrupti consequatur. Nemo.</span>
-            </p>
+            <div data-editable data-name="main_text">
+              {{{ user.currentUser.main_text }}}
+            </div>
 
           </div>        
       </div>
@@ -68,7 +69,7 @@
               <p><a href="{{repo_url}}">{{repo_url}}</a> <i class="material-icons">open_in_new</i></p>
             </div>
 
-            <div class="project-card__content">
+            <div class="project-card__content" data-editable data-name="{{id}}">
               <p>{{repo_description}}</p>
             </div>
 
@@ -143,6 +144,8 @@
 
 
   <!--  Scripts-->
+  <script src="/js/content-tools.min.js"></script>
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script src="/js/init.js"></script>
