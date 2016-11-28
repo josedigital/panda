@@ -37,21 +37,51 @@ router.post('/profile/add-repos', function (req, res) {
 
 
 router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
+  models.user.findOne({ where: {user_name: req.user.username} }).then(function(currentUser) {
+    req.user.currentUser = currentUser;
+  });
   models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
-    console.log(records.length);
     res.render('user-profile', {user:req.user, records: records,
       helpers: {
         lightDark: function (conditional, options) {
-         if(conditional % 2 == 0) {
-           return 'light';
-         } else {
-           return 'dark project-card--lower';
-         }
-            
+          if(conditional % 2 == 0) {
+            return 'light';
+          } else {
+            return 'dark project-card--lower';
+          }
         }
       }  
     });
   });
+});
+
+
+router.post('/profile/save-profile', function (req, res, next) {
+  // console.log(Object.keys(req));
+  console.log(req.body);
+  var textReceived = req.body.main_text;
+  var descriptionIds = Object.keys(req.body);
+  console.log(descriptionIds);
+
+  models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
+    if(user) {
+      user.update({main_text: textReceived}).then(function () {
+        res.send('Profile saved successfully: ' + textReceived);
+      });
+    }
+  });
+
+  for(repo in descriptionIds) {
+    console.log(descriptionIds[repo]); // gives me the ID
+    var recordId = descriptionIds[repo];
+    console.log(req.body[recordId]);
+    // models.repos.findById(recordId).then(function (repo) {
+    //   repo.update()
+    // });
+  }
+
+
+    
 });
 
 
