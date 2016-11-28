@@ -65,7 +65,7 @@ router.post('/profile/save-profile', function (req, res, next) {
 
   models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
     if(user) {
-      user.update({main_text: textReceived}).then(function () {
+      user.update({ main_text: textReceived }).then(function () {
         res.send('Profile saved successfully: ' + textReceived);
       });
     }
@@ -75,9 +75,11 @@ router.post('/profile/save-profile', function (req, res, next) {
     console.log(descriptionIds[repo]); // gives me the ID
     var recordId = descriptionIds[repo];
     console.log(req.body[recordId]);
-    // models.repos.findById(recordId).then(function (repo) {
-    //   repo.update()
-    // });
+    models.repos.findById(recordId).then(function (repo) {
+      repo.update({ repo_description: req.body[recordId] }).then(function () {
+        res.send('Repos description saved successfully: ' + req.body[recordId]);
+      });
+    });
   }
 
 
