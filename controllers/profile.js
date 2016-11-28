@@ -36,22 +36,81 @@ router.post('/profile/add-repos', function (req, res) {
 });
 
 
-router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
-  models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
-    console.log(records.length);
-    res.render('user-profile', {user:req.user, records: records,
+// public profile page
+router.get('/public/profile/:username', function (req, res) {
+  var data = {};
+  // get the user info
+  models.user.findOne({ where: {user_name: req.params.username} }).then(function(currentUser) {
+    data.user = currentUser.dataValues;
+  });
+  // get the user's repos
+  models.repos.findAll({ where: {username: req.params.username} }).then(function (records) {
+    data.records = records;
+    res.render('public-profile', {data,
       helpers: {
         lightDark: function (conditional, options) {
-         if(conditional % 2 == 0) {
-           return 'light';
-         } else {
-           return 'dark project-card--lower';
-         }
-            
+          if(conditional % 2 == 0) {
+            return 'light';
+          } else {
+            return 'dark project-card--lower';
+          }
         }
       }  
     });
   });
+});
+// redirect if no username provided
+router.get('/public/profile', function (req, res) {
+  res.redirect('/');
+});
+
+
+
+// private editable profile page
+router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
+  models.user.findOne({ where: {user_name: req.user.username} }).then(function(currentUser) {
+    req.user.currentUser = currentUser;
+  });
+  models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
+    res.render('user-profile', {user:req.user, records: records,
+      helpers: {
+        lightDark: function (conditional, options) {
+          if(conditional % 2 == 0) {
+            return 'light';
+          } else {
+            return 'dark project-card--lower';
+          }
+        }
+      }  
+    });
+  });
+});
+
+
+// post for edit-in-place sections of public profile
+router.post('/profile/save-profile', function (req, res, next) {
+  var textReceived = req.body.main_text;
+  var descriptionIds = Object.keys(req.body);
+
+  models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
+    if(user) {
+      user.update({ main_text: textReceived }).then(function () {
+        res.send('Profile saved successfully: ' + textReceived);
+      });
+    }
+  });
+
+  for(repo in descriptionIds) {
+    var recordId = descriptionIds[repo];
+    models.repos.findById(recordId).then(function (repo) {
+      repo.update({ repo_description: req.body[recordId] }).then(function () {
+        res.send('Repos description saved successfully: ' + req.body[recordId]);
+      });
+    });
+  }
+
+
+    
 });
 
 

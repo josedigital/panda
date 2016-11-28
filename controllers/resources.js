@@ -52,12 +52,17 @@ router.get('/resources/:tech/:type', function(req, res, next) {
   // .then(function(tech){
   //   return tech.getLibraries()
   // }).then(function(){
-  models.resource_type.findOne({where: {type: 'video'}})
-  .then(function(type){
-    return type.getLibraries()
-    .then(function(libraries){
-      return res.json(libraries);
-    })
+  models.library.findAll({
+    include: [{
+      model: models.technology,
+      where: {tech:'JQUERY'}
+    },{
+      model: models.resource_type,
+      where: {type:'VIDEO'}
+    }]
+  })
+  .then(function(lib){
+    return res.json(lib);
   })
 })
 

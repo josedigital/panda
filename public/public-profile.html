@@ -3,14 +3,13 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>{{ user.displayName }}'s Coding Profile by Panda</title>
+  <title>{{ data.user.display_name }}'s Coding Profile by Panda</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,400i,700" rel="stylesheet">
   {{!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>--}}
   <link href="/css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="/css/content-tools.min.css">
 </head>
 <body>
 
@@ -21,15 +20,15 @@
         <div class="row">
           <div class="col s12">
             <div class="profile center">
-              <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
-              <h5><a href="https://github.com/{{ user.username }}" class="teal-text">{{ user.displayName }}</a></h5>
+              <img src="{{ data.user.avitar_link }}" class="circle profile-image z-depth-2" alt="{{data.user.user_name}} profile">
+              <h5><a href="https://github.com/{{ data.user.user_name }}" class="teal-text">{{ data.user.display_name }}</a></h5>
               <p>Full Stack Javascript Developer</p>
             </div>
           </div>
 
           <div class="col s10 offset-s1">
-            <div data-editable data-name="main_text">
-              {{{ user.currentUser.main_text }}}
+            <div>
+              {{{ data.user.main_text }}}
             </div>
 
           </div>        
@@ -55,7 +54,7 @@
 
 
 
-        {{#each records}}
+        {{#each data.records}}
         <div class="col s12 l6">
           
           <div class="project-card project-card--{{lightDark @index}}">
@@ -69,7 +68,7 @@
               <p><a href="{{repo_url}}">{{repo_url}}</a> <i class="material-icons">open_in_new</i></p>
             </div>
 
-            <div class="project-card__content" data-editable data-name="{{id}}">
+            <div class="project-card__content">
               <p>{{{repo_description}}}</p>
             </div>
 
@@ -152,8 +151,6 @@
 
 
   <!--  Scripts-->
-  <script src="/js/content-tools.min.js"></script>
-
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   <script src="/js/init.js"></script>

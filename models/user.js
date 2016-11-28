@@ -3,6 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define('user', {
     user_name: DataTypes.STRING,
     display_name: DataTypes.STRING,
+    admin: DataTypes.BOOLEAN,
+    user_title: DataTypes.STRING,
     email: DataTypes.STRING,
     git_link: DataTypes.STRING,
     main_text: DataTypes.TEXT,
