@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>{{ user.displayName }}'s Coding Profile by Panda</title>
+  <title>{{ data.user.display_name }}'s Coding Profile by Panda</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,15 +21,15 @@
         <div class="row">
           <div class="col s12">
             <div class="profile center">
-              <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
-              <h5><a href="https://github.com/{{ user.username }}" class="teal-text">{{ user.displayName }}</a></h5>
+              <img src="{{ data.user.avitar_link }}" class="circle profile-image z-depth-2" alt="{{data.user.user_name}} profile">
+              <h5><a href="https://github.com/{{ data.user.user_name }}" class="teal-text">{{ data.user.display_name }}</a></h5>
               <p>Full Stack Javascript Developer</p>
             </div>
           </div>
 
           <div class="col s10 offset-s1">
             <div data-editable data-name="main_text">
-              {{{ user.currentUser.main_text }}}
+              {{{ data.user.main_text }}}
             </div>
 
           </div>        
@@ -55,7 +55,7 @@
 
 
 
-        {{#each records}}
+        {{#each data.records}}
         <div class="col s12 l6">
           
           <div class="project-card project-card--{{lightDark @index}}">
