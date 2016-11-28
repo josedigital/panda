@@ -26,7 +26,7 @@ router.get('/login/github', passport.authenticate('github'));
 router.get('/login/github/return', passport.authenticate('github', { failureRedirect: '/' }), function (req, res) {
     models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
       if(user) {
-        res.redirect('/profile');
+        res.redirect('/home');
         console.log('exists');
       } else {
         models.user.create({

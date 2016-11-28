@@ -16695,6 +16695,14 @@ h4 {
 .icon-block .material-icons {
   font-size: inherit; }
 
+.providers-tabs {
+  border-bottom: 1px solid #ccc; }
+  .providers-tabs span {
+    font-size: 1.6rem;
+    padding: 1rem 2rem 1rem; }
+    .providers-tabs span:first-child {
+      padding-left: 0; }
+
 .section-login {
   padding: 4rem 0; }
 

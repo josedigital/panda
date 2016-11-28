@@ -260,6 +260,31 @@ h4 {
 
 
 
+
+.providers-tabs {
+  border-bottom: 1px solid #ccc;
+  span {
+    font-size: 1.6rem;
+    padding: 1rem 2rem 1rem;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  a {
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 .section-login {
   padding: 4rem 0;
 }
