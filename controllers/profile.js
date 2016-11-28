@@ -35,10 +35,7 @@ router.post('/profile/add-repos', function (req, res) {
 
 });
 
-// redirect if no username provided
-router.get('/public/profile', function (req, res) {
-  res.redirect('/');
-});
+
 // public profile page
 router.get('/public/profile/:username', function (req, res) {
   var data = {};
@@ -62,6 +59,12 @@ router.get('/public/profile/:username', function (req, res) {
     });
   });
 });
+// redirect if no username provided
+router.get('/public/profile', function (req, res) {
+  res.redirect('/');
+});
+
+
 
 // private editable profile page
 router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, res) {
