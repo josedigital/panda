@@ -6,13 +6,15 @@
     <div class="row">
       <aside class="col s12 m3">
         <div class="profile center">
-          <img src="http://placehold.it/200x200" class="circle profile-image z-depth-2" alt="alex profile">
-          <h6><a href="github">josedigital</a></h6>
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
           
         </div>
         
           <ul class="secondary-nav">
-          {{#each tech }}
+          {{#each technology }}
             <li><a href="{{link}}">{{ tech }}</a></li>
           {{/each}}
           </ul>
@@ -20,12 +22,20 @@
       </aside>
 
       <main class="col s12 m9">
-        {{#if jobs.provider}}
-          <h3 class="uppercase">{{jobs.provider}}</h3>
-        {{/if}}
-          <p>http://www.NEED_JOB_URI_IN_DB.com</p>
+        <h3 class="uppercase">Find your job</h3>
+        <div class="providers-tabs">
+          {{#each providers}}
+            <span>
+              <a href="{{api_name}}">{{api_name}}</a>
+            </span>
+          {{/each}}
+        </div>
+          {{!--<p>http://www.NEED_JOB_URI_IN_DB.com</p>--}}
+
+          
 
         <div class="section">
+          {{!-- Dice --}}
           {{#if jobs.resultItemList}}
             <ul>
             {{#each jobs.resultItemList }}
@@ -35,20 +45,32 @@
           {{/if}}
           
 
-
           
           
-          {{#if results}}
-            {{#each results}}
-              <p><a href="{{ refs.landing_page }}">{{ name }}</a></p>
+          {{!-- Muse --}}
+          {{#if jobs.took}}
+            {{#each jobs.results}}
+              <p>
+                <a href="{{ refs.landing_page }}">{{ name }}</a>
+                <br>
+                {{{contents}}}
+              </p>
             {{/each}}
           {{/if}}
           
+          {{!-- Indeed --}}
+          {{#if jobs.radius}}
+            {{#each jobs.results }}
+              <p>
+                <a href="{{url}}">{{jobtitle}}</a>
+                <br>
+                {{#if company}}Company: {{company}} {{/if}}
+                <br>
+                {{#if snippet}}Snippet: {{snippet}} {{/if}}
 
-
-          {{#each results }}
-            <p><a href="{{url}}">{{jobtitle}}</a></p>
-          {{/each}}
+                </p>
+            {{/each}}
+          {{/if}}
           
           
         </div>

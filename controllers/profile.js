@@ -13,7 +13,6 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
   ghuser.repos(function(err, data, headers) {
     res.render('profile', {user:req.user, repos: data});
   });
-  
 });
 
 

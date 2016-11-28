@@ -1,4 +1,5 @@
 var express = require('express');
+var connectLogin = require('connect-ensure-login');
 var router = express.Router();
 
 /* GET home page. */
@@ -7,8 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET about page. */
-router.get('/about', function(req, res, next) {
-  res.render('about', {title: 'about'});
+router.get('/home', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  res.render('home', {user: req.user});
 });
 
 module.exports = router;
