@@ -111,20 +111,28 @@
 
 
   <div class="parallax-container white-text">
-    <div class="overlay overlay--profile"></div>
+    <div class="overlay overlay--dark"></div>
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
           
           
           <div class="col s12">
-            <h3 class="header">What Colleagues are Saying</h3>
-            <div class="quote">“</div>
+            {{#if user._json.bio}}
+              <h3 class="header">{{user._json.bio}}</h3>
+            {{else}}
+              <h3 class="header">One of my most productive days was throwing away 1000 lines of code.</h3>
+              <div class="quote">“</div>
+              <h5>- Ken Thompson</h5>
+            {{/if}}
+            
           </div>
 
           <div class="col s8 offset-s2">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus impedit reprehenderit maxime quidem saepe, harum esse, laborum eveniet totam blanditiis. Quod ipsam excepturi eius voluptatem maiores sunt, voluptatum modi voluptatibus?
+              {{user._json.name}} | <a href="mailto:{{user._json.email}}">{{user._json.email}}</a> | {{user._json.location}}
+              <br>
+              {{user._json.blog}}
             </p>
           </div>
 
