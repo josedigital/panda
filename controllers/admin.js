@@ -34,7 +34,7 @@ router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, ne
   
 });
 
-var resourceData = {};//reserved for users  
+var resourceData = {};//reserved for resourcestypes  
 router.get('/admin/resource/type', connectLogin.ensureLoggedIn(), function (req, res, next) {
   // get user
   resourceData.user = req.user;
@@ -42,6 +42,18 @@ router.get('/admin/resource/type', connectLogin.ensureLoggedIn(), function (req,
   }).then(function (resourceInfo) {
     resourceData.resourceInfo = resourceInfo;
     res.render('admin_resource_type', resourceData);
+  });
+  
+});
+
+var technologyData = {};//reserved for technology  
+router.get('/admin/technology/type', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // get user
+  technologyData.user = req.user;
+  models.technology.findAll({
+  }).then(function (technologyInfo) {
+    technologyData.technologyInfo = technologyInfo;
+    res.render('admin_technology', technologyData);
   });
   
 });
@@ -133,7 +145,7 @@ router.post('/admin/resource/type/add', connectLogin.ensureLoggedIn(), function 
   if (req.body.resource_type_name.length == 0) {
 
         res.redirect('/home')
-	      // alert("Whoops - you can not submit a blank field");
+	      
 
 		}else{
       models.resource_type.create({
@@ -141,6 +153,23 @@ router.post('/admin/resource/type/add', connectLogin.ensureLoggedIn(), function 
       }).then(function() {
         // console.log(req.body);
         res.redirect('/admin/resource/type');
+      });
+    }
+  });
+
+  // add new technology to technology table
+router.post('/admin/technology/type/add', connectLogin.ensureLoggedIn(), function (req, res) {
+  if (req.body.technology_type.length == 0) {
+
+        res.redirect('/home')
+	      
+
+		}else{
+      models.technology.create({
+        tech: req.body.technology_type
+      }).then(function() {
+        // console.log(req.body);
+        res.redirect('/admin/technology/type');
       });
     }
   });
