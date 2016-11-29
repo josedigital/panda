@@ -29,8 +29,9 @@ router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, ne
   models.user.findAll({
   }).then(function (userInfo) {
     data.userInfo = userInfo;
+    res.render('admin_users', data);
   });
-  res.render('admin_users', data);
+  
 });
 
 //updating regular USER to ADMIN 
