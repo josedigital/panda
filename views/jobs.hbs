@@ -15,7 +15,7 @@
         
           <ul class="secondary-nav">
           {{#each technology }}
-            <li><a href="{{link}}">{{ tech }}</a></li>
+            <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}">{{ tech }}</a></li>
           {{/each}}
           </ul>
         

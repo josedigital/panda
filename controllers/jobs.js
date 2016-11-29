@@ -16,9 +16,10 @@ router.get('/jobs', connectLogin.ensureLoggedIn(), function (req, res, next) {
   models.job_search.findAll({
   }).then(function (providers) {
     data.providers = providers;
+    res.render('jobs', data);
   });
 
-  res.render('jobs', data);
+  
 });
 
 
@@ -29,17 +30,18 @@ router.get('/jobs/:provider', connectLogin.ensureLoggedIn(), function (req, res,
   models.technology.findAll({
   }).then(function(tech){
     data.technology = tech;
+
+    // iterate over techs to display on nav
+    for(t in data.technology) {
+      console.log(data.technology[t].tech);
+      data.technology[t].link = data.provider + '/' + data.technology[t].tech;
+      console.log(data.technology[t].link);
+    }
+    res.render('jobs', data);
+
   });
 
-  // iterate over techs to display on nav
-  for(t in data.technology) {
-    console.log(data.technology[t].tech);
-    data.technology[t].link = data.provider + '/' + data.technology[t].tech;
-    console.log(data.technology[t].link);
-  }
 
-  
-  res.render('jobs', data);
 });
 
 
@@ -52,14 +54,17 @@ router.get('/jobs/:provider/:tech', connectLogin.ensureLoggedIn(), function (req
   models.technology.findAll({
   }).then(function(tech){
     data.technology = tech;
+
+    // iterate over techs to display on nav
+    // for(t in data.technology) {
+    //   console.log(data.technology[t].tech);
+    //   data.technology[t].link = data.provider + '/' + data.technology[t].tech;
+    //   console.log(data.technology[t].link);
+    // }
+
   });
 
-  // iterate over techs to display on nav
-  for(t in data.technology) {
-    console.log(data.technology[t].tech);
-    data.technology[t].link = data.provider + '/' + data.technology[t].tech;
-    console.log(data.technology[t].link);
-  }
+
 
   
   models.job_search.findOne({where: {api_name: req.params.provider} }).then(function (apiprovider) {
