@@ -1,4 +1,4 @@
-{{> _header }}
+{{> _admin_header }}
 <div class="container">
     <div class="row">
       <aside class="col s12 m3">
@@ -22,7 +22,7 @@
                     <form class="col s12" action="/admin/resource/type/add" method="POST">
                         
                         <div class="row">
-                            <div class="input-field col s6 m12">
+                            <div class="input-field col s12 m12">
                             <input placeholder="i.e., Podcast" id="resource_type_name" type="text" name="resource_type_name">
                             <label for="resource_type_name">Resource Type</label>
                             </div>
@@ -30,7 +30,7 @@
                         </div>
                                 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m12">
                                 <button class="waves-effect waves-light btn" type="submit">Add NEW Resource Type</button>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                 <hr>
 
                         <div class="row">
-                            <div class="input-field col s6 m12">
+                            <div class="input-field col s12 m12">
                             <p>
                                 {{#each resourceInfo}}
                                 <h5>- {{type}}</h5>

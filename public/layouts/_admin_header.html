@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Panda : Your Coding Bootcamp Guide</title>
+    <meta name="desctiption" content="">
+    <meta name="desctiption" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-teal-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="page-wrapper">
+      <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="/" class="brand-logo"><img src="/img/panda_panda.svg" height="100px"alt=""></a>
+          
+          <ul class="right hide-on-med-and-down">
+            {{#if user}}
+            <li><a href="/admin/jobs/api/add">Add Job API</a></li>
+            <li><a href="/admin/resource/add">Add Resource</a></li>
+            <li><a href="/admin/users">Add Admin</a></li>
+            <li><a href="/admin/resource/type">Add Resource Type</a></li>
+            <li><a href="/admin/technology/type">Add Technology</a></li>
+            
+            <li><a href="/resources">Resources</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/profile">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {{else}}
+            <li><a href="/login/github"><i class="material-icons">power_settings_new</i> Login with Github</a></li>
+            {{/if}}
+          </ul>
+          
+            
+
+          <ul id="nav-mobile" class="side-nav">
+            {{#if user}}
+            <li><a href="/admin/jobs/api/add">Add Job API</a></li>
+            <li><a href="/admin/resource/add">Add Resource</a></li>
+            <li><a href="/admin/users">Add Admin</a></li>
+            <li><a href="/admin/resource/type">Add Resource Type</a></li>
+            <li><a href="/admin/technology/type">Add Technology</a></li>
+
+            <li><a href="#">Resources</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/logout">Logout</a></li>
+            <li class="nav-separator"></li>
+              {{#if technology}}
+                {{#each technology }}
+                  <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}" class="blue-text">{{ tech }}</a></li>
+                {{/each}}
+              {{/if}}
+            
+            {{else}}
+            <li><a href="/login/github"><i class="material-icons">power_settings_new</i> Login with Github</a></li>
+            {{/if}}
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+
