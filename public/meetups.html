@@ -15,7 +15,7 @@
         
           <ul class="secondary-nav">
           {{#each technology }}
-            <li><a href="{{link}}">{{ tech }}</a></li>
+            <li><a href="{{tech}}">{{ tech }}</a></li>
           {{/each}}
           </ul>
         
@@ -34,7 +34,12 @@
               {{{description}}}
               <p>{{members}} members organized by {{organizer.name}}</p>
             {{/each}}
+          
+          {{else}}
+            <h5>There are no meetups for {{noresults}} at this time.</h5>
           {{/if}}
+
+          
           
           
         </div>

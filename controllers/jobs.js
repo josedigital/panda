@@ -13,8 +13,9 @@ router.get('/jobs', connectLogin.ensureLoggedIn(), function (req, res, next) {
   // get user
   data.user = req.user;
 
-  models.job_search.findAll({
-  }).then(function (providers) {
+  models.job_search.findAll({ where: {
+    api_name:{ $ne: 'Meetups' }
+  } }).then(function (providers) {
     data.providers = providers;
     res.render('jobs', data);
   });
