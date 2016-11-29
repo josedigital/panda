@@ -1,0 +1,12 @@
+#nav-mobile {
+  li {
+    height: auto;
+    padding: 0;
+    &.nav-separator {
+      background-color: #ddd;
+      border-bottom: 1px solid;
+      height: 2px;
+      padding: 0;
+    }
+  }
+}

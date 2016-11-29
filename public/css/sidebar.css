@@ -6,8 +6,12 @@
   max-width: 50%; }
 
 .secondary-nav {
+  display: none;
   padding: 2rem 0;
   text-align: right; }
+  @media only screen and (min-width: 992px) {
+    .secondary-nav {
+      display: block; } }
 
 .secondary-nav li {
   padding: 1rem;
