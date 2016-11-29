@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request-promise');
+var connectLogin = require('connect-ensure-login');
 var models = require('../models');
 
 
@@ -35,18 +36,30 @@ router.get('/resources/meetups/:tech', function(req, res, next) {
 
 
 var data = {};
-router.get('/resources', function(req,res,next){
+router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
+
+    data.user = req.user;
+
     models.technology.findAll({
       }).then(function(tech){
-      data.tech = tech;
+      data.technology = tech;
     }).then(function(){
       models.resource_type.findAll({
     }).then(function(resources){
       data.resources = resources;
+
+      console.log(resources);
+
+      for(t in data.technology) {
+        console.log(data.technology[t].tech);
+        data.technology[t].link = 'resources/' + data.technology[t].tech;
+        console.log(data.technology[t].link);
+      }
+
       res.render('resources', data);
-    })
-  })
-})
+    });
+  });
+});
 
 router.get('/resources/:tech/:type', function(req, res, next) {
   // models.technology.findOne({where: {tech: 'JQUERY'}})
@@ -64,7 +77,42 @@ router.get('/resources/:tech/:type', function(req, res, next) {
   })
   .then(function(lib){
     return res.json(lib);
-  })
-})
+  });
+});
+
+router.get('/resources/:tech', connectLogin.ensureLoggedIn(), function(req, res, next) {
+
+  data.user = req.user;
+  data.tech = req.params.provider;
+
+  models.technology.findAll({
+    }).then(function(tech){
+    data.technology = tech;
+  }).then(function(){
+    models.resource_type.findAll({
+  }).then(function(resources){
+    data.resources = resources;
+
+    console.log(resources);
+
+    for(var t in data.technology) {
+      console.log(data.technology[t].tech);
+      data.technology[t].link = data.technology[t].tech;
+      console.log(data.technology[t].link);
+    }
+
+      res.render('resources', data);
+    });
+  });
+  // models.library.findAll({
+  //   include: [{
+  //     model: models.resource_type,
+  //     where: {type: data.tech}
+  //   }]
+  // })
+  // .then(function(lib){
+  //   res.render('resources', lib);
+  // });
+});
 
 module.exports = router;

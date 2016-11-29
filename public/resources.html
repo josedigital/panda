@@ -1,26 +1,43 @@
 {{> _header }}
-<header>
-  <div class="container">
-    <h1>Resources</h1>
-    <p>this is the resources page</p>
-  </div>
-</header>
+
 <section role="main">
   <div class="container">
-    
-    {{#each resources }}
-      
-      <p>{{ type }}</p>
-     
-    {{/each}}
-    <hr>
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="/profile">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
 
-    {{#each tech }}
-      
-      <p>{{ tech }}</p>
-     
-    {{/each}}
-    
+        </div>
+
+          <ul class="secondary-nav">
+          {{#each technology }}
+            <li><a href="{{link}}">{{ tech }}</a></li>
+          {{/each}}
+          </ul>
+
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Resources</h3>
+        <div class="providers-tabs">
+          {{#each resources}}
+            <span>
+              <a href="/resources/{{ type }}">{{ type }}</a>
+            </span>
+          {{/each}}
+        </div>
+
+        <div class="section">
+
+
+        </div>
+      </main>
+
+    </div><!-- /row -->
+
   </div>
 </section>
 {{> _footer }}
