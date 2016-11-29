@@ -9,17 +9,18 @@ var sequelizeConnection = models.sequelize
 // });
 
 
-router.get('/admin/jobs/api/create', function(req, res, next) {
-  res.render('admin_job_search');
+router.get('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  data.user = req.user;
+  res.render('admin_job_search', data);
 });
 
-router.get('/admin/add/:target', function(req, res, next) {
-  res.render('');
-});
+// router.get('/admin/add/:target', function(req, res, next) {
+//   res.render('');
+// });
 
-router.get('/admin/update/:target/:resource_id', function(req, res, next) {
-  res.render('');
-});
+// router.get('/admin/update/:target/:resource_id', function(req, res, next) {
+//   res.render('');
+// });
 
 var data = {};//reserved for users  
 router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, next) {
@@ -34,16 +35,14 @@ router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, ne
 
 //updating regular USER to ADMIN 
 router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res, next) {
-  // get user
-  // data.user = req.user;
-  console.log(req.body.admin_change);
+  // console.log(req.body.admin_change);
   var id = req.params.id;
-models.user.findById(id).then(function(userChange) {
-  userChange.update({
-    admin:req.body.admin_change
-  })
-})
-  res.redirect('/admin/users');
+  models.user.findById(id).then(function(userChange) {
+    userChange.update({
+      admin:req.body.admin_change
+    });
+  });
+      res.redirect('/admin/users');
 });
 
 
@@ -57,7 +56,7 @@ models.user.findById(id).then(function(userChange) {
 
 // CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
-router.get('/admin/resource/create', function(req,res,next){
+router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,res,next){
     models.technology.findAll({
       }).then(function(tech){
       techResource.tech = tech;
@@ -80,8 +79,8 @@ router.get('/admin/resource/create', function(req,res,next){
 //   })
 // })
 
-// The association I don't think are working, because I'm assumig we should also get an entry in the middle man table, which I don't see happening. 
-router.post('/admin/resource/create', function (req, res){
+// Adding resources with two associations
+router.post('/admin/resource/add', connectLogin.ensureLoggedIn(), function (req, res){
   models.library.create({
     resource:req.body.library_resource
   }).then(function(newlibrary){
@@ -100,18 +99,18 @@ router.post('/admin/resource/create', function (req, res){
         })
       })
   
-    res.redirect('/admin/resource/create');
+    res.redirect('/admin/resource/add');
   })
 
 // add data to feed the job search api
-router.post('/admin/jobs/api/create', function (req, res) {
+router.post('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function (req, res) {
 	models.job_search.create({
     api_name: req.body.api_name,
     api_uri: req.body.api_uri,
     search_params: req.body.search_params
   }).then(function() {
     // console.log(req.body);
-		res.redirect('/admin/jobs/api/create');
+		res.redirect('/admin/jobs/api/add');
 	});
 });
 
