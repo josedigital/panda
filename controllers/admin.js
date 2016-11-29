@@ -58,6 +58,7 @@ router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res
 // CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
 router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,res,next){
+  techResource.user = req.user;
     models.technology.findAll({
       }).then(function(tech){
       techResource.tech = tech;
@@ -83,7 +84,8 @@ router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,re
 // Adding resources with two associations
 router.post('/admin/resource/add', connectLogin.ensureLoggedIn(), function (req, res){
   models.library.create({
-    resource:req.body.library_resource
+    resource:req.body.library_resource,
+    resource_name:req.body.library_name
   }).then(function(newlibrary){
 		return models.resource_type.findOne({where: {type: req.body.resource_type} })
 		.then(function(resource){
