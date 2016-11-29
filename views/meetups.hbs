@@ -1,0 +1,47 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="/profile">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+          
+        </div>
+        
+          <ul class="secondary-nav">
+          {{#each technology }}
+            <li><a href="{{link}}">{{ tech }}</a></li>
+          {{/each}}
+          </ul>
+        
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Join a Meetup</h3>
+
+
+        <div class="section">
+
+          {{#if meetups}}
+            {{#each meetups }}
+              <h5>{{name}}</h5>
+              <p><a href="{{link}}">{{link}}</a></p>
+              {{{description}}}
+              <p>{{members}} members organized by {{organizer.name}}</p>
+            {{/each}}
+          {{/if}}
+          
+          
+        </div>
+      </main>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}
