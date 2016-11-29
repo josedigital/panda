@@ -5,31 +5,32 @@ var models = require('../models');
 
 
 router.get('/resources/meetups/:tech', function(req, res, next) {
+  var data = {};
+  data.user = req.user;
+  models.job_search.findOne({where: {api_name: 'Meetups'} }).then(function (apiprovider) {
+    console.log(apiprovider);
+    console.log(apiprovider.search_params);
+    var searchString = apiprovider.search_params;
+    var queryString = JSON.parse(searchString);
 
-  request({
-    uri: 'https://api.meetup.com/find/groups',
-    qs: {
-      'key': 'xxxxxxxxxxxxxxx',
-      'sign': true,
-      'photo-host': 'public',
-      'zip': 78759,
-      'country': 'usa',
-      'filter': 'all',
-      'location': 'austin',
-      'text': req.params.tech,
-      'radius': 50,
-      'page': 20
-    },
-    json: true
-  })
-    .then( function (data) {
-      res.render('resources', data);
+    queryString.text = req.params.tech;
+
+    request({
+      uri: apiprovider.api_uri,
+      qs: queryString,
+      json: true
     })
-    .catch( function (error) {
-      console.log(error);
-      res.json(error);
-    });
+      .then( function (muResults) {
+        data.meetups = muResults;
+        console.log(muResults);
+        res.render('meetups', data);
+      })
+      .catch( function (error) {
+        console.log(error);
+        res.json(error);
+      });
 
+    });
 });
 
 
