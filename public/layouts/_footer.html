@@ -22,10 +22,15 @@
 
           </div>
           <div class="col l4 offset-l2 s12">
+
+            {{#if user}}
+            <h5 class="white-text">Hi, {{user.displayName}}!</h5>
+            <p class="white-text">If you are enjoying Panda, <a href="http://twitter.com/pandaguide">tell your friends</a>!</p>
+            {{else}}
             <h5 class="white-text">Login</h5>
-            <p>
-              <a href="/login/github" class="waves-effect waves-light btn amber"><i class="material-icons left">power_settings_new</i>Login with Github</a>
-            </p>
+            <a href="/login/github" class="waves-effect waves-light btn amber"><i class="material-icons left">power_settings_new</i>Login with Github</a>
+            {{/if}}
+            
           </div>
         </div><!-- /row -->
       </div>

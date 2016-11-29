@@ -5,12 +5,13 @@
   border: 2px solid #e3e3e3;
   max-width: 50%; }
 
-@media only screen and (min-width: 600px) {
-  .profile-image {
-    max-width: 80%; } }
-
 .secondary-nav {
-  padding: 2rem 0; }
+  display: none;
+  padding: 2rem 0;
+  text-align: right; }
+  @media only screen and (min-width: 992px) {
+    .secondary-nav {
+      display: block; } }
 
 .secondary-nav li {
   padding: 1rem;

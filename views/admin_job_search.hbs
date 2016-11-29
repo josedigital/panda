@@ -1,0 +1,61 @@
+{{> _header }}
+<div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        </div> 
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Add Job Provider API Details</h3>
+        <hr>
+        
+
+{{!--<header>
+  <div class="container">
+    <h3 class="uppercase">Job Provider API details</h3>
+    <h5>Provider, Link, Parameters</h5>
+    <br>
+  </div>
+</header>--}}
+
+        {{!--<div class="container">--}}
+
+                <div class="row">
+                    <br>
+                    <form class="col s12" action="/admin/jobs/api/add" method="POST">
+                        <div class="input-field col s6">
+                        <input placeholder="i.e., Monster" id="name" type="text" name="api_name">
+                        <label for="name">Name of Job Search Provider</label>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="input-field col s6">
+                        <input placeholder="www.jobs/search/" id="uri" type="text" name="api_uri">
+                        <label for="uri">Link to job search api</label>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="input-field col s6">
+                        <input placeholder="?search+javascript" id="params" type="text" name="search_params">
+                        <label for="params">Parameters for job search</label>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="input-field col s6">
+                        <button class="waves-effect waves-light btn" type="submit">Add Jobs Search Parameters</button>
+                        </div>
+                </div>
+                    </form>
+                
+        {{!--</div>--}}
+    </div><!-- /row -->
+  </div><!-- /container -->
+{{> _footer }}

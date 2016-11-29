@@ -8,6 +8,7 @@ var passport = require('passport');
 var Strategy = require('passport-github').Strategy;
 var github = require('octonode');
 var models  = require('./models');
+var methodOverride = require('method-override');
 
 // var client = github.client();
 
@@ -47,6 +48,7 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(methodOverride('_method'));
 
 app.engine('hbs', hbs(
   {

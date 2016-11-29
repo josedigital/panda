@@ -1,7 +1,8 @@
 @import 'vendor/materialize';
 @import 'vendor/animate-sass/_animate';
 $use-fadeIn: true;
-@import 'sidebar.scss';
+@import 'sidebar';
+@import 'mobile-nav';
 @import 'profile-admin';
 @import 'user-profile';
 // @import 'breadcrumbs.css';
@@ -133,7 +134,10 @@ p {
 
 
 .laptop {
-  background-image: url('../img/laptop-profile.png');
+  background-image: none;
+  @media only screen and (min-width: 600px) {
+    background-image: url('../img/laptop-profile.png');
+  }
   background-position: 120% 50px;
   background-repeat: no-repeat;
   background-size: 60%;
@@ -253,6 +257,31 @@ h4 {
 .icon-block .material-icons {
   font-size: inherit;
 }
+
+
+
+
+
+
+
+
+.providers-tabs {
+  border-bottom: 1px solid #ccc;
+  span {
+    font-size: 1.6rem;
+    padding: 1rem 2rem 1rem;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  a {
+
+  }
+}
+
+
+
+
 
 
 

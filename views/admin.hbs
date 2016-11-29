@@ -1,56 +1,75 @@
 {{> _header }}
-<header>
-  <div class="container">
-    <h3 class="uppercase">ADMIN</h3>
-    <h5>Page where an ADMIN can create a resource and must associate it with two types</h5>
-    <br>
-  </div>
-</header>
+<div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        </div> 
+      </aside>
 
-  <div class="container">
+      <main class="col s12 m9">
+        <h3 class="uppercase">Add User Resources</h3>
+        <hr>
 
-        <div class="row">
-            <form class="col s12" action="/admin/test" method="POST">
-            <div class="row">
-                <div class="input-field col s6">
-                <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
-                <label for="library_resource">Resource URL</label>
+
+            {{!--<div class="container">--}}
+                <div class="row">
+                    <br>
+                    <br>
+                    <form class="col s12" action="/admin/resource/add" method="POST">
+                        
+                        <div class="row">
+                            <div class="input-field col s6 m12">
+                            <input placeholder="Learn Jquery in 15 minutes" id="library_name" type="text" name="library_name">
+                            <label for="library_name">Resource Name</label>
+                            </div>
+                            <br>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s6 m12">
+                            <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
+                            <label for="library_resource">Resource URL</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6 m12">
+                            <p>Resource Type</p> 
+                            <p>
+                                {{#each resources}}
+                                <input type="radio" class="filled-in" id="{{type}}" name="resource_type" value="{{type}}"/>
+                                <label for="{{type}}">{{type}}</label>
+                                {{/each }}
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6 m12">
+                            <p>Related technology</p> 
+                            <p>
+                            {{#each tech}}
+                                    <input type="radio" class="filled-in" id="{{id}}" name="tech_association" value="{{tech}}"/>
+                            
+                                <label for="{{id}}">{{tech}}</label>
+
+                            {{/each}}
+                            </p>
+                            </div>
+                        </div>
+                                
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <button class="waves-effect waves-light btn" type="submit">Add Resource For Users</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-
-        <div class="row">
-            <div class="input-field col s6">
-            <p>Resource Type</p> 
-            <p>
-                {{#each resources}}
-                <input type="radio" class="filled-in" id="{{type}}" name="resource_type" value="{{type}}"/>
-                <label for="{{type}}">{{type}}</label>
-                {{/each }}
-            </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s6">
-            <p>Related technology</p> 
-            <p>
-            {{#each tech}}
-                    <input type="radio" class="filled-in" id="{{id}}" name="tech_association" value="{{tech}}"/>
-            
-                <label for="{{id}}">{{tech}}</label>
-
-            {{/each}}
-            </p>
-            </div>
-        </div>
-            
-        <div class="row">
-            <div class="input-field col s6">
-                <button class="waves-effect waves-light btn" type="submit">Add Resource For Users</button>
-            </div>
-        </div>
-            </form>
-    </div>
-     
-</div>
+            {{!--</div>--}}
+    </div><!-- /row -->
+</div><!-- /container -->
 {{> _footer }}

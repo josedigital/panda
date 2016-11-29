@@ -7,13 +7,29 @@ var models = require('../models');
 
 
 router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
+  var repos = {};
   var client = github.client(req.user.token);
   var ghuser = client.user(req.user.username);
 
-  ghuser.repos(function(err, data, headers) {
-    res.render('profile', {user:req.user, repos: data});
+  models.repos.findAll({ where: {username: req.user.username} }).then(function (records) {
+    if(records.length > 0) {
+      repos.savedRepos = records;
+    }
   });
-  
+
+  ghuser.repos(function(err, data, headers) {
+    for(repo in data) {
+      for(r in repos.savedRepos) {
+        if(data[repo].name === repos.savedRepos[r].repo_name) {
+          data[repo].checked = 'checked';
+        }
+      }
+      console.log(data[repo].checked);
+    }
+    // add repos to data object
+    repos.ghRepos = data;
+    res.render('profile', {user:req.user, repos: repos.ghRepos});
+  });
 });
 
 

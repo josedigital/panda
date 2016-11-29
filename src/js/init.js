@@ -20,7 +20,7 @@
     			$wrapper.addClass('fadeIn');
           $loader.remove();
     		}, 750);
-        if($window.width() < 950) {
+        if($window.width() < 992) {
           $wrapper.removeClass('page-wrapper animated fadeIn');
         }
     	});

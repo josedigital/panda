@@ -1,0 +1,46 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        {{> _sidebar_profile }}
+        
+          <ul class="secondary-nav">
+          {{#each technology }}
+            <li><a href="{{tech}}">{{ tech }}</a></li>
+          {{/each}}
+          </ul>
+        
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Join a Meetup</h3>
+
+
+        <div class="section">
+
+          {{#if meetups}}
+            {{#each meetups }}
+              <h5>{{name}}</h5>
+              <p><a href="{{link}}">{{link}}</a></p>
+              {{{description}}}
+              <p>{{members}} members organized by {{organizer.name}}</p>
+            {{/each}}
+          
+          {{else}}
+            <h5>There are no meetups for {{noresults}} at this time.</h5>
+          {{/if}}
+
+          
+          
+          
+        </div>
+      </main>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}

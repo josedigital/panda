@@ -29,8 +29,9 @@
           
           <ul class="right hide-on-med-and-down">
             {{#if user}}
-            <li><a href="#">Resource Library</a></li>
+            <li><a href="/resources">Resources</a></li>
             <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/profile">Settings</a></li>
             <li><a href="/logout">Logout</a></li>
             {{else}}
             <li><a href="/login/github"><i class="material-icons">power_settings_new</i> Login with Github</a></li>
@@ -41,13 +42,16 @@
 
           <ul id="nav-mobile" class="side-nav">
             {{#if user}}
-            <li><a href="#">Resource Library</a></li>
+            <li><a href="#">Resources</a></li>
             <li><a href="/jobs">Jobs</a></li>
             <li><a href="/logout">Logout</a></li>
             <li class="nav-separator"></li>
-            <li><a href="#">Video</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">Misc</a></li>
+              {{#if technology}}
+                {{#each technology }}
+                  <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}" class="blue-text">{{ tech }}</a></li>
+                {{/each}}
+              {{/if}}
+            
             {{else}}
             <li><a href="/login/github"><i class="material-icons">power_settings_new</i> Login with Github</a></li>
             {{/if}}

@@ -1,0 +1,63 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        </div> 
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Give or Remove Admin Privlidges</h3>
+        <hr>
+
+        {{!--these are users NOT admins--}}
+      <div class="row">
+        <div class="col s12 m6">
+          <ul><h4>USERS</h4>
+              {{#each userInfo}}
+                {{#unless this.admin}}
+                    <li>
+                      
+                      <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="admin_change" value="true">
+                        {{ this.user_name }} <button class="btn-floating btn-small waves-effect waves-light green" type="submit"><i class="material-icons">add</i></button>
+                      </form>
+                    </li>
+                    <br>
+                {{/unless}}
+              {{/each}}
+            </ul>
+          </div><!-- end of first column-->
+
+          {{!--these are users WITH admin privlidges --}}
+          <div class="col s12 m6">
+              <ul><h4>ADMINS</h4>
+                {{#each userInfo}}
+                  {{#if this.admin}}
+                      <li>
+                        
+                        <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
+                          <input type="hidden" name="admin_change" value="false">
+                          {{this.user_name}} <button class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons" type="submit">remove</i></button>
+                          {{!--<button class="f-left" type="submit">REMOVE Admin</button><br>--}}
+                        </form>
+                      </li>
+                      <br>
+                  {{/if}}
+                {{/each}}
+              </ul>
+          </div><!-- end of second row-->
+        </div> <!--end of row-->
+        </main>
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}
