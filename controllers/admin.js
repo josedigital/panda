@@ -34,18 +34,17 @@ router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, ne
   
 });
 
-//updating regular USER to ADMIN 
-router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res, next) {
-  // console.log(req.body.admin_change);
-  var id = req.params.id;
-  models.user.findById(id).then(function(userChange) {
-    userChange.update({
-      admin:req.body.admin_change
-    });
+var resourceData = {};//reserved for users  
+router.get('/admin/resource/type', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // get user
+  resourceData.user = req.user;
+  models.resource_type.findAll({
+  }).then(function (resourceInfo) {
+    resourceData.resourceInfo = resourceInfo;
+    res.render('admin_resource_type', resourceData);
   });
-      res.redirect('/admin/users');
+  
 });
-
 
 // THIS WORKS PERFECT IF YOU CALL {{tech}} IN THE HBS FILE, BUT I'M TRING TO DO A COMBO OBJECT BELOW. NEED TO FIGUIRE OUT THE ROUTE THAT MAKES THE MOST SENSE FOR THIS PAGE
 // router.get('/admin/test', function(req,res,next){
@@ -71,6 +70,18 @@ router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,re
   })
 })
 
+
+//updating regular USER to ADMIN 
+router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // console.log(req.body.admin_change);
+  var id = req.params.id;
+  models.user.findById(id).then(function(userChange) {
+    userChange.update({
+      admin:req.body.admin_change
+    });
+  });
+      res.redirect('/admin/users');
+});
 // THIS GIT WORKS FINE ON IT'S OWN'
 // router.get('/admin/test', function(req,res,next){
 //   models.resource_type.findAll({
@@ -116,5 +127,23 @@ router.post('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function (req,
 		res.redirect('/admin/jobs/api/add');
 	});
 });
+
+// add new resource_type to resource_type table
+router.post('/admin/resource/type/add', connectLogin.ensureLoggedIn(), function (req, res) {
+  if (req.body.resource_type_name.length == 0) {
+
+        res.redirect('/home')
+	      // alert("Whoops - you can not submit a blank field");
+
+		}else{
+      models.resource_type.create({
+        type: req.body.resource_type_name
+      }).then(function() {
+        // console.log(req.body);
+        res.redirect('/admin/resource/type');
+      });
+    }
+  });
+
 
 module.exports = router;
