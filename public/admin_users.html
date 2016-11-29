@@ -10,23 +10,13 @@
           <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
           <p>{{ user.displayName }}</p>
           <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-          
-        </div>
-        
-          {{!--<ul class="secondary-nav">
-          {{#each userInfo }}
-            <li><a href="/admin/users/{{user_name}}">USER'S GITHUB DISPLAY NAME: {{ display_name }}, AND USER NAME: {{user_name}}</a></li>
-          {{/each}}
-          </ul>--}}
-        
+        </div> 
       </aside>
 
       <main class="col s12 m9">
         <h3 class="uppercase">Give or Remove Admin Privlidges</h3>
         <hr>
-          
 
-          
         {{!--these are users NOT admins--}}
       <div class="row">
         <div class="col s12 m6">
@@ -34,11 +24,10 @@
               {{#each userInfo}}
                 {{#unless this.admin}}
                     <li>
-                      {{!--{{this.user_name}}--}}
+                      
                       <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
                         <input type="hidden" name="admin_change" value="true">
                         {{ this.user_name }} <button class="btn-floating btn-small waves-effect waves-light green" type="submit"><i class="material-icons">add</i></button>
-                        {{!--<button class="f-left" type="submit">Make Admin</button><br>--}}
                       </form>
                     </li>
                     <br>
@@ -53,7 +42,7 @@
                 {{#each userInfo}}
                   {{#if this.admin}}
                       <li>
-                        {{!--{{this.user_name}}--}}
+                        
                         <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
                           <input type="hidden" name="admin_change" value="false">
                           {{this.user_name}} <button class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons" type="submit">remove</i></button>
@@ -66,14 +55,7 @@
               </ul>
           </div><!-- end of second row-->
         </div> <!--end of row-->
-            
-     
-     
-          
-          
-        </div>
-      </main>
-
+        </main>
     </div><!-- /row -->
   </div><!-- /container -->
   
