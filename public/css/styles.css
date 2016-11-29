@@ -8202,12 +8202,25 @@ body {
   max-width: 50%; }
 
 .secondary-nav {
+  display: none;
   padding: 2rem 0;
   text-align: right; }
+  @media only screen and (min-width: 992px) {
+    .secondary-nav {
+      display: block; } }
 
 .secondary-nav li {
   padding: 1rem;
   border-bottom: 1px solid #e0e0e0; }
+
+#nav-mobile li {
+  height: auto;
+  padding: 0; }
+  #nav-mobile li.nav-separator {
+    background-color: #ddd;
+    border-bottom: 1px solid;
+    height: 2px;
+    padding: 0; }
 
 [type="checkbox"].filled-in:not(:checked) + label:after {
   height: 15px;
@@ -16603,10 +16616,13 @@ p {
   background-attachment: fixed; }
 
 .laptop {
-  background-image: url("../img/laptop-profile.png");
+  background-image: none;
   background-position: 120% 50px;
   background-repeat: no-repeat;
   background-size: 60%; }
+  @media only screen and (min-width: 600px) {
+    .laptop {
+      background-image: url("../img/laptop-profile.png"); } }
 
 @media only screen and (min-width: 1200px) {
   .laptop {

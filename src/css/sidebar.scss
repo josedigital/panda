@@ -8,6 +8,10 @@
 
 
 .secondary-nav {
+  display: none;
+  @media only screen and (min-width : 992px) {
+    display: block;
+  }
   padding: 2rem 0;
   text-align: right;
 }
