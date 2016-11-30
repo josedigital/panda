@@ -40,21 +40,25 @@ router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
 
     var data = {};
     data.user = req.user;
+    data.intro = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
     models.technology.findAll({
       }).then(function(tech){
       data.technology = tech;
     }).then(function(){
+
       for(var t in data.technology) {
-            console.log(data.technology[t].tech);
+
             data.technology[t].link = 'resources/' + data.technology[t].tech;
-            console.log(data.technology[t].link);
+
           }
 
           res.render('resources', data);
     });
 });
 
+// THIS ROUTE IS CURRENTLY NOT BEING USED
+// **************************************
 router.get('/resources/:tech/:type', function(req, res, next) {
   // models.technology.findOne({where: {tech: 'JQUERY'}})
   // .then(function(tech){
