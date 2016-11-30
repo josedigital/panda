@@ -35,30 +35,24 @@ router.get('/resources/meetups/:tech', function(req, res, next) {
 });
 
 
-var data = {};
+
 router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
 
+    var data = {};
     data.user = req.user;
 
     models.technology.findAll({
       }).then(function(tech){
       data.technology = tech;
     }).then(function(){
-      models.resource_type.findAll({
-    }).then(function(resources){
-      data.resources = resources;
+      for(var t in data.technology) {
+            console.log(data.technology[t].tech);
+            data.technology[t].link = 'resources/' + data.technology[t].tech;
+            console.log(data.technology[t].link);
+          }
 
-      console.log(resources);
-
-      for(t in data.technology) {
-        console.log(data.technology[t].tech);
-        data.technology[t].link = 'resources/' + data.technology[t].tech;
-        console.log(data.technology[t].link);
-      }
-
-      res.render('resources', data);
+          res.render('resources', data);
     });
-  });
 });
 
 router.get('/resources/:tech/:type', function(req, res, next) {
@@ -82,8 +76,9 @@ router.get('/resources/:tech/:type', function(req, res, next) {
 
 router.get('/resources/:tech', connectLogin.ensureLoggedIn(), function(req, res, next) {
 
+  var data = {};
   data.user = req.user;
-  data.tech = req.params.provider;
+  data.tech = req.params.tech;
 
   models.technology.findAll({
     }).then(function(tech){
@@ -93,12 +88,10 @@ router.get('/resources/:tech', connectLogin.ensureLoggedIn(), function(req, res,
   }).then(function(resources){
     data.resources = resources;
 
-    console.log(resources);
+    for(var r in data.resources) {
 
-    for(var t in data.technology) {
-      console.log(data.technology[t].tech);
-      data.technology[t].link = data.technology[t].tech;
-      console.log(data.technology[t].link);
+      data.resources[r].link = data.tech + "/" + data.resources[r].type;
+
     }
 
       res.render('resources', data);

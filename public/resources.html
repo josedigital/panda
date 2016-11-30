@@ -14,7 +14,7 @@
 
           <ul class="secondary-nav">
           {{#each technology }}
-            <li><a href="{{link}}">{{ tech }}</a></li>
+            <li><a href="/resources/{{tech}}">{{ tech }}</a></li>
           {{/each}}
           </ul>
 
@@ -25,7 +25,7 @@
         <div class="providers-tabs">
           {{#each resources}}
             <span>
-              <a href="/resources/{{ type }}">{{ type }}</a>
+              <a href="{{link}}">{{ type }}</a>
             </span>
           {{/each}}
         </div>
