@@ -111,10 +111,8 @@ window.addEventListener('load', function() {
     	$wrapper.addClass('animated');
 
     	$window.on('load', function() {
-    		window.setTimeout(function() {
-    			$wrapper.addClass('fadeIn');
+    		$wrapper.addClass('fadeIn');
           $loader.remove();
-    		}, 750);
         if($window.width() < 992) {
           $wrapper.removeClass('page-wrapper animated fadeIn');
         }

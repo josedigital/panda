@@ -8,8 +8,9 @@
         {{> _sidebar_profile }}
 
         <ul class="secondary-nav">
+          {{tech}}
         {{#each technology }}
-          <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}">{{ tech }}</a></li>
+          <li><a class="{{active}}" href="{{#if link}}{{link}}{{else}}{{tech}}{{/if}}">{{ tech }}</a></li>
         {{/each}}
         </ul>
         
@@ -20,7 +21,7 @@
         <div class="providers-tabs">
           {{#each providers}}
             <span>
-              <a href="/jobs/{{api_name}}">{{api_name}}</a>
+              <a class="{{active}}" href="/jobs/{{api_name}}">{{api_name}}</a>
             </span>
           {{/each}}
         </div>

@@ -16555,6 +16555,10 @@ nav .nav-wrapper ul li a i {
 p {
   line-height: 2rem; }
 
+a.active {
+  font-weight: bold;
+  color: teal; }
+
 .button-collapse {
   color: #26a69a; }
 
