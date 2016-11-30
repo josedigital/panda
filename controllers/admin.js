@@ -11,7 +11,17 @@ var sequelizeConnection = models.sequelize
 
 router.get('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function(req, res, next) {
   data.user = req.user;
-  res.render('admin_job_search', data);
+  // console.log(req.user.username)
+  models.user.findOne({
+    where:{
+      user_name:req.user.username
+    }
+  }).then(function(user){
+    console.log("user.admin =" +user.admin)
+      if(user.admin == false){
+        res.redirect('/home');
+      }else{res.render('admin_job_search', data);}
+  })
 });
 
 // router.get('/admin/add/:target', function(req, res, next) {
