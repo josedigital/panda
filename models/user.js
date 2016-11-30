@@ -7,10 +7,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    user_title: DataTypes.STRING,
+    user_title:  {
+    type: DataTypes.STRING,
+    defaultValue: 'Full stack javascript developer. You can replace this using the blue button on the top left of your screen.'
+    },
     email: DataTypes.STRING,
     git_link: DataTypes.STRING,
-    main_text: DataTypes.TEXT,
+    main_text: {
+    type: DataTypes.STRING,
+    defaultValue: 'This area is reserved for your custom developer objective. You can replace this using the blue button on the top left of your screen.'
+    },
     avitar_link: DataTypes.STRING,
     camp_name:  {
       type: DataTypes.STRING,

@@ -9,7 +9,7 @@
 
         <ul class="secondary-nav">
         {{#each technology }}
-          <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}">{{ tech }}</a></li>
+          <li><a class="{{active}}" href="{{#if link}}{{link}}{{else}}{{tech}}{{/if}}">{{ tech }}</a></li>
         {{/each}}
         </ul>
         
@@ -20,7 +20,7 @@
         <div class="providers-tabs">
           {{#each providers}}
             <span>
-              <a href="/jobs/{{api_name}}">{{api_name}}</a>
+              <a class="{{active}}" href="/jobs/{{api_name}}">{{api_name}}</a>
             </span>
           {{/each}}
         </div>
@@ -33,7 +33,11 @@
           {{#if jobs.resultItemList}}
             <ul>
             {{#each jobs.resultItemList }}
-              <li><a href="{{ detailUrl }}">{{ jobTitle }}</a></li>
+              <li>
+                <p>
+                  <a href="{{ detailUrl }}">{{ jobTitle }}</a> @ {{company}}
+                </p>
+              </li>
             {{/each}}
             </ul>
           {{/if}}

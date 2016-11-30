@@ -51,21 +51,6 @@ window.addEventListener('load', function() {
 	        }
 	    };
 
-	    // xhr = new XMLHttpRequest();
-	    // xhr.addEventListener('readystatechange', onStateChange);
-	    // xhr.open('POST', '/profile/save-profile');
-		// // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		// xhr.onload = function() {
-		// 	if (xhr.status === 200) {
-		// 		console.log(xhr.responseText);
-		// 	}
-		// 	else if (xhr.status !== 200) {
-		// 		console.log('Request failed.  Returned status of ' + xhr.status);
-		// 	}
-		// };
-		// console.log(regions);
-	    // xhr.send(payload);
-
 	function postAjax(url, data, success) {
 		var params = typeof data == 'string' ? data : Object.keys(data).map(
 				function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
@@ -111,10 +96,8 @@ window.addEventListener('load', function() {
     	$wrapper.addClass('animated');
 
     	$window.on('load', function() {
-    		window.setTimeout(function() {
-    			$wrapper.addClass('fadeIn');
+    		$wrapper.addClass('fadeIn');
           $loader.remove();
-    		}, 750);
         if($window.width() < 992) {
           $wrapper.removeClass('page-wrapper animated fadeIn');
         }
@@ -126,7 +109,7 @@ window.addEventListener('load', function() {
   var checkedBoxes = $(document).find('.checkbox');
   checkedBoxes.on('change', function () {
     var j = $( "input:checked" ).length;
-    if(j == 4) {
+    if(j >= 4) {
       for(var i = 0; i < checkedBoxes.length; i++) {
         if( checkedBoxes[i].checked === false) {
           checkedBoxes[i].disabled = true;

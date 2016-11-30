@@ -276,40 +276,35 @@
       </div>
 
       <footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Company Bio</h5>
+            <p class="grey-text text-lighten-4">
+              <span class="bold">Panda</span> is a collective of budding entrepreneurs, designers and developers striving to learn and share knowledge with their colleagues, co-workers and classmates.  
+            </p>
+
+
+          </div>
+          <div class="col l4 offset-l2 s12">
+
+            {{#if user}}
+            <h5 class="white-text">Hi, {{user.displayName}}!</h5>
+            <p class="white-text">If you are enjoying Panda, <a class="amber-text text-lighten-3" href="http://twitter.com/pandaguide">tell your friends</a>!</p>
+            {{else}}
+            <h5 class="white-text">Login</h5>
+            <a href="/login/github" class="waves-effect waves-light btn amber"><i class="material-icons left">power_settings_new</i>Login with Github</a>
+            {{/if}}
+            
+          </div>
+        </div><!-- /row -->
+      </div>
+      <div class="footer-copyright">
         <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Company Bio</h5>
-              <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo delectus qui, nesciunt laboriosam quo rerum, obcaecati deleniti nemo quia magnam placeat velit quasi inventore? Assumenda dolorum mollitia officiis. Reiciendis, soluta.</p>
-
-
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Settings</h5>
-              <ul>
-                <li><a class="white-text" href="#!">Link 1</a></li>
-                <li><a class="white-text" href="#!">Link 2</a></li>
-                <li><a class="white-text" href="#!">Link 3</a></li>
-                <li><a class="white-text" href="#!">Link 4</a></li>
-              </ul>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Connect</h5>
-              <ul>
-                <li><a class="white-text" href="#!">Link 1</a></li>
-                <li><a class="white-text" href="#!">Link 2</a></li>
-                <li><a class="white-text" href="#!">Link 3</a></li>
-                <li><a class="white-text" href="#!">Link 4</a></li>
-              </ul>
-            </div>
-          </div>
+        Made by Panda with help from <a class="amber-text text-lighten-3" href="http://materializecss.com">Materialize</a>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-          Made by Panda with help from <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-          </div>
-        </div>
-      </footer>
+      </div>
+    </footer>
 
 
     </div><!--/page-wrapper -->

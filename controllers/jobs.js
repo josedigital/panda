@@ -17,16 +17,27 @@ router.get('/jobs', connectLogin.ensureLoggedIn(), function (req, res, next) {
     api_name:{ $ne: 'Meetups' }
   } }).then(function (providers) {
     data.providers = providers;
-    res.render('jobs', data);
+    // res.render('jobs', data);
+    res.redirect('/jobs/Dice/html');
   });
+
+  
 
   
 });
 
 
 router.get('/jobs/:provider', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // get user
   data.user = req.user;
+  // get provider from params
   data.provider = req.params.provider;
+  // empty out jobs property
+  data.jobs = '';
+  console.log('---------');
+  console.log(data.tech);
+  console.log('---------');
+  
   // get techs from db
   models.technology.findAll({
   }).then(function(tech){
@@ -34,10 +45,20 @@ router.get('/jobs/:provider', connectLogin.ensureLoggedIn(), function (req, res,
 
     // iterate over techs to display on nav
     for(t in data.technology) {
-      console.log(data.technology[t].tech);
+      // console.log(data.technology[t].tech);
       data.technology[t].link = data.provider + '/' + data.technology[t].tech;
-      console.log(data.technology[t].link);
+      // console.log(data.technology[t].link); 
     }
+
+    // active tab
+    for(p in data.providers) {
+      if(data.providers[p].api_name === data.provider) {
+        data.providers[p].active = 'active';
+      } else {
+        data.providers[p].active = '';
+      }
+    }    
+    
     res.render('jobs', data);
 
   });
@@ -50,20 +71,37 @@ router.get('/jobs/:provider', connectLogin.ensureLoggedIn(), function (req, res,
 router.get('/jobs/:provider/:tech', connectLogin.ensureLoggedIn(), function (req, res, next) {
   // get user
   data.user = req.user;
+  // get provider from params
+  data.provider = req.params.provider;
+  // get tech from params
+  data.tech = req.params.tech;
 
   // get techs from db
   models.technology.findAll({
   }).then(function(tech){
     data.technology = tech;
 
-    // iterate over techs to display on nav
-    // for(t in data.technology) {
-    //   console.log(data.technology[t].tech);
-    //   data.technology[t].link = data.provider + '/' + data.technology[t].tech;
-    //   console.log(data.technology[t].link);
-    // }
+    // active tech
+    for(i in data.technology) {
+      if(data.technology[i].tech === data.tech) {
+        data.technology[i].active = 'active';
+      } else {
+        data.technology[i].active = '';
+      }
+    }
 
   });
+
+  // active tab
+  for(p in data.providers) {
+    if(data.providers[p].api_name === data.provider) {
+      data.providers[p].active = 'active';
+    } else {
+      data.providers[p].active = '';
+    }
+  }
+
+
 
 
 
@@ -84,7 +122,6 @@ router.get('/jobs/:provider/:tech', connectLogin.ensureLoggedIn(), function (req
   })
     .then( function (jobsResults) {
       data.jobs = jobsResults;
-      console.log(jobsResults);
       res.render('jobs', data);
     })
     .catch( function (error) {

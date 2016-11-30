@@ -44,21 +44,6 @@ window.addEventListener('load', function() {
 	        }
 	    };
 
-	    // xhr = new XMLHttpRequest();
-	    // xhr.addEventListener('readystatechange', onStateChange);
-	    // xhr.open('POST', '/profile/save-profile');
-		// // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		// xhr.onload = function() {
-		// 	if (xhr.status === 200) {
-		// 		console.log(xhr.responseText);
-		// 	}
-		// 	else if (xhr.status !== 200) {
-		// 		console.log('Request failed.  Returned status of ' + xhr.status);
-		// 	}
-		// };
-		// console.log(regions);
-	    // xhr.send(payload);
-
 	function postAjax(url, data, success) {
 		var params = typeof data == 'string' ? data : Object.keys(data).map(
 				function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }

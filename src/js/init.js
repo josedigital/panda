@@ -16,10 +16,8 @@
     	$wrapper.addClass('animated');
 
     	$window.on('load', function() {
-    		window.setTimeout(function() {
-    			$wrapper.addClass('fadeIn');
+    		$wrapper.addClass('fadeIn');
           $loader.remove();
-    		}, 750);
         if($window.width() < 992) {
           $wrapper.removeClass('page-wrapper animated fadeIn');
         }
@@ -31,7 +29,7 @@
   var checkedBoxes = $(document).find('.checkbox');
   checkedBoxes.on('change', function () {
     var j = $( "input:checked" ).length;
-    if(j == 4) {
+    if(j >= 4) {
       for(var i = 0; i < checkedBoxes.length; i++) {
         if( checkedBoxes[i].checked === false) {
           checkedBoxes[i].disabled = true;

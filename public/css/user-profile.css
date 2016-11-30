@@ -8209,6 +8209,20 @@ body {
 .profile-header p {
   font-size: 18px; }
 
+.user-statement p {
+  font-size: 1.6rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: lighter;
+  line-height: 2.2rem; }
+
+.profile-header .home-button {
+  height: 48px;
+  left: 68px;
+  position: fixed;
+  top: 16px;
+  width: 48px;
+  z-index: 10; }
+
 /*
  * PROJECT CARDS 
 */

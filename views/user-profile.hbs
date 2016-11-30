@@ -15,7 +15,7 @@
 <body>
 
   <div class="profile-header">
-    
+    <a href="/profile" class="btn-floating btn-large waves-effect waves-light teal home-button"><i class="material-icons large">person_pin</i></a>
     <div class="section">
       <div class="container">
         <div class="row">
@@ -23,16 +23,19 @@
             <div class="profile center">
               <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
               <h5><a href="https://github.com/{{ user.username }}" class="teal-text">{{ user.displayName }}</a></h5>
-              <p>Full Stack Javascript Developer</p>
+              <div class="user-title" data-editable data-name="user_title">
+                {{{user.currentUser.user_title}}}
+              </div>
+              
             </div>
           </div>
 
-          <div class="col s10 offset-s1">
+          <div class="col s10 offset-s1 user-statement">
             <div data-editable data-name="main_text">
               {{{ user.currentUser.main_text }}}
             </div>
-
-          </div>        
+          </div>
+        </div>        
       </div>
     </div>
 
