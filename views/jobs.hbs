@@ -8,7 +8,6 @@
         {{> _sidebar_profile }}
 
         <ul class="secondary-nav">
-          {{tech}}
         {{#each technology }}
           <li><a class="{{active}}" href="{{#if link}}{{link}}{{else}}{{tech}}{{/if}}">{{ tech }}</a></li>
         {{/each}}
