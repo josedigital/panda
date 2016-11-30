@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <div class="col s10 offset-s1">
+          <div class="col s10 offset-s1 user-statement">
             <div>
               {{{ data.user.main_text }}}
             </div>
@@ -51,7 +51,6 @@
       </div>
 
       <div class="row">
-
 
 
         {{#each data.records}}
@@ -117,8 +116,9 @@
           
           
           <div class="col s12">
-            {{#if user._json.bio}}
-              <h3 class="header">{{user._json.bio}}</h3>
+            
+            {{#if data.userinfo.bio}}
+              <h3 class="header">{{data.userinfo.bio}}</h3>
             {{else}}
               <h3 class="header">One of my most productive days was throwing away 1000 lines of code.</h3>
               <div class="quote">“</div>
@@ -129,9 +129,9 @@
 
           <div class="col s8 offset-s2">
             <p>
-              {{user._json.name}} | <a href="mailto:{{user._json.email}}">{{user._json.email}}</a> | {{user._json.location}}
+              {{data.userinfo.name}} | <a href="mailto:{{data.userinfo.email}}">{{data.userinfo.email}}</a> | {{data.userinfo.location}}
               <br>
-              {{user._json.blog}}
+              {{data.userinfo.blog}}
             </p>
           </div>
 

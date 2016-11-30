@@ -58,6 +58,10 @@ router.post('/profile/add-repos', function (req, res) {
 // public profile page
 router.get('/public/profile/:username', function (req, res) {
   var data = {};
+  var client = github.client();
+  var ghuser = '/users/'+req.params.username;
+
+  
   // get the user info
   models.user.findOne({ where: {user_name: req.params.username} }).then(function(currentUser) {
     data.user = currentUser.dataValues;
@@ -65,17 +69,25 @@ router.get('/public/profile/:username', function (req, res) {
   // get the user's repos
   models.repos.findAll({ where: {username: req.params.username} }).then(function (records) {
     data.records = records;
-    res.render('public-profile', {data,
-      helpers: {
-        lightDark: function (conditional, options) {
-          if(conditional % 2 == 0) {
-            return 'light';
-          } else {
-            return 'dark project-card--lower';
+    client.get(ghuser, {}, function (err, status, body, headers) {
+      data.userinfo = body; //json object
+      res.render('public-profile', {data,
+        helpers: {
+          lightDark: function (conditional, options) {
+            if(conditional % 2 == 0) {
+              return 'light';
+            } else {
+              return 'dark project-card--lower';
+            }
           }
-        }
-      }  
+        }  
+      });
     });
+
+    
+
+
+
   });
 });
 // redirect if no username provided
@@ -107,13 +119,14 @@ router.get('/profile/:username', connectLogin.ensureLoggedIn(), function (req, r
 
 
 // post for edit-in-place sections of public profile
-router.post('/profile/save-profile', function (req, res, next) {
+router.post('/profile/save-profile', connectLogin.ensureLoggedIn(), function (req, res, next) {
   var textReceived = req.body.main_text;
   var descriptionIds = Object.keys(req.body);
+  var userTitle = req.body.user_title;
 
   models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
     if(user) {
-      user.update({ main_text: textReceived }).then(function () {
+      user.update({ main_text: textReceived, user_title: userTitle }).then(function () {
         res.send('Profile saved successfully: ' + textReceived);
       });
     }
@@ -133,12 +146,5 @@ router.post('/profile/save-profile', function (req, res, next) {
 });
 
 
-router.get('/profile/new', function(req, res, next) {
-  res.render('');
-});
-
-router.get('/profile/edit/:id', function(req, res, next) {
-  res.render('');
-});
 
 module.exports = router;
