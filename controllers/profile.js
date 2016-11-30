@@ -22,9 +22,12 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
       for(r in repos.savedRepos) {
         if(data[repo].name === repos.savedRepos[r].repo_name) {
           data[repo].checked = 'checked';
+        } else if(repos.savedRepos.length === 4) {
+          data[repo].disabled = 'disabled';
         }
       }
       console.log(data[repo].checked);
+      console.log(data[repo].disabled);
     }
     // add repos to data object
     repos.ghRepos = data;
