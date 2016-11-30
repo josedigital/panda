@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   {
     classMethods: {
       associate: function(models) {
-        resource_type.belongsToMany(models.library, {through: 'resourceLibrary'});
+        resource_type.belongsToMany(models.library, {through: 'resourceLibrary'},{onDelete: "CASCADE"});
       }
     }
   });

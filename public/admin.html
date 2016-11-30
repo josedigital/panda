@@ -1,4 +1,4 @@
-{{> _header }}
+{{> _admin_header }}
 <div class="container">
     <div class="row">
       <aside class="col s12 m3">
@@ -15,18 +15,29 @@
         <hr>
 
 
-            <div class="container">
+            {{!--<div class="container">--}}
                 <div class="row">
+                    <br>
+                    <br>
                     <form class="col s12" action="/admin/resource/add" method="POST">
+                        
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m12">
+                            <input placeholder="Learn Jquery in 15 minutes" id="library_name" type="text" name="library_name">
+                            <label for="library_name">Resource Name</label>
+                            </div>
+                            <br>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12 m12">
                             <input placeholder="www.youtube.com/javascript" id="library_resource" type="text" name="library_resource">
                             <label for="library_resource">Resource URL</label>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m12">
                             <p>Resource Type</p> 
                             <p>
                                 {{#each resources}}
@@ -38,7 +49,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m12">
                             <p>Related technology</p> 
                             <p>
                             {{#each tech}}
@@ -58,7 +69,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            {{!--</div>--}}
     </div><!-- /row -->
 </div><!-- /container -->
 {{> _footer }}

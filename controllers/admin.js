@@ -34,18 +34,29 @@ router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, ne
   
 });
 
-//updating regular USER to ADMIN 
-router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res, next) {
-  // console.log(req.body.admin_change);
-  var id = req.params.id;
-  models.user.findById(id).then(function(userChange) {
-    userChange.update({
-      admin:req.body.admin_change
-    });
+var resourceData = {};//reserved for resourcestypes  
+router.get('/admin/resource/type', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // get user
+  resourceData.user = req.user;
+  models.resource_type.findAll({
+  }).then(function (resourceInfo) {
+    resourceData.resourceInfo = resourceInfo;
+    res.render('admin_resource_type', resourceData);
   });
-      res.redirect('/admin/users');
+  
 });
 
+var technologyData = {};//reserved for technology  
+router.get('/admin/technology/type', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // get user
+  technologyData.user = req.user;
+  models.technology.findAll({
+  }).then(function (technologyInfo) {
+    technologyData.technologyInfo = technologyInfo;
+    res.render('admin_technology', technologyData);
+  });
+  
+});
 
 // THIS WORKS PERFECT IF YOU CALL {{tech}} IN THE HBS FILE, BUT I'M TRING TO DO A COMBO OBJECT BELOW. NEED TO FIGUIRE OUT THE ROUTE THAT MAKES THE MOST SENSE FOR THIS PAGE
 // router.get('/admin/test', function(req,res,next){
@@ -58,6 +69,7 @@ router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res
 // CHAINED TWO GETS FROM TWO DIFFERENT TABLES
 var techResource = {};
 router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,res,next){
+  techResource.user = req.user;
     models.technology.findAll({
       }).then(function(tech){
       techResource.tech = tech;
@@ -70,6 +82,18 @@ router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,re
   })
 })
 
+
+//updating regular USER to ADMIN 
+router.put('/admin/users/:id', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  // console.log(req.body.admin_change);
+  var id = req.params.id;
+  models.user.findById(id).then(function(userChange) {
+    userChange.update({
+      admin:req.body.admin_change
+    });
+  });
+      res.redirect('/admin/users');
+});
 // THIS GIT WORKS FINE ON IT'S OWN'
 // router.get('/admin/test', function(req,res,next){
 //   models.resource_type.findAll({
@@ -83,7 +107,8 @@ router.get('/admin/resource/add', connectLogin.ensureLoggedIn(), function(req,re
 // Adding resources with two associations
 router.post('/admin/resource/add', connectLogin.ensureLoggedIn(), function (req, res){
   models.library.create({
-    resource:req.body.library_resource
+    resource:req.body.library_resource,
+    resource_name:req.body.library_name
   }).then(function(newlibrary){
 		return models.resource_type.findOne({where: {type: req.body.resource_type} })
 		.then(function(resource){
@@ -114,5 +139,40 @@ router.post('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function (req,
 		res.redirect('/admin/jobs/api/add');
 	});
 });
+
+// add new resource_type to resource_type table
+router.post('/admin/resource/type/add', connectLogin.ensureLoggedIn(), function (req, res) {
+  if (req.body.resource_type_name.length == 0) {
+
+        res.redirect('/home')
+	      
+
+		}else{
+      models.resource_type.create({
+        type: req.body.resource_type_name
+      }).then(function() {
+        // console.log(req.body);
+        res.redirect('/admin/resource/type');
+      });
+    }
+  });
+
+  // add new technology to technology table
+router.post('/admin/technology/type/add', connectLogin.ensureLoggedIn(), function (req, res) {
+  if (req.body.technology_type.length == 0) {
+
+        res.redirect('/home')
+	      
+
+		}else{
+      models.technology.create({
+        tech: req.body.technology_type
+      }).then(function() {
+        // console.log(req.body);
+        res.redirect('/admin/technology/type');
+      });
+    }
+  });
+
 
 module.exports = router;

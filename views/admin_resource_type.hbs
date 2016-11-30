@@ -1,0 +1,60 @@
+{{> _admin_header }}
+<div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        </div> 
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Add A NEW Resources TYPE</h3>
+        <hr>
+
+
+          
+                <div class="row">
+                    <br>
+                    <br>
+                    <form class="col s12" action="/admin/resource/type/add" method="POST">
+                        
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                            <input placeholder="i.e., Podcast" id="resource_type_name" type="text" name="resource_type_name">
+                            <label for="resource_type_name">Resource Type</label>
+                            </div>
+                            <br>
+                        </div>
+                                
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <button class="waves-effect waves-light btn" type="submit">Add NEW Resource Type</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+            <main class="col s12 m12">
+                <br>
+                <br>
+                <hr>
+                <h3 class="uppercase">EXISTING RESOURCE TYPES</h3>
+                <hr>
+
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                            <p>
+                                {{#each resourceInfo}}
+                                <h5>- {{type}}</h5>
+                                {{/each }}
+                            </p>
+                            </div>
+                        </div>
+
+
+                </div>
+    </div><!-- /row -->
+</div><!-- /container -->
+{{> _footer }}

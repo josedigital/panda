@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
   {
     classMethods: {
       associate: function(models) {
-        technology.belongsToMany(models.library, {through: 'techLibrary'});
+        technology.belongsToMany(models.library, {through: 'techLibrary'},{onDelete: "CASCADE"});
         technology.belongsToMany(models.user, {through: 'userTech'});
       }
     }

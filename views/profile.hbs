@@ -3,13 +3,8 @@
   <div class="container">
     <div class="row">
       <aside class="col s12 m3">
-        <div class="profile center">
-          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
-          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
-          <p>{{ user.displayName }}</p>
-          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-          
-        </div>
+        {{> _sidebar_profile }}
+
         {{!--<ul class="secondary-nav">
           <li><a href="#">Video</a></li>
           <li><a href="#">Links</a></li>
@@ -29,8 +24,8 @@
               <p>
                 <input type="checkbox" class="checkbox filled-in" 
                 {{#if checked}} 
-                  {{checked}}  
-                {{else}}
+                  {{checked}}
+                {{else if disabled}}
                   disabled
                 {{/if}} 
                 id="{{id}}" name="{{name}}" value="{{html_url}}"/>
