@@ -109,7 +109,7 @@ window.addEventListener('load', function() {
   var checkedBoxes = $(document).find('.checkbox');
   checkedBoxes.on('change', function () {
     var j = $( "input:checked" ).length;
-    if(j == 4) {
+    if(j >= 4) {
       for(var i = 0; i < checkedBoxes.length; i++) {
         if( checkedBoxes[i].checked === false) {
           checkedBoxes[i].disabled = true;
