@@ -42,13 +42,18 @@ router.post('/profile/add-repos', function (req, res) {
     if (req.body.hasOwnProperty(key)) {
       repos.username = req.user.username;
       repos.repo_name = key;
-      repos.repo_url = req.body[key]; 
+      repos.repo_url = req.body[key];
+      console.log(repos); 
     }
+    //remove any existing repo entries to avoid multiple repos per user
+    models.repos.destroy({where:{
+      username: repos.username
+    }})
+    //creating db entries for github repos
     models.repos.create(repos).then(function (record) {
       console.log('created');
       console.log(record);
-
-    });
+    })
   }
   res.redirect('/profile/'+req.user.username);  
 
