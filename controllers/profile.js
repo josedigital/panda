@@ -22,7 +22,7 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
       for(r in repos.savedRepos) {
         if(data[repo].name === repos.savedRepos[r].repo_name) {
           data[repo].checked = 'checked';
-        } else if(repos.savedRepos.length === 4) {
+        } else if(repos.savedRepos.length >= 4) {
           data[repo].disabled = 'disabled';
         }
       }
@@ -37,22 +37,46 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
 
 
 router.post('/profile/add-repos', function (req, res) {
-  var repos = {};
+  var repos ={};
+  var repoNames = Object.keys(req.body);
+  var i = 0;
+  
   for (var key in req.body) {
     if (req.body.hasOwnProperty(key)) {
       repos.username = req.user.username;
       repos.repo_name = key;
-      repos.repo_url = req.body[key]; 
+      repos.repo_url = req.body[key];
     }
-    models.repos.create(repos).then(function (record) {
-      console.log('created');
-      console.log(record);
+  
+      // if repos exist, update
+      models.repos.findOrCreate({
+        where: {
+          repo_name: key,
+          username: req.user.username,
+          repo_url: req.body[key]
+        }
+      })
+        .then(function(repoRow) {
+          console.log('added');
+          if(i >= repoNames.length) {
+            reconcileRepos();
+          }
+          // reconcileRepos();
+        });
+      i++;
+    }
 
-    });
-  }
-  res.redirect('/profile/'+req.user.username);  
-
+    var reconcileRepos = function () {
+      models.repos.destroy({where: {
+        repo_name: {
+          $notIn: repoNames
+        }
+      }});
+      res.redirect('/profile/'+req.user.username);
+    };
+  
 });
+
 
 
 // public profile page
@@ -83,10 +107,6 @@ router.get('/public/profile/:username', function (req, res) {
         }  
       });
     });
-
-    
-
-
 
   });
 });
@@ -140,8 +160,6 @@ router.post('/profile/save-profile', connectLogin.ensureLoggedIn(), function (re
       });
     });
   }
-
-
     
 });
 
