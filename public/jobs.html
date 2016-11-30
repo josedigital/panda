@@ -33,7 +33,11 @@
           {{#if jobs.resultItemList}}
             <ul>
             {{#each jobs.resultItemList }}
-              <li><a href="{{ detailUrl }}">{{ jobTitle }}</a></li>
+              <li>
+                <p>
+                  <a href="{{ detailUrl }}">{{ jobTitle }}</a> @ {{company}}
+                </p>
+              </li>
             {{/each}}
             </ul>
           {{/if}}
