@@ -14,7 +14,7 @@
 
           <ul class="secondary-nav">
           {{#each technology }}
-            <li><a href="/resources/{{tech}}">{{ tech }}</a></li>
+            <li><button class="waves-effect waves-light btn-large" id="{{tech}}">{{ tech }}</button></li>
           {{/each}}
           </ul>
 
@@ -25,12 +25,12 @@
         <div class="providers-tabs">
           {{#each resources}}
             <span>
-              <a href="{{link}}">{{ type }}</a>
+              {{ type }}
             </span>
           {{/each}}
         </div>
 
-        <div class="section">
+        <div class="section" id="result">
 
           {{#if intro}}
             <p>{{intro}}</p>
@@ -44,3 +44,58 @@
   </div>
 </section>
 {{> _footer }}
+<script type="text/javascript">
+  $("button").on('click', function() {
+
+    var tech = $(this).attr('id');
+    var url = "/resources/" + tech;
+    console.log(url);
+
+    $.ajax({
+      url: url,
+    }).done(function(data) {
+      console.log("Done " + data.libraries);
+
+      var resultField = $("#result");
+      var fieldElement = $("<div>");
+      var rowElement = $("<div>").addClass("row");
+      var results = data.libraries;
+
+      resultField.empty();
+
+      if (results[0] != null) {
+
+        for (var key in results){
+
+          var resourceUrl = results[key].resource;
+          var colElement = $("<div>").addClass("col s12 m6");
+          var cardElement = $("<div>").addClass("card small hoverable teal darken-1");
+          var cardContentEle = $("<div>").addClass("card-content white-text");
+          var cardSpanEle = $("<span>").addClass("card-title ");
+          var cardParaElement = $("<p>");
+          var cardActionEle = $("<div>").addClass("card-action");
+
+          cardSpanEle.append("Resource #" + (parseFloat([key]) + 1));
+          cardParaElement.append(results[key].resource_name);
+          cardActionEle.append("<a href='" + resourceUrl + "'>Link</a>");
+
+          fieldElement.append(rowElement);
+          rowElement.append(colElement);
+          colElement.append(cardElement);
+          cardElement.append(cardContentEle);
+          cardContentEle.append(cardSpanEle);
+          cardContentEle.append(cardParaElement);
+          cardElement.append(cardActionEle);
+
+          resultField.append(fieldElement);
+
+        }
+      }else {
+
+        var noResultMsg = $("<h4>").text("No results returned for " + tech.toUpperCase());
+        resultField.append(noResultMsg);
+
+      }
+    });
+  });
+</script>
