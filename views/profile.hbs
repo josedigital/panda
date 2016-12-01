@@ -5,6 +5,17 @@
       <aside class="col s12 m3">
         {{> _sidebar_profile }}
 
+
+        <ul class="secondary-nav">
+          <li>
+            Edit your <a href="/profile/{{user.username}}">user profile</a>
+          </li>
+
+          <li>
+            Share your profile <a href="/public/profile/{{user.username}}">public profile</a>
+          </li>
+        </ul>
+
       </aside>
 
       <main class="col s12 m9" role="main">
@@ -14,7 +25,8 @@
         <p>
           Here is your Github Repos list. Please select up to 4 repos to display on <a href="/profile/{{user.username}}">your user profile page</a>.
         </p>
-          <form action="/profile/add-repos" method="POST">
+        
+          <form action="/profile/add-repos" method="POST" class="repos-list-form">
           {{#each repos }}
               <p>
                 <input type="checkbox" class="checkbox filled-in" 
