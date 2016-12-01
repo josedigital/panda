@@ -19,9 +19,10 @@ router.get('/login/github/return', passport.authenticate('github', { failureRedi
   
     models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
       if(user) {
+        // redirect user to home page if user exists
         res.redirect('/home');
-        console.log('exists');
       } else {
+        // otherwise, create user in db
         models.user.create({
           user_name: req.user.username,
           display_name: req.user.displayName,

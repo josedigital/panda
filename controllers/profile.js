@@ -17,7 +17,7 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
     }
   });
 
-  ghuser.repos(function(err, data, headers) {
+  ghuser.repos(1, 100, function(err, data, headers) {
     for(repo in data) {
       for(r in repos.savedRepos) {
         if(data[repo].name === repos.savedRepos[r].repo_name) {
@@ -26,8 +26,6 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
           data[repo].disabled = 'disabled';
         }
       }
-      console.log(data[repo].checked);
-      console.log(data[repo].disabled);
     }
     // add repos to data object
     repos.ghRepos = data;
@@ -57,7 +55,7 @@ router.post('/profile/add-repos', function (req, res) {
         }
       })
         .then(function(repoRow) {
-          console.log('added');
+          // run function after db save
           if(i >= repoNames.length) {
             reconcileRepos();
           }
@@ -65,7 +63,7 @@ router.post('/profile/add-repos', function (req, res) {
         });
       i++;
     }
-
+    // delete repos that were replaced
     var reconcileRepos = function () {
       models.repos.destroy({where: {
         repo_name: {

@@ -1,7 +1,3 @@
-@import 'vendor/materialize';
-@import 'vendor/animate-sass/_animate';
-
-
 body {
   background-color: #f4f4f4;
 }
@@ -19,6 +15,10 @@ body {
   font-size: 18px;
 }
 
+.user-name {
+  text-transform: uppercase;
+}
+
 .user-statement p {
   font-size: 1.6rem;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -29,9 +29,9 @@ body {
 .profile-header {
   .home-button {
     height: 48px;
-    left: 68px;
+    left: 16px;
     position: fixed;
-    top: 16px;
+    top: 80px;
     width: 48px;
     z-index: 10;
   }
@@ -104,10 +104,13 @@ body {
   background-color: #A7DDD8;
   font-size: 1.4rem;
   line-height: 90px;
-}
-.footer-copyright img {
-  float: right;
-  width: 100px;
+  img {
+    float: right;
+    width: 100px;
+  }
+  .row {
+    margin-bottom: 0;
+  }
 }
 
 /*
