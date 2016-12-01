@@ -4,9 +4,10 @@ var models = require('../models');
 var connectLogin = require('connect-ensure-login');
 var sequelizeConnection = models.sequelize
 
-// router.get('/admin', function(req, res, next) {
-//   res.render('admin');
-// });
+router.get('/admin/home', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  data.user = req.user
+  res.render('admin_home', data);
+});
 
 
 router.get('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function(req, res, next) {
@@ -17,20 +18,31 @@ router.get('/admin/jobs/api/add', connectLogin.ensureLoggedIn(), function(req, r
       user_name:req.user.username
     }
   }).then(function(user){
-    console.log("user.admin =" +user.admin)
+      // console.log("user.admin =" +user.admin)
       if(user.admin == false){
-        res.redirect('/home');
+        res.redirect('/admin/noaccess');
       }else{res.render('admin_job_search', data);}
   })
 });
 
-// router.get('/admin/add/:target', function(req, res, next) {
-//   res.render('');
-// });
+router.get('/admin/noaccess', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  data.user = req.user;
+  res.render('admin_noaccess', data);
+});
 
-// router.get('/admin/update/:target/:resource_id', function(req, res, next) {
-//   res.render('');
-// });
+router.get('/admin/emptyfield', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  data.user = req.user;
+  models.user.findOne({
+    where:{
+      user_name:req.user.username
+    }
+  }).then(function(user){
+    console.log("user.admin =" +user.admin)
+      if(user.admin == false){
+        res.redirect('/admin/noaccess');
+      }else{res.render('admin_emptyfield', data);}
+  });
+});
 
 var data = {};//reserved for users  
 router.get('/admin/users', connectLogin.ensureLoggedIn(), function (req, res, next) {
