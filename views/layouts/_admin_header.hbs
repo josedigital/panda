@@ -29,16 +29,13 @@
           
           <ul class="right hide-on-med-and-down">
             {{#if user}}
-            <li><a href="/admin/jobs/api/add">Add Job API</a></li>
-            <li><a href="/admin/resource/add">Add Resource</a></li>
-            <li><a href="/admin/users">Add Admin</a></li>
-            <li><a href="/admin/resource/type">Add Resource Type</a></li>
-            <li><a href="/admin/technology/type">Add Technology</a></li>
+            <li><a href="/admin/home">Dashboard</a></li>
+            <li><a href="/admin/resource/add">New Resource</a></li>
+            <li><a href="/admin/technology/type">New Technology</a></li>
+            <li><a href="/admin/users">Manage Users</a></li>
+            <li><a href="/admin/resource/type">New Resource Type</a></li>
+            <li><a href="/admin/jobs/api/add">New Job API</a></li>
             
-            {{!--<li><a href="/resources">Resources</a></li>
-            <li><a href="/jobs">Jobs</a></li>
-            <li><a href="/profile">Settings</a></li>
-            <li><a href="/logout">Logout</a></li>--}}
             {{else}}
             <li><a href="/login/github"><i class="material-icons">power_settings_new</i> Login with Github</a></li>
             {{/if}}
@@ -48,15 +45,14 @@
 
           <ul id="nav-mobile" class="side-nav">
             {{#if user}}
-            <li><a href="/admin/jobs/api/add">Add Job API</a></li>
-            <li><a href="/admin/resource/add">Add Resource</a></li>
-            <li><a href="/admin/users">Add Admin</a></li>
-            <li><a href="/admin/resource/type">Add Resource Type</a></li>
-            <li><a href="/admin/technology/type">Add Technology</a></li>
+            <li><a href="/admin/home">Dashboard</a></li>
+            <li><a href="/admin/resource/add">New Resource</a></li>
+            <li><a href="/admin/technology/type">New Technology</a></li>
+            <li><a href="/admin/users">Manage Users</a></li>
+            <li><a href="/admin/resource/type">New Resource Type</a></li>
+            <li><a href="/admin/jobs/api/add">New Job API</a></li>
 
-            <li><a href="#">Resources</a></li>
-            <li><a href="/jobs">Jobs</a></li>
-            <li><a href="/logout">Logout</a></li>
+            
             <li class="nav-separator"></li>
               {{#if technology}}
                 {{#each technology }}
