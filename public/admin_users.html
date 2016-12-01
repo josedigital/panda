@@ -26,7 +26,7 @@
                       <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
                         <input type="hidden" name="admin_change" value="true">
                         {{ this.user_name }} <button class="btn-floating btn-small waves-effect waves-light green" type="submit"><i class="material-icons">add</i></button>
-                      </form>
+                      </form>{{>_admin_delete}}
                     </li>
                     <br>
                 {{/unless}}
@@ -37,19 +37,18 @@
           {{!--these are users WITH admin privlidges --}}
           <div class="col s12 m6">
               <ul><h4>ADMINS</h4>
-                {{#each userInfo}}
-                  {{#if this.admin}}
+                {{#each userInfo ~}}
+                  {{#if this.admin ~}}
                       <li>
                         
                         <form class="adjust" action="/admin/users/{{this.id}}?_method=PUT" method="POST">
                           <input type="hidden" name="admin_change" value="false">
                           {{this.user_name}} <button class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons" type="submit">remove</i></button>
-                          {{!--<button class="f-left" type="submit">REMOVE Admin</button><br>--}}
-                        </form>
+                        </form>{{>_admin_delete ~}}
                       </li>
                       <br>
-                  {{/if}}
-                {{/each}}
+                  {{/if ~}}
+                {{/each ~}}
               </ul>
           </div><!-- end of second row-->
         </div> <!--end of row-->
