@@ -1,0 +1,35 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        <div class="profile center">
+          <img src="{{ user._json.avatar_url }}" class="circle profile-image z-depth-2" alt="{{user.username}} profile">
+          <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
+          <p>{{ user.displayName }}</p>
+          <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+        </div> 
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase"><h4>Sorry {{ user.displayName }}, but that page is page is reserved for my helpers.<br><br></h4>
+        <h5>Back to my exercises,<br><br>
+        - Panda </h5>
+      </main>
+
+        {{!--these are users NOT admins--}}
+      <div class="row">
+        <div class="col s12 m12">
+        
+          <img id="gif" class="gif" src="https://media.giphy.com/media/l2JJNA32TrSUtzmNi/giphy.gif"  alt="Panda Boot Camp" style="height: 100%; left: 0px; top: -11px; width: 100%;">
+
+        </div>
+      </div>
+        
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}
