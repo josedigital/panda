@@ -8338,15 +8338,6 @@ body {
 .api-section {
   margin: 0 0 3rem; }
 
-.adjustbtn {
-  float: left; }
-
-.adjust {
-  float: left; }
-
-.s12.m9.leftpad {
-  padding-left: 30px; }
-
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
