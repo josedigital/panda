@@ -10,7 +10,8 @@
       <main class="col s12 m9" role="main">
         <div class="row">
           <div class="col s12">
-            <h3 class="uppercase">Hi {{user.displayName}}, welcome to Panda's Admin Pages.</h3>
+            <h3 class="uppercase">Hi {{user.displayName}}, <br>
+            welcome to Panda's Admin Pages.</h3>
           </div>
 
 
@@ -18,73 +19,79 @@
         <div class="row">
 
           <div class="col s12 m6">
-            <div class="card-panel">
+            <a href="/admin/resource/add"style="color: black;">
+            <div class="card-panel brown lighten-4">
+              <div class="resource-title center">
+                <i class="medium material-icons">video_library</i>
+                <br>
+                  <h5>Add Resources</h5>
+                <br>
+                  Add new resources users can access.
+              </div>
+            </div></a>
+          </div>
+
+          <div class="col s12 m6">
+            <a href="/admin/technology/type"style="color: black;">
+            <div class="card-panel teal lighten-4">         
+              <div class="resource-title center">
+                <i class="medium material-icons">clear_all</i>
+                <br>
+                  <h5>Stack Control</h5>
+                <br>
+                  Add new technologies your bootcamp is teaching.
+              </div>          
+            </div></a>
+          </div>
+
+          <div class="col s12 m6">
+            <a href="/admin/users"style="color: black;">
+            <div class="card-panel teal lighten-4">
+              <div class="resource-title center">
+                <i class="medium material-icons">perm_identity</i>
+                <br>
+                  <h5>Manage Users</h5>
+                <br>
+                  Create administrators and delete users.
+              </div>
+            </div></a>
+          </div>
+
+          <div class="col s12 m6">
+            <a href="/admin/resource/type" style="color: black;">
+            <div class="card-panel brown lighten-4">         
               <div class="resource-title center">
                 <i class="medium material-icons">library_books</i>
                 <br>
-                  <h5><a href="/resources">Resources</a></h5>
+                  <h5>Resource Type Control</h5>
                 <br>
-                  Here you can find various videos, links, and pdfs for various technologies. You can find others to code with in a Meetup.
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6">
-            <div class="card-panel">         
-              <div class="resource-title center">
-                <i class="medium material-icons">trending_up</i>
-                <br>
-                  <h5><a href="/jobs">Jobs</a></h5>
-                <br>
-                  You are entering a growing field of developers. Find your new adventure! Hope you have a resume ready.
+                  Create new types of resources that may come available.
               </div>          
-            </div>
+            </div></a>
           </div>
 
           <div class="col s12 m6">
-            <div class="card-panel">
+            <a href="/admin/jobs/api/add" style="color: black;">
+            <div class="card-panel  brown lighten-4">
               <div class="resource-title center">
-                <i class="medium material-icons">library_books</i>
+                <i class="medium material-icons">settings_input_antenna</i> 
                 <br>
-                  <h5><a href="/resources">Resources</a></h5>
+                  <h5>Job Providers</h5>
                 <br>
-                  Here you can find various videos, links, and pdfs for various technologies. You can find others to code with in a Meetup.
+                  Add new job providers and links their api. 
               </div>
-            </div>
+            </div></a>
           </div>
 
           <div class="col s12 m6">
-            <div class="card-panel">         
+            <a href="/home" style="color: black;">
+            <div class="card-panel  teal lighten-4">
               <div class="resource-title center">
-                <i class="medium material-icons">trending_up</i>
-                <br>
-                  <h5><a href="/jobs">Jobs</a></h5>
-                <br>
-                  You are entering a growing field of developers. Find your new adventure! Hope you have a resume ready.
-              </div>          
-            </div>
-          </div>
-
-          <div class="col s12 m6">
-            <div class="card-panel">
-              <div class="resource-title center">
-                <i class="medium material-icons">person_pin</i> 
-                <br>
-                  <h5><a href="/profile">Profile</a></h5>
-                <br>
-                  Import your github repos and give them a story, tell everyone about yourself, share with employers! 
+                <img src="/img/panda_panda.svg" height="84px"alt="Panda Boot Camp">
+                  <h5>User Home Page</h5>
+                Check any changes you made users should see.
               </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6">
-            <div class="card-panel">
-              <div class="resource-title center">
-                <img src="/img/panda_panda.svg" height="85px"alt="Panda Boot Camp">
-                  <h5><a href="/home">User Home Page</a></h5>
-                As a panda it is my job to eat your distractions and soothe your frustrations. Don't get bamboozled.
-              </div>
-            </div>
+            </div></a>
           </div>
 
       </div><!-- /row -->

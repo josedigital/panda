@@ -54,6 +54,24 @@
                         </div>
                 </div>
                     </form>
+                    <main class="col s12 m12">
+                            <br>
+                            <br>
+                            <hr>
+                            <h3 class="uppercase">EXISTING JOB PROVIDERS</h3>
+                            <hr>
+
+                                    <div class="row">
+                                        <div class="input-field col s12 m12">
+                                        <p>
+                                            {{#each jobList}}
+                                            <h5>- {{api_name}}</h5>
+                                            {{/each }}
+                                        </p>
+                                        </div>
+                                    </div>
+
+                        </main>
                 
         {{!--</div>--}}
     </div><!-- /row -->
