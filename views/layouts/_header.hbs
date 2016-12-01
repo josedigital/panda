@@ -44,12 +44,24 @@
             {{#if user}}
             <li><a href="/resources">Resources</a></li>
             <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
             <li class="nav-separator"></li>
-              {{#if technology}}
+              {{#if providers}}
                 {{#each technology }}
                   <li><a href="{{#if link}} {{link}} {{else}} {{tech}} {{/if}}" class="blue-text">{{ tech }}</a></li>
                 {{/each}}
+              {{/if}}
+
+              {{#if intro}}
+                {{#each technology }}
+                  <li><button class="waves-effect waves-light btn-large" id="{{tech}}">{{ tech }}</button></li>
+                {{/each}}              
+              {{/if}}
+
+              {{#if repos}}
+                <li><a href="/profile/{{user.username}}">User profile</a></li>
+                <li><a href="/public/profile/{{user.username}}">Public profile</a></li>
               {{/if}}
             
             {{else}}
