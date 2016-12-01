@@ -89,7 +89,7 @@ router.get('/resources/:tech/:type', function(req, res, next) {
   });
 });
 
-router.get('/resources/:tech', connectLogin.ensureLoggedIn(), function(req, res, next) {
+router.get('/resources/:tech', function(req, res, next) {
 
   var data = {};
   data.user = req.user;
