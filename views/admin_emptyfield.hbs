@@ -1,4 +1,4 @@
-{{> _header }}
+{{> _admin_header }}
 
 
 
@@ -10,37 +10,23 @@
           <h6><a href="https://github.com/{{ user.username }}">{{ user.username }}</a></h6>
           <p>{{ user.displayName }}</p>
           <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-          <hr style="width:50%">
         </div> 
-        
-          <ul class="secondary-nav">
-            <li><a href="/admin/home">ADMIN DASHBOARD</a></li>
-            <li><a href="/admin/resource/add">NEW RESOURCE</a></li>
-            <li><a href="/admin/technology/type">NEW TECHNOLOGY</a></li>
-            <li><a href="/admin/users">MANAGE USERS</a></li>
-            <li><a href="/admin/resource/type">NEW RESOURCE TYPE</a></li>
-            <li><a href="/admin/jobs/api/add">NEW JOB API</a></li>
-          </ul>
-        
       </aside>
 
-      
-
       <main class="col s12 m9">
-        <h4 class="uppercase">ERROR!<br>Hey {{ user.displayName }}, we all like to go fast, but you tried to submit a form that was not completely filled out. Slow down and try again my friend.<br></h4>
-        <h4 class="uppercase" align="right">With love,<br>
-        - <i>Panda</i> </h4>
-      
-
-            {{!--these are users NOT admins--}}
-          <div class="row">
-            <div class="col s12 m12">
-            
-              <img id="gif" class="gif" src="http://media0.giphy.com/media/IylHgAVjOdgpq/giphy.gif"  alt="Panda Boot Camp" style="height: 100%; left: 0px; top: -11px; width: 100%;">
-
-            </div>
-          </div>
+        <h3 class="uppercase"><h4>Hey {{ user.displayName }}, we all like to go fast, but you tried to submit a form that was not completely filled out. Slow down and try again my friend.<br></h4>
+        <h5>With love,<br><br>
+        - Panda </h5>
       </main>
+
+        {{!--these are users NOT admins--}}
+      <div class="row">
+        <div class="col s12 m12">
+        
+          <img id="gif" class="gif" src="http://media0.giphy.com/media/IylHgAVjOdgpq/giphy.gif"  alt="Panda Boot Camp" style="height: 100%; left: 0px; top: -11px; width: 100%;">
+
+        </div>
+      </div>
         
     </div><!-- /row -->
   </div><!-- /container -->
