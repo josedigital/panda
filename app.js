@@ -77,6 +77,10 @@ fs.readdirSync('./controllers').forEach(function (file) {
   }
 });
 
+ app.use(function(req, res) {
+      res.status(400);
+     res.render('404', {title: '404: File Not Found', class: 'not-found'});
+  });
 // extract our sequelize connection from the models object
 var sequelizeConnection = models.sequelize;
 // sync the tables

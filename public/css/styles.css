@@ -16740,5 +16740,14 @@ h4 {
 footer.page-footer {
   margin: 0; }
 
+.not-found {
+  background-image: url("http://media3.giphy.com/media/Hs6f36KUBjWww/giphy.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 100px; }
+  .not-found h2 {
+    font-size: 5rem;
+    margin-top: 10rem; }
+
 iframe {
   width: 100%; }
