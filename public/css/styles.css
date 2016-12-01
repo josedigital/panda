@@ -16527,6 +16527,15 @@ body {
 .overlay--profile {
   background-color: rgba(117, 117, 117, 0.9); }
 
+.adjustbtn {
+  float: left; }
+
+.adjust {
+  float: left; }
+
+.s12.m9.leftpad {
+  padding-left: 30px; }
+
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
