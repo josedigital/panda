@@ -5,14 +5,6 @@ var models = require('../models');
 
 var data = {};
 
-
-// db.todo.create(body).then(function (todo) {
-//     res.json(todo.toJSON());
-//   }, function (e) {
-//     res.status(400).json(e);
-//   });
-
-
 // Login
 router.get('/login', function(req, res){
   res.render('login');
