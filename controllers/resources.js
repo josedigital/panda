@@ -4,43 +4,6 @@ var request = require('request-promise');
 var connectLogin = require('connect-ensure-login');
 var models = require('../models');
 
-var data = {};
-
-router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
-    data.user = req.user;
-    models.technology.findAll({
-      }).then(function(tech){
-      data.tech = tech;
-    }).then(function(){
-      models.resource_type.findAll({
-    }).then(function(resources){
-      data.resources = resources;
-      res.render('resources', data);
-    });
-  });
-});
-
-// router.get('/resources/:tech/:type', connectLogin.ensureLoggedIn(), function(req, res, next) {
-//   // models.technology.findOne({where: {tech: 'JQUERY'}})
-//   // .then(function(tech){
-//   //   return tech.getLibraries()
-//   // }).then(function(){
-//   models.library.findAll({
-//     include: [{
-//       model: models.technology,
-//       where: {tech:'JQUERY'}
-//     },{
-//       model: models.resource_type,
-//       where: {type:'VIDEO'}
-//     }]
-//   })
-//   .then(function(lib){
-//     return res.json(lib);
-//   });
-// });
-
-
-
 router.get('/resources/meetups', connectLogin.ensureLoggedIn(), function (req, res, next) {
   res.redirect('/resources/meetups/html');
 });
@@ -65,13 +28,13 @@ router.get('/resources/meetups/:tech', connectLogin.ensureLoggedIn(), function(r
     })
       .then( function (muResults) {
         data.meetups = muResults;
-        
+
         models.technology.findAll({
         }).then(function(tech){
           data.technology = tech;
           res.render('meetups', data);
         });
-        
+
       })
       .catch( function (error) {
         console.log(error);
@@ -146,7 +109,19 @@ router.get('/resources/:tech', connectLogin.ensureLoggedIn(), function(req, res,
 
     }
 
-      res.render('resources', data);
+    models.library.findAll({
+      include: [{
+        model: models.technology,
+        where: {tech: data.tech}
+      }]
+    }).then(function(libraries){
+
+      data.libraries = libraries;
+      console.log(data);
+      res.send(data);
+
+    });
+
     });
   });
   // models.library.findAll({
