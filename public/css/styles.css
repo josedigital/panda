@@ -8338,9 +8338,6 @@ body {
 .api-section {
   margin: 0 0 3rem; }
 
-.adjustbtn {
-  float: left; }
-
 .adjust {
   float: left; }
 
@@ -8571,3 +8568,7 @@ footer.page-footer {
 
 iframe {
   width: 100%; }
+
+.cardPad {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
