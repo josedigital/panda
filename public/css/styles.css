@@ -8571,3 +8571,7 @@ footer.page-footer {
 
 iframe {
   width: 100%; }
+
+.cardPad {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
