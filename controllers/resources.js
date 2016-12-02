@@ -56,94 +56,196 @@ router.get('/resources/meetups/:tech', connectLogin.ensureLoggedIn(), function(r
 
 });
 
-
-
+var data = {};
 router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
-
-    var data = {};
-    data.user = req.user;
-    data.intro = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-    models.technology.findAll({
-      }).then(function(tech){
-      data.technology = tech;
-    }).then(function(){
-
-      for(var t in data.technology) {
-
-            data.technology[t].link = 'resources/' + data.technology[t].tech;
-
-          }
-
-          res.render('resources', data);
-    });
-});
-
-// THIS ROUTE IS CURRENTLY NOT BEING USED
-// **************************************
-router.get('/resources/:tech/:type', function(req, res, next) {
-  // models.technology.findOne({where: {tech: 'JQUERY'}})
-  // .then(function(tech){
-  //   return tech.getLibraries()
-  // }).then(function(){
-  models.library.findAll({
-    include: [{
-      model: models.technology,
-      where: {tech:'JQUERY'}
-    },{
-      model: models.resource_type,
-      where: {type:'VIDEO'}
-    }]
-  })
-  .then(function(lib){
-    return res.json(lib);
-  });
-});
-
-router.get('/resources/:tech', function(req, res, next) {
-
-  var data = {};
+  
   data.user = req.user;
-  data.tech = req.params.tech;
 
   models.technology.findAll({
     }).then(function(tech){
     data.technology = tech;
-  }).then(function(){
-    models.resource_type.findAll({
-  }).then(function(resources){
-    data.resources = resources;
+    for(var t in data.technology) {
+      data.technology[t].link = 'resources/' + data.technology[t].tech;
+    }
+    res.redirect('resources/video/html');
+  });
 
-    for(var r in data.resources) {
+});
 
-      data.resources[r].link = data.tech + "/" + data.resources[r].type;
 
+router.get('/resources/:type', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  
+  data.user = req.user;
+  data.type = req.params.type;
+
+    // get techs from db
+  models.technology.findAll({
+  }).then(function(tech){
+    data.technology = tech;
+    // iterate over techs to display on nav
+    for(t in data.technology) {
+      // console.log(data.technology[t].tech);
+      data.technology[t].link = data.type + '/' + data.technology[t].tech;
+      // console.log(data.technology[t].link); 
     }
 
-    models.library.findAll({
-      include: [{
-        model: models.technology,
-        where: {tech: data.tech}
-      }]
-    }).then(function(libraries){
-
-      data.libraries = libraries;
-      console.log(data);
-      res.send(data);
-
-    });
-
+    models.resource_type.findAll({
+    }).then(function (types) {
+      data.resourceTypes = types;
+      // active tab
+      for(t in data.resourceTypes) {
+        if(data.resourceTypes[t].type === data.type) {
+          data.resourceTypes[t].active = 'active';
+        } else {
+          data.resourceTypes[t].active = '';
+        }
+      }
+      res.render('resources-new', data);      
     });
   });
-  // models.library.findAll({
-  //   include: [{
-  //     model: models.resource_type,
-  //     where: {type: data.tech}
-  //   }]
-  // })
-  // .then(function(lib){
-  //   res.render('resources', lib);
-  // });
 });
+
+router.get('/resources/:type/:tech', connectLogin.ensureLoggedIn(), function (req, res, next) {
+  
+  data.user = req.user;
+  data.type = req.params.type;
+  data.tech = req.params.tech;
+
+  // active tab
+  models.resource_type.findAll({
+  }).then(function (types) {
+    data.resourceTypes = types;
+    // active tab
+    for(t in data.resourceTypes) {
+      if(data.resourceTypes[t].type === data.type) {
+        data.resourceTypes[t].active = 'active';
+      } else {
+        data.resourceTypes[t].active = '';
+      }
+    }
+
+
+    // get techs from db
+    models.technology.findAll({
+    }).then(function(tech){
+      data.technology = tech;
+
+      // active tech
+      for(i in data.technology) {
+        if(data.technology[i].tech === data.tech) {
+          data.technology[i].active = 'active';
+        } else {
+          data.technology[i].active = 'non-active';
+        }
+      }
+
+      res.render('resources-new', data);
+
+    });
+    // no fucking clue how to get the resources !!!!!!
+    // get tech id
+    // models.technology.findAll({
+    //   where: {
+    //     tech: data.tech
+    //   }
+    // }).then(function (technology) {
+    //   data.techid = technology.id;
+    // });
+    // models.library.findAll({
+    //   include: [{
+    //     model: models.technology,
+    //     where: {tech: data.tech}
+    //   }]
+    // }).then(function (records) {
+    //   console.log(records);
+    //   data.records = records;
+      
+    // });
+
+    
+          
+  });
+
+  
+});
+
+// router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
+
+//     var data = {};
+//     data.user = req.user;
+//     data.intro = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+//     models.technology.findAll({
+//       }).then(function(tech){
+//       data.technology = tech;
+//     }).then(function(){
+
+//       for(var t in data.technology) {
+
+//             data.technology[t].link = 'resources/' + data.technology[t].tech;
+
+//           }
+
+//           res.render('resources', data);
+//     });
+// });
+
+// THIS ROUTE IS CURRENTLY NOT BEING USED
+// **************************************
+// router.get('/resources/:tech/:type', function(req, res, next) {
+//   // models.technology.findOne({where: {tech: 'JQUERY'}})
+//   // .then(function(tech){
+//   //   return tech.getLibraries()
+//   // }).then(function(){
+//   models.library.findAll({
+//     include: [{
+//       model: models.technology,
+//       where: {tech:'JQUERY'}
+//     },{
+//       model: models.resource_type,
+//       where: {type:'VIDEO'}
+//     }]
+//   })
+//   .then(function(lib){
+//     return res.json(lib);
+//   });
+// });
+
+// router.get('/resources/:tech', function(req, res, next) {
+
+//   var data = {};
+//   data.user = req.user;
+//   data.tech = req.params.tech;
+
+//   models.technology.findAll({
+//     }).then(function(tech){
+//     data.technology = tech;
+//   }).then(function(){
+//     models.resource_type.findAll({
+//   }).then(function(resources){
+//     data.resources = resources;
+
+//     for(var r in data.resources) {
+
+//       data.resources[r].link = data.tech + "/" + data.resources[r].type;
+
+//     }
+
+//     models.library.findAll({
+//       include: [{
+//         model: models.technology,
+//         where: {tech: data.tech}
+//       }]
+//     }).then(function(libraries){
+
+//       data.libraries = libraries;
+//       console.log(data);
+//       res.send(data);
+
+//     });
+
+//     });
+//   });
+// });
 
 module.exports = router;

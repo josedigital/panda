@@ -1,0 +1,47 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+      <aside class="col s12 m3">
+        {{> _sidebar_profile }}
+
+        <ul class="secondary-nav">
+        {{#each technology }}
+          <li><a class="{{active}}" href="{{#if link}}{{link}}{{else}}{{tech}}{{/if}}">{{ tech }}</a></li>
+        {{/each}}
+        </ul>
+        
+      </aside>
+
+      <main class="col s12 m9">
+        <h3 class="uppercase">Learning Resources</h3>
+        <div class="providers-tabs">
+          {{data}}
+          {{#each resourceTypes}}
+            <span class="uppercase">
+              <a class="{{active}}" href="/resources/{{type}}">{{type}}</a>
+            </span>
+          {{/each}}
+        </div>
+          
+
+          
+
+        <div class="section">
+          {{records}}
+          {{libraries}}
+          {{#each resources}}
+            {{type}}
+          {{/each}}
+          
+          
+        </div>
+      </main>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}
