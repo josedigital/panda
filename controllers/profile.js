@@ -53,7 +53,10 @@ router.post('/profile/add-repos', connectLogin.ensureLoggedIn(), function (req, 
           username: req.user.username,
           repo_url: req.body[key]
         }
-      })
+      })//George's association with user? - This didn't work, need a through table
+  //       .then(function(newrepo){
+	// 	      return models.user.req.user.id.repos(newrepo);
+	// })end of George's association
         .then(function(repoRow) {
           // run function after db save
           if(i >= repoNames.length) {
