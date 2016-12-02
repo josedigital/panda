@@ -34,7 +34,7 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
 });
 
 
-router.post('/profile/add-repos', function (req, res) {
+router.post('/profile/add-repos', connectLogin.ensureLoggedIn(), function (req, res) {
   var repos ={};
   var repoNames = Object.keys(req.body);
   var i = 0;
@@ -66,6 +66,7 @@ router.post('/profile/add-repos', function (req, res) {
     // delete repos that were replaced
     var reconcileRepos = function () {
       models.repos.destroy({where: {
+        username: req.user.username,
         repo_name: {
           $notIn: repoNames
         }
