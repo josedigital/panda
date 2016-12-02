@@ -1,0 +1,81 @@
+{{> _header }}
+
+
+
+  <div class="container">
+    <div class="row">
+
+
+      <main class="col s12">
+        <h3 class="uppercase">Panda API</h3>        
+        
+        <h5 class="uppercase">Overview</h5>
+        <hr>
+
+        <p>Welocome to the Panda Public API! Below you will find brief descriptions of the data we have available. We encourage you to build your own dashboards or personalized learning portal using Panda's available resources and continue learning.</p>
+
+        <p>If you have any resources you'd like added to Panda, please share them by email to <a href="mailto:pandashelpers@gmail.com">pandashelpers@gmail.com</a> or send us a tweet to <a href="https://twitter.com/panda_guide_app">@panda_guide_app</a>. We appreciate your contributions!</p>
+
+        
+        
+        <div class="api-docs">
+          <h5 class="uppercase">Resources</h5>
+          <hr>
+          <div class="api-section">
+            <code>
+              <span class="chip">GET</span> /api/v1/resources
+            </code>
+            <br>
+            Fetch a complete list of resources (our term for links to PDFs, Videos, and other materials).
+          </div>
+
+          <div class="api-section">
+            <code>
+              <span class="chip">GET</span> /api/v1/resources/:technology
+            </code>
+            <br>
+            Fetch a list of all resources related to a specific technology.
+            <br>
+            <b>technology:</b> string [html, css, javascript, jquery, api, node.js, npm, mysql, sequelize, express.js, mongodb, react, hadnlebars, github, heroku, security, debug, testing, tools]
+          </div>
+
+
+          <div class="api-section">
+            <code>
+              <span class="chip">GET</span> /api/v1/resources/:technology/:type
+            </code>
+            <br>
+            Fetch a list of resources related to a specific technology by specific type of resource.
+            <br>
+            <b>type:</b> string [video, pdf, link] 
+
+          </div>
+
+
+
+          <h5 class="uppercase">Users</h5>
+          <hr>
+          <div class="api-section">
+            <code>
+              <span class="chip">GET</span> /api/v1/users
+            </code>
+            <br>
+            Fetch a list of all registered Panda users. Users data includes all publicly avalailable data via <a href="https://github.com">Github</a> (email, Github link, user name, etc.), limited to four code repositories chosen by the specified user.  
+          </div>
+
+          <div class="api-section">
+            <code>
+              <span class="chip">GET</span> /api/v1/users/:id
+            </code>
+            <br>
+            Fetch a registered Panda user by their ID. Users data includes all publicly avalailable data via <a href="https://github.com">Github</a> (email, Github link, user name, etc.), limited to four code repositories chosen by the specified user. 
+          </div>
+
+        </div>
+      </main>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+  
+
+{{> _footer }}
