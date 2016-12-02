@@ -6,7 +6,8 @@ router.get('/api/v1', function (req, res, next) {
   res.render('api');
 });
 
-router.get('/api/v1/user/:id', function(req, res, next) {
+router.get('/api/v1/users/:id', function(req, res, next) {
+  console.log('------ the id is ===== ' + req.params.id);
   models.user.findOne({ where: {id: req.params.id} }).then(function(data) {
     if (data !== null){
       res.json(data);
