@@ -9,9 +9,10 @@ router.get('/resources/meetups', connectLogin.ensureLoggedIn(), function (req, r
 });
 
 router.get('/resources/meetups/:tech', connectLogin.ensureLoggedIn(), function(req, res, next) {
+  var data = {};
   // get user
   data.user = req.user;
-  data.noresults = req.params.tech;
+  data.tech = req.params.tech;
 
   models.job_search.findOne({where: {api_name: 'Meetups'} }).then(function (apiprovider) {
     console.log(apiprovider);
@@ -32,6 +33,16 @@ router.get('/resources/meetups/:tech', connectLogin.ensureLoggedIn(), function(r
         models.technology.findAll({
         }).then(function(tech){
           data.technology = tech;
+          // active tech
+          for(i in data.technology) {
+            if(data.technology[i].tech === data.tech) {
+              data.technology[i].active = 'active';
+            } else {
+              data.technology[i].active = 'non-active';
+            }
+          }
+
+          
           res.render('meetups', data);
         });
 
