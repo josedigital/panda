@@ -61,7 +61,10 @@ p {
 
 a.active {
   font-weight: bold;
-  color: teal;
+  @extend .amber-text;
+}
+a.non-active {
+  @extend .light-blue-text;
 }
 
 .button-collapse {
