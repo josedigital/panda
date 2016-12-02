@@ -41,16 +41,7 @@
       }
       
     }
-  });    
-    // $(document).find('input.checkbox:checked"]').length;
-    // if ( titles.length > 2 ) {
-    //   for(var i = 0; i < checkedBoxes.length; i++) {
-    //     if( checkedBoxes[i].checked == false) {
-    //       checkedBoxes[i].disabled = true;
-    //     }
-    //   }
-    // }
-  
+  });
 
 
   }); // end of document ready
