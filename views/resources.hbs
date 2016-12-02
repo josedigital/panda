@@ -12,11 +12,16 @@
 
         </div>
 
-          <ul class="secondary-nav">
+          {{!--<ul class="secondary-nav">
           {{#each technology }}
             <li><button class="waves-effect waves-light btn-large" id="{{tech}}">{{ tech }}</button></li>
           {{/each}}
-          </ul>
+          </ul>--}}
+        <ul class="secondary-nav">
+        {{#each technology }}
+          <li><a href="{{tech}}" id="{{tech}}">{{tech}}</a></li>
+        {{/each}}
+        </ul>
 
       </aside>
 
@@ -45,7 +50,10 @@
 </section>
 {{> _footer }}
 <script type="text/javascript">
-  $("button").on('click', function() {
+  $(".secondary-nav a").on('click', function(e) {
+    e.preventDefault();
+    $(".secondary-nav a").removeClass('active');
+    $(this).addClass('active');
 
     var tech = $(this).attr('id');
     var url = "/resources/" + tech;
