@@ -145,6 +145,9 @@ a.non-active {
 
 
 .laptop {
+  img {
+    max-width: 100%;
+  }
   background-image: none;
   @media only screen and (min-width: 600px) {
     background-image: url('../img/laptop-profile.png');
@@ -342,3 +345,8 @@ iframe {
   padding-right: 1.5rem;
 }
 
+@media only screen and (max-width : 600px) {
+  .footer-copyright {
+    font-size: 12px;
+  }
+}
