@@ -13,6 +13,7 @@ Panda Guide App is a gathers resources to save students of the UT Coding Bootcam
 - Nodemon
 - SASS
 - Handlebars
+- Materialize Framework
 
 
 
