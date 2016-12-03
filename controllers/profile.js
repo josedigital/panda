@@ -34,7 +34,7 @@ router.get('/profile', connectLogin.ensureLoggedIn(), function(req, res){
 });
 
 
-router.post('/profile/add-repos', function (req, res) {
+router.post('/profile/add-repos', connectLogin.ensureLoggedIn(), function (req, res) {
   var repos ={};
   var repoNames = Object.keys(req.body);
   var i = 0;
@@ -59,13 +59,13 @@ router.post('/profile/add-repos', function (req, res) {
           if(i >= repoNames.length) {
             reconcileRepos();
           }
-          // reconcileRepos();
         });
       i++;
     }
     // delete repos that were replaced
     var reconcileRepos = function () {
       models.repos.destroy({where: {
+        username: req.user.username,
         repo_name: {
           $notIn: repoNames
         }
@@ -141,23 +141,34 @@ router.post('/profile/save-profile', connectLogin.ensureLoggedIn(), function (re
   var textReceived = req.body.main_text;
   var descriptionIds = Object.keys(req.body);
   var userTitle = req.body.user_title;
+  var data = {};
 
   models.user.findOne({ where: {user_name: req.user.username} }).then(function(user) {
     if(user) {
       user.update({ main_text: textReceived, user_title: userTitle }).then(function () {
-        res.send('Profile saved successfully: ' + textReceived);
+        // res.send('Profile saved successfully: ' + textReceived);
+        data.textReceived = textReceived;
+        data.userTitle = userTitle;
       });
     }
   });
 
+
   for(repo in descriptionIds) {
     var recordId = descriptionIds[repo];
-    models.repos.findById(recordId).then(function (repo) {
-      repo.update({ repo_description: req.body[recordId] }).then(function () {
-        res.send('Repos description saved successfully: ' + req.body[recordId]);
-      });
+
+    models.repos.update(
+        { repo_description: req.body[recordId] },
+        { where: { id: recordId }}
+      ).spread(function(affectedCount, affectedRows) {
+        // return models.repos.findAll();
+        console.log(affectedRows);
+    }).then(function(singlerepo) {
+      console.log(singlerepo);
     });
+
   }
+  res.send('Profile saved successfully');
     
 });
 

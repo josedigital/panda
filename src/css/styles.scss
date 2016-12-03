@@ -64,6 +64,9 @@ a.active {
   font-weight: bold;
   color: #ffab40;
 }
+a.non-active {
+  @extend .light-blue-text;
+}
 
 .button-collapse {
   color: #26a69a;
@@ -331,3 +334,11 @@ footer.page-footer {
 iframe {
   width: 100%;
 }
+
+
+//home
+.cardPad {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+

@@ -45,6 +45,7 @@ window.addEventListener('load', function() {
 	    };
 
 	function postAjax(url, data, success) {
+		console.log(data);
 		var params = typeof data == 'string' ? data : Object.keys(data).map(
 				function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
 			).join('&');
