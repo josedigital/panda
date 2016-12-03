@@ -8347,6 +8347,12 @@ body {
 .s12.m9.leftpad {
   padding-left: 30px; }
 
+.icons {
+  margin-top: 10px; }
+
+.card_title {
+  font-size: 1.3em; }
+
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
