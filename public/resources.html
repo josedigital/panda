@@ -17,7 +17,7 @@
             <li><button class="waves-effect waves-light btn-large" id="{{tech}}">{{ tech }}</button></li>
           {{/each}}
           </ul>--}}
-        <ul class="secondary-nav">
+        <ul class="secondary-nav" id="yellowLink">
         {{#each technology }}
           <li><a href="{{tech}}" id="{{tech}}">{{tech}}</a></li>
         {{/each}}
@@ -38,7 +38,7 @@
         <div class="section" id="result">
 
           {{#if intro}}
-            <p>{{intro}}</p>
+            <p class="center-align">{{intro}}</p>
           {{/if}}
 
         </div>
@@ -79,13 +79,27 @@
           var colElement = $("<div>").addClass("col s12 m6");
           var cardElement = $("<div>").addClass("card small hoverable teal darken-1");
           var cardContentEle = $("<div>").addClass("card-content white-text");
-          var cardSpanEle = $("<span>").addClass("card-title ");
-          var cardParaElement = $("<p>");
+          var cardSpanEle = $("<span>").addClass("card-title");
+          var cardWrapperEle = $("<div>").addClass("center-align");
+          var cardParaElement = $("<p>").addClass("center-align card_title");
+          var cardIconElement = $("<i>").addClass("large material-icons icons");
           var cardActionEle = $("<div>").addClass("card-action");
+          var iconType = "";
+
+          if (resourceUrl.split('.').pop().toLowerCase() === 'pdf') {
+            iconType = "description";
+          }else if (resourceUrl.includes("youtube")) {
+            iconType = "video_library";
+          }else if (resourceUrl.startsWith("http") && !(resourceUrl.includes("youtube"))) {
+            iconType = "library_books";
+          }else {
+            iconType = "class";
+          }
 
           cardSpanEle.append("Resource #" + (parseFloat([key]) + 1));
           cardParaElement.append(results[key].resource_name);
-          cardActionEle.append("<a href='" + resourceUrl + "'>Link</a>");
+          cardIconElement.append(iconType);
+          cardActionEle.append("<a href='" + resourceUrl + "' class='truncate'>"+ resourceUrl +"</a>");
 
           fieldElement.append(rowElement);
           rowElement.append(colElement);
@@ -93,6 +107,8 @@
           cardElement.append(cardContentEle);
           cardContentEle.append(cardSpanEle);
           cardContentEle.append(cardParaElement);
+          cardWrapperEle.append(cardIconElement);
+          cardContentEle.append(cardWrapperEle);
           cardElement.append(cardActionEle);
 
           resultField.append(fieldElement);

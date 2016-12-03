@@ -86,7 +86,7 @@ router.get('/jobs/:provider/:tech', connectLogin.ensureLoggedIn(), function (req
       if(data.technology[i].tech === data.tech) {
         data.technology[i].active = 'active';
       } else {
-        data.technology[i].active = '';
+        data.technology[i].active = 'non-active';
       }
     }
 
