@@ -8344,6 +8344,12 @@ body {
 .s12.m9.leftpad {
   padding-left: 30px; }
 
+.icons {
+  margin-top: 10px; }
+
+.card_title {
+  font-size: 1.3em; }
+
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
@@ -8387,7 +8393,8 @@ p {
   line-height: 2rem; }
 
 a.active {
-  font-weight: bold; }
+  font-weight: bold;
+  color: #ffab40; }
 
 .button-collapse {
   color: #26a69a; }

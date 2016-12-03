@@ -62,7 +62,7 @@ router.get('/resources', connectLogin.ensureLoggedIn(), function(req,res,next){
 
     var data = {};
     data.user = req.user;
-    data.intro = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    data.intro = "Welcome to the resources page. To the left you find the list of technologies. Please select a topic you would like learn more about!";
 
     models.technology.findAll({
       }).then(function(tech){
