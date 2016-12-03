@@ -13,7 +13,7 @@ router.get('/api/v1/users/:id', function(req, res, next) {
       res.json(data);
     }else{
       res.status(404);
-      res.send("No user with that id found");
+      res.json({'error': 'No user with that id found'});
     }
   });
 });
@@ -34,16 +34,13 @@ router.get('/api/v1/resources', function(req, res, next) {
 router.get('/api/v1/resources/:tech', function(req, res, next) {
 
   var data = {};
-  data.user = req.user;
   data.tech = req.params.tech;
 
   models.technology.findAll({
     }).then(function(tech){
-    data.technology = tech;
   }).then(function(){
     models.resource_type.findAll({
   }).then(function(resources){
-    data.resources = resources;
 
     models.library.findAll({
       include: [{
@@ -52,7 +49,7 @@ router.get('/api/v1/resources/:tech', function(req, res, next) {
       }]
     }).then(function(libraries){
         data.libraries = libraries;
-        res.send(data);
+        res.json(data);
       });
     });
   });
